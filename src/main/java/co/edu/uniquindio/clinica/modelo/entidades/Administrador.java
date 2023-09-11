@@ -11,11 +11,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class Administrador extends Usuario implements Serializable {
 
-    @Id
-    @EqualsAndHashCode.Include
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String cedulaAdmin;
-
     //@ManyToOne
     //private Usuario user;
 }

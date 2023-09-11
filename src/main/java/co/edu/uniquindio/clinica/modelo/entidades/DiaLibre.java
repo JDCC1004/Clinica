@@ -1,31 +1,27 @@
 package co.edu.uniquindio.clinica.modelo.entidades;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.sql.Time;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Mensaje implements Serializable {
+public class DiaLibre implements Serializable {
 
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int codigoMensaje;
-
-    private String mensaje;
-    private LocalDate fechaCreacion;
+    private int codigoDia;
+    private Time fechaLibre;
 
     @ManyToOne
-    private PQRS pqrs;
-
-    @ManyToOne
-    private Usuario usuario;
-
+    private Medico medico;
 }

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.sql.Time;
+import java.util.List;
 
 
 @Entity
@@ -12,14 +14,14 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class Medico extends Usuario implements Serializable {
 
-    @Id
-    @EqualsAndHashCode.Include
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String cedulaMedico;
     private String nombre;
-    private String horaInicio;
-    private String horaFin;
     private String telefono;
+    private Time horaInicio;
+    private Time horaFin;
+    private Especialidad especialidad;
+
+    @OneToMany(mappedBy = "medico")
+    private List<DiaLibre> libre;
 
     //@ManyToOne
     //private  Usuario userM;

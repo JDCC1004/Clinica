@@ -4,5 +4,6 @@ public enum EstadoCita {
 
     ASIGNADA,
 
+    CANCELADA,
     ARCHIVADA
 }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -11,16 +12,12 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class Paciente extends Usuario implements Serializable {
 
-    @Id
-    @EqualsAndHashCode.Include
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String cedulaPaciente;
     private String nombre;
-    private String tipoSangre;
-    private String fechaNacimiento;
+    private LocalDate fechaNacimiento;
     private String alergias;
-    private String EPS;
+    private EPS EPS;
     private String telefono;
+    private TipoSangre tipoSangre;
 
     //@ElementCollection
     //private List<String> telefono;
