@@ -6,24 +6,26 @@ import lombok.*;
 import java.io.Serializable;
 import java.util.List;
 
+
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-public class Paciente extends Usuario implements Serializable {
+public class Medico extends Usuario implements Serializable {
 
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String cedulaPaciente;
+    private String cedulaMedico;
     private String nombre;
-    private String tipoSangre;
-    private String fechaNacimiento;
-    private String alergias;
-    private String EPS;
+    private String horaInicio;
+    private String horaFin;
     private String telefono;
+
+    //@ManyToOne
+    //private  Usuario userM;
+
 
     //@ElementCollection
     //private List<String> telefono;
-
 }

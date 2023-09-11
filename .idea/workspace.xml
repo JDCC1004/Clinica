@@ -5,6 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3732c41c-c4c8-4062-91fd-fd5bfc450b19" name="Changes" comment="ClinicaApplication">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/clinica/modelo/entidades/Administrador.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/clinica/modelo/entidades/AtencionMedica.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/clinica/modelo/entidades/Cita.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/clinica/modelo/entidades/EstadoCita.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/clinica/modelo/entidades/EstadoPQRS.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/clinica/modelo/entidades/Medicamentos.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/clinica/modelo/entidades/Medico.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/clinica/modelo/entidades/Mensaje.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/clinica/modelo/entidades/OrdenesMedicamentos.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/clinica/modelo/entidades/PQRS.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/clinica/modelo/entidades/ResultadoExamenes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/clinica/modelo/entidades/Usuario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/clinica/modelo/entidades/Paciente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/clinica/modelo/entidades/Paciente.java" afterDir="false" />
     </list>
@@ -33,6 +46,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -57,9 +71,12 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
     "jdk.selected.JAVA_MODULE": "17",
+    "last_opened_file_path": "C:/Users/Samuel/Documents/Universidad/Sexto Semestre/Programación Avanzada/Programas/ejemplotienda",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -67,11 +84,16 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "vcs.Git",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "spring.configuration.checksum": "6b1d44d3e456d2f2e3140b893320c1fa",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="co.edu.uniquindio.clinica.modelo.entidades" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="ClinicaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="proyectoClinica.main" />
@@ -90,7 +112,22 @@
       <option name="presentableId" value="Default" />
       <updated>1693495065826</updated>
       <workItem from="1693495066830" duration="2531000" />
-      <workItem from="1693539786974" duration="5953000" />
+      <workItem from="1693539786974" duration="6262000" />
+      <workItem from="1693579962582" duration="434000" />
+      <workItem from="1693670286029" duration="291000" />
+      <workItem from="1693670605856" duration="283000" />
+      <workItem from="1693670997044" duration="96000" />
+      <workItem from="1693671127501" duration="133000" />
+      <workItem from="1693702123366" duration="808000" />
+      <workItem from="1693702952199" duration="88000" />
+      <workItem from="1693703062774" duration="3367000" />
+      <workItem from="1693776469942" duration="1345000" />
+      <workItem from="1693837405897" duration="2014000" />
+      <workItem from="1693877657172" duration="615000" />
+      <workItem from="1694038847269" duration="679000" />
+      <workItem from="1694107020320" duration="504000" />
+      <workItem from="1694383509654" duration="51000" />
+      <workItem from="1694383580682" duration="15155000" />
     </task>
     <task id="LOCAL-00001" summary="ClinicaApplication">
       <option name="closed" value="true" />
@@ -100,7 +137,15 @@
       <option name="project" value="LOCAL" />
       <updated>1693544453700</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="ClinicaApplication">
+      <option name="closed" value="true" />
+      <created>1693546467179</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1693546467179</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
