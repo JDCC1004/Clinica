@@ -10,7 +10,6 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 public class Administrador extends Usuario implements Serializable {
-
-    //@ManyToOne
-    //private Usuario user;
+    @ManyToOne
+    private Usuario user;
 }

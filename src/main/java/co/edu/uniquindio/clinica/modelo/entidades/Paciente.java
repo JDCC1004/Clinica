@@ -1,5 +1,6 @@
 package co.edu.uniquindio.clinica.modelo.entidades;
 
+import co.edu.uniquindio.clinica.modelo.enums.TipoSangre;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,7 +16,7 @@ public class Paciente extends Usuario implements Serializable {
     private String nombre;
     private LocalDate fechaNacimiento;
     private String alergias;
-    private EPS EPS;
+    private co.edu.uniquindio.clinica.modelo.enums.EPS EPS;
     private String telefono;
     private TipoSangre tipoSangre;
 

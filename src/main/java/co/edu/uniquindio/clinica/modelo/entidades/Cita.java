@@ -1,5 +1,6 @@
 package co.edu.uniquindio.clinica.modelo.entidades;
 
+import co.edu.uniquindio.clinica.modelo.enums.EstadoCita;
 import jakarta.persistence.*;
 import lombok.*;
 

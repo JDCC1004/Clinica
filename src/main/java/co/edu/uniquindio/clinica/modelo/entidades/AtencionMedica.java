@@ -20,6 +20,8 @@ public class AtencionMedica implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigoHistorial;
     private String sintomas;
+    @Lob
+    @Column(nullable = false)
     private String diagnostico;
     private String tratamiento;
     private LocalDate fechaAtencion;
