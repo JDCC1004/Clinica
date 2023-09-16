@@ -17,8 +17,12 @@ public class ResultadoExamenes implements Serializable {
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private int codigoResultado;
+    @Column(nullable = false)
     private LocalDate fechaAtencion;
+    @Lob
+    @Column(nullable = false)
     private String resultado;
 
     @ManyToOne

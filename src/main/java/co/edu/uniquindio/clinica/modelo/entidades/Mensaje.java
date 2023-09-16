@@ -17,9 +17,12 @@ public class Mensaje implements Serializable {
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private int codigoMensaje;
-
+    @Lob
+    @Column(nullable = false)
     private String mensaje;
+    @Column(nullable = false)
     private LocalDate fechaCreacion;
 
     @ManyToOne

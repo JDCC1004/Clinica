@@ -18,12 +18,19 @@ public class AtencionMedica implements Serializable {
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int codigoHistorial;
-    private String sintomas;
     @Lob
     @Column(nullable = false)
+    private int codigoHistorial;
+    @Lob
+    @Column(nullable = false,length = 50)
+    private String sintomas;
+    @Column(nullable = false, length = 200)
     private String diagnostico;
+    @Lob
+    @Column(nullable = false)
     private String tratamiento;
+    @Lob
+    @Column(nullable = false)
     private LocalDate fechaAtencion;
 
     @OneToOne

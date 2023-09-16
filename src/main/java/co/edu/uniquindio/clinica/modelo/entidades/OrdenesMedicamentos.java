@@ -17,8 +17,11 @@ public class OrdenesMedicamentos implements Serializable {
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private int codigoOrdenes;
+    @Column(nullable = false)
     private LocalDate fechaAtencion;
+    @Column(nullable = false, length = 30)
     private String medicamentos;
 
     @ManyToOne

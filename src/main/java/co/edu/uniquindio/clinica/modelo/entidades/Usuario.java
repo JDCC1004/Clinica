@@ -19,6 +19,8 @@ public class Usuario implements Serializable {
     @EqualsAndHashCode.Include
     @Column(nullable = false, length = 10, unique = true)
     private String cedulaUsuario;
+    @Column(nullable = false, length = 30)
+    private String nombre;
     @Column(nullable = false, length = 20)
     private String email;
     @Column(nullable = false, length = 20)
@@ -35,6 +37,6 @@ public class Usuario implements Serializable {
     @OneToMany(mappedBy = "user")
     private List<Administrador> admin;
 
-    //@OneToMany(mappedBy = "userM")
-    //private List<Medico> medico;
+    @OneToMany(mappedBy = "userMedico")
+    private List<Medico> medico;
 }

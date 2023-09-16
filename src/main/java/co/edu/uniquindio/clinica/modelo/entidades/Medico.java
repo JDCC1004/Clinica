@@ -15,19 +15,20 @@ import java.util.List;
 @NoArgsConstructor
 public class Medico extends Usuario implements Serializable {
 
-    private String nombre;
-    private String telefono;
+    @Column(nullable = false)
     private Time horaInicio;
+    @Column(nullable = false)
     private Time horaFin;
+    @Column(nullable = false)
     private Especialidad especialidad;
 
     @OneToMany(mappedBy = "medico")
     private List<DiaLibre> libre;
 
-    //@ManyToOne
-    //private  Usuario userM;
+    @ManyToOne
+    private Usuario userMedico;
 
-
-    //@ElementCollection
-    //private List<String> telefono;
+    @ElementCollection
+    @Column(nullable = false, length = 10)
+    private List<String> telefono;
 }

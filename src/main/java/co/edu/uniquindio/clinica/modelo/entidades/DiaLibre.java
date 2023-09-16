@@ -19,7 +19,9 @@ public class DiaLibre implements Serializable {
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private int codigoDia;
+    @Column(nullable = false)
     private Time fechaLibre;
 
     @ManyToOne
