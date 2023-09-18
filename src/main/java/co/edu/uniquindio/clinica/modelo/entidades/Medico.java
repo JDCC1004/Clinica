@@ -20,6 +20,7 @@ public class Medico extends Usuario implements Serializable {
     @Column(nullable = false)
     private Time horaFin;
     @Column(nullable = false)
+    //@Enumerated(EnumType.STRING)
     private Especialidad especialidad;
 
     @OneToMany(mappedBy = "medico")
