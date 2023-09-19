@@ -1,6 +1,6 @@
 package co.edu.uniquindio.projectClinica.dto;
 
-import co.edu.uniquindio.projectClinica.modelo.entidades.Estado_cita;
+import co.edu.uniquindio.projectClinica.Enum.Estado_cita;
 
 import java.time.LocalDateTime;
 

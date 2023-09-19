@@ -1,8 +1,8 @@
 package co.edu.uniquindio.projectClinica.modelo.entidades;
 
+import co.edu.uniquindio.projectClinica.Enum.Especialidad;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

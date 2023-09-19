@@ -1,11 +1,12 @@
 package co.edu.uniquindio.projectClinica.modelo.entidades;
 
+import co.edu.uniquindio.projectClinica.Enum.EPS;
+import co.edu.uniquindio.projectClinica.Enum.Tipo_sangre;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import lombok.*;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 

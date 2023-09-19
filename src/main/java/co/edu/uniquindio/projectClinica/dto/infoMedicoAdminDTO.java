@@ -1,6 +1,6 @@
 package co.edu.uniquindio.projectClinica.dto;
 
-import co.edu.uniquindio.projectClinica.modelo.entidades.Especialidad;
+import co.edu.uniquindio.projectClinica.Enum.Especialidad;
 
 public record infoMedicoAdminDTO(
         int cedula,

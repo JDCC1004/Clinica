@@ -1,8 +1,8 @@
 package co.edu.uniquindio.projectClinica.modelo.entidades;
 
+import co.edu.uniquindio.projectClinica.Enum.Estado_cita;
 import jakarta.persistence.*;
 import lombok.*;
-import org.w3c.dom.Text;
 
 import java.io.Serializable;
 import java.time.LocalDate;

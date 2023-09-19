@@ -1,10 +1,10 @@
 package co.edu.uniquindio.projectClinica.modelo.entidades;
 
+import co.edu.uniquindio.projectClinica.Enum.Ciudad;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Getter
