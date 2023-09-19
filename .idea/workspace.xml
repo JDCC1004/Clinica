@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3732c41c-c4c8-4062-91fd-fd5bfc450b19" name="Changes" comment="ClinicaApplication">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/clinica/modelo/enums/Especialidad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/clinica/modelo/enums/Especialidad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/clinica/servicios/MedicoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/clinica/servicios/MedicoServicio.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +108,7 @@
     "project.structure.last.edited": "Problems",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "vcs.Perforce",
+    "settings.editor.selected.configurable": "project.propVCSSupport.CommitDialog",
     "spring.configuration.checksum": "6b1d44d3e456d2f2e3140b893320c1fa",
     "vue.rearranger.settings.migration": "true"
   }
@@ -168,7 +168,9 @@
       <workItem from="1694911346371" duration="87000" />
       <workItem from="1695009616849" duration="2168000" />
       <workItem from="1695012828449" duration="1526000" />
-      <workItem from="1695046111075" duration="5905000" />
+      <workItem from="1695046111075" duration="6031000" />
+      <workItem from="1695058413557" duration="170000" />
+      <workItem from="1695058605800" duration="64000" />
     </task>
     <task id="LOCAL-00001" summary="ClinicaApplication">
       <option name="closed" value="true" />
@@ -242,7 +244,15 @@
       <option name="project" value="LOCAL" />
       <updated>1695051698384</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="ClinicaApplication">
+      <option name="closed" value="true" />
+      <created>1695052026034</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1695052026034</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

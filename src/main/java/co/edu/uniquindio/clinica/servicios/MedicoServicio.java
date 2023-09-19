@@ -2,7 +2,6 @@ package co.edu.uniquindio.clinica.servicios;
 
 import co.edu.uniquindio.clinica.dto.AtencionMedicaDTO;
 import co.edu.uniquindio.clinica.dto.CitaMedicoDTO;
-import co.edu.uniquindio.clinica.dto.CitasAdminDTO;
 import co.edu.uniquindio.clinica.dto.DiaLibreDTO;
 
 import java.util.List;
