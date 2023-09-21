@@ -1,6 +1,7 @@
 package co.edu.uniquindio.projectClinica.servicios;
 
 import co.edu.uniquindio.projectClinica.dto.*;
+import co.edu.uniquindio.projectClinica.dto.paciente.*;
 
 import java.util.Date;
 import java.util.List;

@@ -1,4 +1,4 @@
-package co.edu.uniquindio.projectClinica.dto;
+package co.edu.uniquindio.projectClinica.dto.medico;
 
 import co.edu.uniquindio.projectClinica.Enum.EPS;
 

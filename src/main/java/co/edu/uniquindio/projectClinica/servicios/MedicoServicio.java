@@ -1,9 +1,8 @@
 package co.edu.uniquindio.projectClinica.servicios;
 
-import co.edu.uniquindio.projectClinica.dto.AtencionMedicaDTO;
-import co.edu.uniquindio.projectClinica.dto.CitaMedicoDTO;
+import co.edu.uniquindio.projectClinica.dto.medico.AtencionMedicaDTO;
+import co.edu.uniquindio.projectClinica.dto.medico.CitaMedicoDTO;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Dia_libre;
-import org.hibernate.dialect.identity.DB2390IdentityColumnSupport;
 
 import java.util.List;
 

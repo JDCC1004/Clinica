@@ -1,6 +1,7 @@
 package co.edu.uniquindio.projectClinica.servicios;
 
-import co.edu.uniquindio.projectClinica.dto.*;
+import co.edu.uniquindio.projectClinica.dto.admin.*;
+import co.edu.uniquindio.projectClinica.dto.medico.MedicoDTO;
 
 import java.util.List;
 
