@@ -13,6 +13,8 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Cuenta implements Serializable {
 
     @Id

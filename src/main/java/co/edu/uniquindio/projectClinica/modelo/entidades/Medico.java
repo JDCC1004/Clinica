@@ -24,8 +24,10 @@ public class Medico extends Usuario implements Serializable {
     private Time horaFin;
     @Column(nullable = false)
     private Especialidad especialidad;
+
     @OneToMany(mappedBy = "medico")
     private List<Dia_libre> diaLibres;
+
     @OneToMany(mappedBy = "medico")
     private List<Cita> cita;
 
