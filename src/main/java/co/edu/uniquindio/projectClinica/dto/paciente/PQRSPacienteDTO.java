@@ -1,6 +1,6 @@
 package co.edu.uniquindio.projectClinica.dto.paciente;
 
-import co.edu.uniquindio.projectClinica.Enum.Estado_PQRS;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_PQRS;
 
 import java.time.LocalDateTime;
 

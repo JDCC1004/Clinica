@@ -1,6 +1,6 @@
 package co.edu.uniquindio.projectClinica.modelo.entidades;
 
-import co.edu.uniquindio.projectClinica.Enum.Estado_PQRS;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_PQRS;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

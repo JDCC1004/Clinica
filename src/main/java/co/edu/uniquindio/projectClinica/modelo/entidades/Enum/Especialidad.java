@@ -1,4 +1,4 @@
-package co.edu.uniquindio.projectClinica.Enum;
+package co.edu.uniquindio.projectClinica.modelo.entidades.Enum;
 
 import jakarta.persistence.Id;
 public enum Especialidad {

@@ -1,7 +1,7 @@
 package co.edu.uniquindio.projectClinica.modelo.entidades;
 
-import co.edu.uniquindio.projectClinica.Enum.EPS;
-import co.edu.uniquindio.projectClinica.Enum.Tipo_sangre;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.EPS;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Tipo_sangre;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;

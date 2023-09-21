@@ -16,19 +16,19 @@ public interface PacienteServicio {
     String enviarLinkRecuperacion(String correo)throws Exception;
 
     /**PREGUNTAR*/
-    String cambiarPassword(String correo)throws Exception;
+    String cambiarPassword(NuevaPasswordDTO nuevaPasswordDTO)throws Exception;
 
-    String agendarCita(AgendarCitaDTO agendarCitaDTO)throws Exception;//Restricción: No tener mas de tres citas
+    int agendarCita(AgendarCitaDTO agendarCitaDTO)throws Exception;//Restricción: No tener mas de tres citas
 
     /**PREGUNTAR*/
-    String crearPQRS(String medico, String atencion, Date fecha, String descrip)throws Exception;
+    int crearPQRS(CrearPQRSPDTO crearPQRSPDTO)throws Exception;
 
     List<PQRSPacienteDTO> listarPQRSPaciente();
 
     String responderPQRSP(RespuestaPQRSPDTO respuestaPQRSPDTO) throws Exception;
 
     /**PREGUNTAR*/
-    List<CitaPacienteDTO> listarCitasPendientes(int codigoCita) throws Exception;
+    List<CitaPacienteDTO> listarCitasPendientes(int codigoPaciente) throws Exception;
 
     List<CitaPacienteDTO>filtrarCitasPorMedico(int codigoMedico) throws Exception;
 

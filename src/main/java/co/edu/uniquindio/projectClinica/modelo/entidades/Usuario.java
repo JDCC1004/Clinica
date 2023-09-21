@@ -1,6 +1,6 @@
 package co.edu.uniquindio.projectClinica.modelo.entidades;
 
-import co.edu.uniquindio.projectClinica.Enum.Ciudad;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Ciudad;
 import jakarta.persistence.*;
 import lombok.*;
 

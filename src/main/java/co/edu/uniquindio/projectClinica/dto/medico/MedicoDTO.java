@@ -1,7 +1,7 @@
 package co.edu.uniquindio.projectClinica.dto.medico;
 
-import co.edu.uniquindio.projectClinica.Enum.Ciudad;
-import co.edu.uniquindio.projectClinica.Enum.Especialidad;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Ciudad;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Especialidad;
 
 import java.sql.Time;
 

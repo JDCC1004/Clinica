@@ -1,8 +1,8 @@
 package co.edu.uniquindio.projectClinica.dto.paciente;
 
-import co.edu.uniquindio.projectClinica.Enum.Ciudad;
-import co.edu.uniquindio.projectClinica.Enum.EPS;
-import co.edu.uniquindio.projectClinica.Enum.Tipo_sangre;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Ciudad;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.EPS;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Tipo_sangre;
 
 import java.util.Date;
 

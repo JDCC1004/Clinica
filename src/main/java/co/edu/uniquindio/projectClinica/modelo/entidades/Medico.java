@@ -1,6 +1,6 @@
 package co.edu.uniquindio.projectClinica.modelo.entidades;
 
-import co.edu.uniquindio.projectClinica.Enum.Especialidad;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Especialidad;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
