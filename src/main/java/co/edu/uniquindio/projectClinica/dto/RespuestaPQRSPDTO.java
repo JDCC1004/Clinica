@@ -1,9 +1,8 @@
 package co.edu.uniquindio.projectClinica.dto;
 
-public record RespuestaPQRSDTO(
-
+public record RespuestaPQRSPDTO(
         int codigoPQRS,
-        int codigoUsuario,
+        int codigoAdmin,
         String mensaje
 ) {
 }

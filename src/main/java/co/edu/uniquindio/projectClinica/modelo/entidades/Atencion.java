@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Getter
@@ -28,4 +29,10 @@ public class Atencion implements Serializable {
 
     @OneToOne
     private Cita codigo_cita;
+
+    @OneToMany(mappedBy = "atencionMedica")
+    private List<ResultadoExamenes> resultado;
+
+    @OneToMany(mappedBy = "atencionMedica")
+    private List<OrdenesMedicamentos> medicamento;
 }

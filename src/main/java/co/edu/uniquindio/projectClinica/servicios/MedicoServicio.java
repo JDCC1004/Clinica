@@ -8,13 +8,14 @@ import org.hibernate.dialect.identity.DB2390IdentityColumnSupport;
 import java.util.List;
 
 public interface MedicoServicio {
-    List<CitaMedicoDTO> listarCitasPendiente(int coigo) throws Exception;
+    List<CitaMedicoDTO> listarCitasPendiente(int codigoCita) throws Exception;
 
-    void atenderCita(AtencionMedicaDTO atencionMedicaDTO) throws  Exception;
+    /**PREGUNTAR*/
+    boolean atenderCita(AtencionMedicaDTO atencionMedicaDTO) throws  Exception;
 
     List<CitaMedicoDTO> listarCitasPendientes(int codigoPaciente) throws Exception;
 
-    void agendarDiaLibre(Dia_libre diaLibre) throws Exception;
+    String agendarDiaLibre(Dia_libre diaLibre) throws Exception;
 
     List<CitaMedicoDTO> listarCitasRealizadasMedico(int codigo) throws Exception;
 }

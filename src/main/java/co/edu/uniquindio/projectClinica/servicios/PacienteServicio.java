@@ -1,27 +1,35 @@
 package co.edu.uniquindio.projectClinica.servicios;
 
+import co.edu.uniquindio.projectClinica.dto.*;
+
+import java.util.Date;
+import java.util.List;
+
 public interface PacienteServicio {
-    void registrarse();
+    String registrarse(PacienteDTO pacienteDTO) throws Exception;
 
-    void editarInformacion();
+    String editarInformacion(EditarPacienteDTO editarPacienteDTO)throws Exception;
 
-    void eliminarCuenta();
+    String  eliminarCuenta(int codigo) throws Exception;
+    /**PREGUNTAR*/
+    String enviarLinkRecuperacion(String correo)throws Exception;
 
-    void enviarLinkRecuperacion();
+    /**PREGUNTAR*/
+    String cambiarPassword(String correo)throws Exception;
 
-    void cambiarPassword();
+    String agendarCita(AgendarCitaDTO agendarCitaDTO)throws Exception;//Restricción: No tener mas de tres citas
 
-    void agendarCita();//Restricción: No tener mas de tres citas
+    /**PREGUNTAR*/
+    String crearPQRS(String medico, String atencion, Date fecha, String descrip)throws Exception;
 
-    void crearPQRS();
+    List<PQRSPacienteDTO> listarPQRSPaciente();
 
-    void listarPQRSPaciente();
+    String responderPQRSP(RespuestaPQRSPDTO respuestaPQRSPDTO) throws Exception;
 
-    void responderPQRS();
+    /**PREGUNTAR*/
+    List<CitaPacienteDTO> listarCitasPendientes(int codigoCita) throws Exception;
 
-    void listarCitasPaciente();
+    List<CitaPacienteDTO>filtrarCitasPorMedico(int codigoMedico) throws Exception;
 
-    void filtrarCitasPorMedico();
-
-    void verDetalleCita();
+    DetalleCitaDTO verDetalleCita(int codigoCita);
 }
