@@ -10,6 +10,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -19,9 +20,9 @@ import java.util.List;
 public class Medico extends Usuario implements Serializable {
 
     @Column(nullable = false)
-    private Time horaInicio;
+    private LocalTime horaInicio;
     @Column(nullable = false)
-    private Time horaFin;
+    private LocalTime horaFin;
     @Column(nullable = false)
     private Especialidad especialidad;
 
