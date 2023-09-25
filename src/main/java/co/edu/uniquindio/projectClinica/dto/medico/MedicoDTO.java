@@ -11,8 +11,12 @@ public record MedicoDTO (
      String nombre,
      String telefono,
      Ciudad ciudad,
+     int codigoCiudad,
      String password,
      Especialidad especialidad,
+     int codigoEspecialidad,
+     String correo,
+     String urlFoto,
      Time horaInicio,
      Time horaFin){}
 

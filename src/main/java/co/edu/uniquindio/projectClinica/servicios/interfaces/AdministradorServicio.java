@@ -1,4 +1,4 @@
-package co.edu.uniquindio.projectClinica.servicios;
+package co.edu.uniquindio.projectClinica.servicios.interfaces;
 
 import co.edu.uniquindio.projectClinica.dto.admin.*;
 import co.edu.uniquindio.projectClinica.dto.medico.MedicoDTO;
@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface AdministradorServicio {
 
-    int crearMedico(MedicoDTO medicoDTO) throws Exception;
+    String crearMedico(MedicoDTO medicoDTO) throws Exception;
 
     int actualizarMedico(int codigo, MedicoDTO medicoDTO) throws Exception;
 

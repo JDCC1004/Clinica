@@ -1,4 +1,4 @@
-package co.edu.uniquindio.projectClinica.servicios;
+package co.edu.uniquindio.projectClinica.servicios.interfaces;
 
 import co.edu.uniquindio.projectClinica.dto.EmailDTO;
 
