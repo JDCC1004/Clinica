@@ -23,17 +23,40 @@ public class AdminServicioImpl implements AdministradorServicio {
         Medico medicoNuevo = new Medico();
         medicoNuevo.setNombre(medicoDTO.nombre());
         medicoNuevo.setCedula(medicoDTO.cedula());
-        medicoNuevo.setCiudad(Ciudad.values()[medicoDTO.codigoCiudad()]);
+        medicoNuevo.setCiudad(medicoDTO.ciudad());
         medicoNuevo.setTelefono(medicoDTO.telefono());
         medicoNuevo.setUrl_foto(medicoDTO.urlFoto());
-        medicoNuevo.setEspecialidad(Especialidad.values()[medicoDTO.codigoEspecialidad()]);
+        medicoNuevo.setEspecialidad(medicoDTO.especialidad());
 
         medicoNuevo.setCorreo(medicoDTO.correo());
         medicoNuevo.setPassword(medicoDTO.password());
 
-        Medico medicoRegistrado = medicoRepository.save(medicoNuevo);
+        if(estaRepetidoCorreo(medicoDTO.correo()) ){
+            throw  new Exception("El correo ya esta en uso");
+        }
 
-        return medicoRegistrado.getCodigo();
+        if(estaRepetidoCedula(medicoDTO.cedula()) ){
+            throw  new Exception("La cédula ya esta registrada");
+        }
+
+        if(!medicoDTO.horaFin().isAfter(medicoDTO.horaInicio())){
+            throw new Exception("La hora de inicio debe ser menor que la hora fin");
+        }
+
+        Medico medico= medicoRepository.save(medicoNuevo);
+        return medico.getCodigo();
+    }
+
+    private boolean estaRepetidoCedula(String cedula) {
+        medicoRepository.buscarPorCedula(cedula);
+        return true;
+    }
+
+    private boolean estaRepetidoCorreo(String correo) {
+
+        medicoRepository.buscarPorCorreo(correo);
+
+        return true;
     }
 
     @Override
