@@ -1,16 +1,19 @@
 package co.edu.uniquindio.projectClinica.dto.admin;
 
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Especialidad;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_PQRS;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 public record DetallePQRSDTO(
-        int codigo,
-        LocalDateTime fecha,
-        Estado_PQRS estadoPqrs,
+        String codigo,
+        Estado_PQRS fecha,
+        String estadoPqrs,
         String motivo,
-        List<String> mensaje
+        String nombrePaciente,
+        Especialidad nombreMedico,
+        java.time.LocalDate especialidad,
+        List<RespuestaPQRSDTO> mensaje
 
 ) {
 }

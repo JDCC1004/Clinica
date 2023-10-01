@@ -7,7 +7,6 @@ import java.sql.Time;
 import java.time.LocalTime;
 
 public record MedicoDTO (
-
      String cedula,
      String nombre,
      String telefono,
@@ -16,8 +15,11 @@ public record MedicoDTO (
      String password,
      Especialidad especialidad,
      int codigoEspecialidad,
+     int codigo,
      String correo,
      String urlFoto,
      LocalTime horaInicio,
-     LocalTime horaFin){}
+     LocalTime horaFin){
+
+}
 

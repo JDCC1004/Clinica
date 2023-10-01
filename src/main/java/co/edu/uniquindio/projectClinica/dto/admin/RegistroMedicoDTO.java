@@ -7,8 +7,10 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.cglib.core.Local;
 
 import java.sql.Time;
+import java.time.LocalTime;
 
 public record RegistroMedicoDTO(
         @NotNull @Length(max = 200)
@@ -24,11 +26,13 @@ public record RegistroMedicoDTO(
         @NotNull @Length(max = 20) @Email
         String correo,
         @NotNull
+        String urlFoto,
+        @NotNull
         String password,
         @NotNull
-        Time horaInicio,
+        LocalTime horaInicio,
         @NotNull
-        Time horaFin
+        LocalTime horaFin
 
 ) {
 }

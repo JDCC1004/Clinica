@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @Setter
@@ -18,10 +19,12 @@ public class Mensaje implements Serializable {
     @Id
     @EqualsAndHashCode.Include
     @Column(nullable = false, length = 10, unique = true)
-    private String Codigo;
+    private String codigo;
     @Column(nullable = false)
-    private LocalDate fecha_creacion;
+    private LocalDateTime fecha_creacion;
     @Lob
+    @Column(nullable = false)
+    private String contenido;
     @Column(nullable = false)
     private String mensaje;
 

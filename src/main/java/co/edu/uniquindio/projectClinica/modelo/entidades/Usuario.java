@@ -1,6 +1,7 @@
 package co.edu.uniquindio.projectClinica.modelo.entidades;
 
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Ciudad;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.EstadoUsuario;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,5 +27,7 @@ public class Usuario extends Cuenta implements Serializable {
     private String url_foto;
     @Column(nullable = false, length = 20)
     private Ciudad ciudad;
+    @Column(nullable = false)
+    private EstadoUsuario estadoUsuario;
 
 }

@@ -1,27 +1,28 @@
 package co.edu.uniquindio.projectClinica.servicios.interfaces;
 
 import co.edu.uniquindio.projectClinica.dto.admin.*;
-import co.edu.uniquindio.projectClinica.dto.medico.MedicoDTO;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_PQRS;
 
 import java.util.List;
 
 public interface AdministradorServicio {
 
-    String crearMedico(MedicoDTO medicoDTO) throws Exception;
+    String crearMedico(RegistroMedicoDTO medicoDTO) throws Exception;
 
-    int actualizarMedico(int codigo, MedicoDTO medicoDTO) throws Exception;
+    String actualizarMedico(DetalleMedicoDTO medicoDTO) throws Exception;
 
-    String eliminarMedico(int codigo) throws Exception;
+    void eliminarMedico(int codigo) throws Exception;
 
-    List<infoMedicoAdminDTO>listarMedico();
+    List<infoMedicoAdminDTO>listarMedico() throws Exception;
 
-    DetalleMedicoDTO obtenerMedico(int codigo);
+    DetalleMedicoDTO obtenerMedico(int codigo) throws Exception;
 
-    List<PQRSAdminDTO> listarPQRS();
+    List<PQRSAdminDTO> listarPQRS() throws Exception;
 
     String responderPQRS(RespuestaPQRSDTO respuestaPQRSDTO) throws Exception;
 
-    DetallePQRSDTO verDetallePQRS(int codigo);
+    DetallePQRSDTO verDetallePQRS(int codigo) throws Exception;
+    void cambiarEstadoPQRS(int codigoPQRS, Estado_PQRS estadoPqrs) throws Exception;
 
     List<CitasAdminDTO> listarCitas();
     }
