@@ -18,7 +18,7 @@ public record DetalleMedicoDTO(
         Ciudad ciudad,
         Especialidad especialidad,
         EstadoUsuario estadoUsuario,
-        Time horaInicio,
-        Time horaFin
+        LocalTime horaInicio,
+        LocalTime horaFin
 ) {
 }

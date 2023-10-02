@@ -4,7 +4,6 @@ public record RespuestaPQRSDTO(
 
         int codigoPQRS,
         int codigoCuenta,
-        int codigoMensaje,
         String mensaje
 ) {
 }

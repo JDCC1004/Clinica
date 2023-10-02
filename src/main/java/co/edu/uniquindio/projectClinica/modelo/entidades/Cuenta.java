@@ -13,14 +13,15 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Cuenta implements Serializable {
 
     @Id
     @EqualsAndHashCode.Include
-    @Column(nullable = false, length = 10, unique = true)
-    private String Codigo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int codigo;
+
     @Column(nullable = false, length = 30)
     private String correo;
     @Column(nullable = false, length = 30)

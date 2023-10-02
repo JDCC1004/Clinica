@@ -15,7 +15,6 @@ import java.io.Serializable;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Usuario extends Cuenta implements Serializable {
 
-
     @Column(nullable = false, length = 10)
     private String cedula;
     @Column(nullable = false, length = 30)

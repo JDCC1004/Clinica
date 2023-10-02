@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -19,15 +20,15 @@ public class Cita implements Serializable {
     @Id
     @EqualsAndHashCode.Include
     @Column(nullable = false, length = 10, unique = true)
-    private String Codigo;
+    private int codigoCita;
     @Column(nullable = false)
-    private LocalDate fecha_creacion;
+    private LocalDateTime fechaCreacion;
     @Lob
     @Column(nullable = false)
-    private LocalDate fecha_cita;
+    private LocalDateTime fechaCita;
     @Lob
     @Column(length = 50)
-    private String moivo;
+    private String motivo;
     @Column(nullable = false)
     private Estado_cita estadoCita;
 

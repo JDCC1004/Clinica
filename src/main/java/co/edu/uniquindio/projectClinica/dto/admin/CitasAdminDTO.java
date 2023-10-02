@@ -1,15 +1,19 @@
 package co.edu.uniquindio.projectClinica.dto.admin;
 
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Especialidad;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_cita;
 
 import java.time.LocalDateTime;
 
 public record CitasAdminDTO(
 
-        int codigo,
+        int codigoCita,
         Estado_cita estadoCita,
-        LocalDateTime fecha,
+        LocalDateTime fechaCreacion,
+        LocalDateTime fechaCita,
         String nombrePaciente,
-        String nombreMedico
+        String nombreMedico,
+        String cedulaPaciente,
+        Especialidad especialidad
 ) {
 }

@@ -7,7 +7,7 @@ import java.sql.Time;
 import java.time.LocalTime;
 
 public record MedicoDTO (
-     String cedula,
+     int cedula,
      String nombre,
      String telefono,
      Ciudad ciudad,

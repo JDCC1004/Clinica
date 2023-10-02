@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface AdministradorServicio {
 
-    String crearMedico(RegistroMedicoDTO medicoDTO) throws Exception;
+    int crearMedico(RegistroMedicoDTO medicoDTO) throws Exception;
 
-    String actualizarMedico(DetalleMedicoDTO medicoDTO) throws Exception;
+    int actualizarMedico(DetalleMedicoDTO medicoDTO) throws Exception;
 
     void eliminarMedico(int codigo) throws Exception;
 
@@ -19,11 +19,11 @@ public interface AdministradorServicio {
 
     List<PQRSAdminDTO> listarPQRS() throws Exception;
 
-    String responderPQRS(RespuestaPQRSDTO respuestaPQRSDTO) throws Exception;
+    int responderPQRS(RespuestaPQRSDTO respuestaPQRSDTO) throws Exception;
 
     DetallePQRSDTO verDetallePQRS(int codigo) throws Exception;
     void cambiarEstadoPQRS(int codigoPQRS, Estado_PQRS estadoPqrs) throws Exception;
 
-    List<CitasAdminDTO> listarCitas();
+    List<CitasAdminDTO> listarCitas() throws Exception;
     }
 

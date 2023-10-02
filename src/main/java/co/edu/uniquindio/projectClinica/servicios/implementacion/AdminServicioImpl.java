@@ -1,15 +1,9 @@
 package co.edu.uniquindio.projectClinica.servicios.implementacion;
 
+import co.edu.uniquindio.projectClinica.modelo.entidades.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.EstadoUsuario;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_PQRS;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Cuenta;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Medico;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Mensaje;
-import co.edu.uniquindio.projectClinica.modelo.entidades.PQRS;
-import co.edu.uniquindio.projectClinica.repositorios.CuentaRepository;
-import co.edu.uniquindio.projectClinica.repositorios.MedicoRepository;
-import co.edu.uniquindio.projectClinica.repositorios.MensajeRepository;
-import co.edu.uniquindio.projectClinica.repositorios.pqrsRepository;
+import co.edu.uniquindio.projectClinica.repositorios.*;
 import co.edu.uniquindio.projectClinica.dto.admin.*;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.AdministradorServicio;
 import lombok.RequiredArgsConstructor;
@@ -28,9 +22,10 @@ public class AdminServicioImpl implements AdministradorServicio {
     private final pqrsRepository pqrsRepository;
     private final CuentaRepository cuentaRepository;
     private final MensajeRepository mensajeRepository;
+    private final CitaRepository citaRepository;
 
     @Override
-    public String crearMedico(RegistroMedicoDTO medicoDTO) throws Exception {
+    public int crearMedico(RegistroMedicoDTO medicoDTO) throws Exception {
 
         if( !medicoDTO.horaFin().isAfter( medicoDTO.horaInicio() ) ){
             throw new Exception("La hora de inicio debe ser menor que la hora fin");
@@ -53,6 +48,7 @@ public class AdminServicioImpl implements AdministradorServicio {
         medicoNuevo.setHoraInicio( medicoDTO.horaInicio() );
         medicoNuevo.setHoraFin( medicoDTO.horaFin() );
         medicoNuevo.setEspecialidad(medicoDTO.especialidad());
+        medicoNuevo.setEstadoUsuario(EstadoUsuario.ACTIVO);
 
         medicoNuevo.setCorreo(medicoDTO.correo());
         medicoNuevo.setPassword(medicoDTO.password());
@@ -63,7 +59,7 @@ public class AdminServicioImpl implements AdministradorServicio {
     }
 
     @Override
-    public String actualizarMedico(DetalleMedicoDTO medicoDTO) throws Exception {
+    public int actualizarMedico(DetalleMedicoDTO medicoDTO) throws Exception {
         Optional<Medico> opcional = medicoRepository.findById(medicoDTO.codigo());
         if (opcional.isEmpty()){
             throw new Exception("No existe el medico con el código: " +medicoDTO.codigo());
@@ -127,14 +123,6 @@ public class AdminServicioImpl implements AdministradorServicio {
             ));
         }
 
-        /**List<infoMedicoAdminDTO> respuesta = medicos.stream().map(m -> new infoMedicoAdminDTO(
-                m.getCodigo(),
-                m.getCedula(),
-                m.getNombre(),
-                m.getUrl_foto(),
-                m.getEspecialidad()
-        )).toList();**/
-
         return respuesta;
     }
 
@@ -150,16 +138,16 @@ public class AdminServicioImpl implements AdministradorServicio {
 
         return new DetalleMedicoDTO(
                 buscado.getCodigo(),
-                buscado.getNombre(),
                 buscado.getCedula(),
-                buscado.getCiudad(),
-                buscado.getEspecialidad(),
+                buscado.getNombre(),
                 buscado.getTelefono(),
                 buscado.getCorreo(),
                 buscado.getUrl_foto(),
+                buscado.getCiudad(),
+                buscado.getEspecialidad(),
+                buscado.getEstadoUsuario(),
                 buscado.getHoraInicio(),
-                buscado.getHoraFin(),
-                new ArrayList<>()
+                buscado.getHoraFin()
         );
     }
 
@@ -173,7 +161,7 @@ public class AdminServicioImpl implements AdministradorServicio {
                     p.getCodigo(),
                     p.getEstadoPQRS(),
                     p.getMotivo(),
-                    p.getFecha_creacion(),
+                    p.getFechaCreacion(),
                     p.getCita().getPaciente().getNombre()
         ));
         }
@@ -181,35 +169,24 @@ public class AdminServicioImpl implements AdministradorServicio {
     }
 
     @Override
-    public String responderPQRS(RespuestaPQRSDTO respuestaPQRSDTO) throws Exception {
+    public int responderPQRS(RespuestaPQRSDTO respuestaPQRSDTO) throws Exception {
         Optional<PQRS> opcionalPQRS = pqrsRepository.findById(respuestaPQRSDTO.codigoPQRS());
 
-        if (opcionalPQRS.isEmpty()){
-            throw new Exception("No existe un PQRS con el código: " +respuestaPQRSDTO.codigoPQRS());
+        if (opcionalPQRS.isEmpty()) {
+            throw new Exception("No existe un PQRS con el código: " + respuestaPQRSDTO.codigoPQRS());
         }
 
         Optional<Cuenta> optionalCuenta = cuentaRepository.findById(respuestaPQRSDTO.codigoCuenta());
 
-        if (optionalCuenta.isEmpty()){
-            throw new Exception("No existe le cuenta con el código: " +respuestaPQRSDTO.codigoCuenta());
-        }
-
-        Mensaje referenciaMensaje = null;
-
-        if (respuestaPQRSDTO.codigoMensaje() != -1){
-            Optional<Mensaje> opcionalMensaje = mensajeRepository.findById(respuestaPQRSDTO.codigoMensaje());
-            if (opcionalMensaje.isEmpty()){
-                throw new Exception("No existe un mensaje con el código: " +respuestaPQRSDTO.codigoMensaje());
-            }
-            referenciaMensaje = opcionalMensaje.get();
+        if (optionalCuenta.isEmpty()) {
+            throw new Exception("No existe le cuenta con el código: " + respuestaPQRSDTO.codigoCuenta());
         }
 
         Mensaje mensajeNuevo = new Mensaje();
         mensajeNuevo.setPqrs(opcionalPQRS.get());
         mensajeNuevo.setFecha_creacion(LocalDateTime.now());
         mensajeNuevo.setCuenta(optionalCuenta.get());
-        mensajeNuevo.setContenido(respuestaPQRSDTO.mensaje());
-        mensajeNuevo.setMensaje(referenciaMensaje);
+        mensajeNuevo.setMensaje(respuestaPQRSDTO.mensaje());
 
         Mensaje respuesta = mensajeRepository.save(mensajeNuevo);
 
@@ -229,22 +206,48 @@ public class AdminServicioImpl implements AdministradorServicio {
         return new DetallePQRSDTO(
                 buscado.getCodigo(),
                 buscado.getEstadoPQRS(),
+                buscado.getFechaCreacion(),
                 buscado.getMotivo(),
                 buscado.getCita().getPaciente().getNombre(),
                 buscado.getCita().getMedico().getNombre(),
                 buscado.getCita().getMedico().getEspecialidad(),
-                buscado.getFecha_creacion(),
+
                 new ArrayList<>()
         );
     }
 
     @Override
-    public List<CitasAdminDTO> listarCitas() {
-        return null;
+    public List<CitasAdminDTO> listarCitas() throws Exception{
+        List<Cita> citas = citaRepository.findAll();
+        List<CitasAdminDTO> respuesta = new ArrayList<>();
+
+        for(Cita c : citas){
+            respuesta.add(new CitasAdminDTO(
+                    c.getCodigoCita(),
+                    c.getEstadoCita(),
+                    c.getFechaCreacion(),
+                    c.getFechaCita(),
+                    c.getPaciente().getCedula(),
+                    c.getPaciente().getNombre(),
+                    c.getMedico().getNombre(),
+                    c.getMedico().getEspecialidad()
+
+            ));
+        }
+        return respuesta;
     }
 
     @Override
     public void cambiarEstadoPQRS(int codigoPQRS, Estado_PQRS estadoPqrs) throws Exception{
+        Optional<PQRS> opcional = pqrsRepository.findById(codigoPQRS);
 
+        if (opcional.isEmpty()){
+            throw new Exception("No existe un PQRS con el código: " +codigoPQRS);
+        }
+
+        PQRS pqrs = opcional.get();
+        pqrs.setEstadoPQRS(estadoPqrs);
+
+        pqrsRepository.save(pqrs);
     }
 }
