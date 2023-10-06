@@ -4,29 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f68ac8ae-f7d2-4c5c-bad1-cb15a5aec190" name="Changes" comment="Actualizacion 25/09">
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/repositorios/CitaRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/projectClinica/AdministradorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_21_09_2023_11_56_a__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_21_09_2023_11_56_a__m___Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_09_2023_9_13_a__m___Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_09_2023_9_13_a_ m__[Changes]/shelved.patch" beforeDir="false" />
+    <list default="true" id="f68ac8ae-f7d2-4c5c-bad1-cb15a5aec190" name="Changes" comment="Actualizacion 02/10">
+      <change afterPath="$PROJECT_DIR$/src/test/resources/dataset.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/CitasAdminDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/CitasAdminDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/DetalleMedicoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/DetalleMedicoDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/DetallePQRSDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/DetallePQRSDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/PQRSAdminDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/PQRSAdminDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/RespuestaPQRSDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/RespuestaPQRSDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/infoMedicoAdminDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/infoMedicoAdminDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/medico/MedicoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/medico/MedicoDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Cita.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Cita.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Cuenta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Cuenta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Mensaje.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Mensaje.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/PQRS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/PQRS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/repositorios/pqrsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/repositorios/pqrsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/AdminServicioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/AdminServicioImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/interfaces/AdministradorServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/interfaces/AdministradorServicio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/projectClinica/AdministradorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/projectClinica/AdministradorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +83,7 @@
       <recent name="co.edu.uniquindio.projectClinica.dto" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.AdministradorTest">
+  <component name="RunManager" selected="Gradle.AdministradorTest.eliminarMedico">
     <configuration name="AdministradorTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -149,6 +132,30 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="AdministradorTest.eliminarMedico" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;co.edu.uniquindio.projectClinica.AdministradorTest.eliminarMedico&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="projectApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="projectClinica.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="co.edu.uniquindio.projectClinica.projectApplication" />
@@ -158,6 +165,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.AdministradorTest.eliminarMedico" />
         <item itemvalue="Gradle.AdministradorTest" />
         <item itemvalue="Gradle.AdministradorTest.crearMedicoTest" />
       </list>
@@ -186,7 +194,12 @@
       <workItem from="1696112538435" duration="113000" />
       <workItem from="1696120015727" duration="13201000" />
       <workItem from="1696208577276" duration="88000" />
-      <workItem from="1696256079325" duration="7254000" />
+      <workItem from="1696256079325" duration="9595000" />
+      <workItem from="1696369122367" duration="399000" />
+      <workItem from="1696462771999" duration="419000" />
+      <workItem from="1696515584200" duration="1311000" />
+      <workItem from="1696518095521" duration="1957000" />
+      <workItem from="1696619535661" duration="875000" />
     </task>
     <task id="LOCAL-00001" summary="Actualizacion 25/09">
       <option name="closed" value="true" />
@@ -196,7 +209,15 @@
       <option name="project" value="LOCAL" />
       <updated>1695659950568</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Actualizacion 02/10">
+      <option name="closed" value="true" />
+      <created>1696266202677</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1696266202678</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -205,7 +226,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Actualizacion 25/09" />
     <MESSAGE value="ClinicaApplication" />
-    <option name="LAST_COMMIT_MESSAGE" value="ClinicaApplication" />
+    <MESSAGE value="Actualizacion 02/10" />
+    <option name="LAST_COMMIT_MESSAGE" value="Actualizacion 02/10" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/projectClinica$projectApplication.ic" NAME="projectApplication Coverage Results" MODIFIED="1695046702166" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
