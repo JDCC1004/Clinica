@@ -5,15 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f68ac8ae-f7d2-4c5c-bad1-cb15a5aec190" name="Changes" comment="Actualizacion 25/09">
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/PacienteServicioImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/projectClinica/PacienteTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/medico/ItemMedicoDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/projectClinica/MedicoTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Administrador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Administrador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/PacienteServicioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/PacienteServicioImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/interfaces/MedicoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/interfaces/MedicoServicio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/interfaces/PacienteServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/interfaces/PacienteServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/projectClinica/AdministradorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/projectClinica/AdministradorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/projectClinica/PacienteTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/projectClinica/PacienteTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/resources/dataset.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/dataset.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -111,30 +110,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Gradle.AdministradorTest.crearMedicoTest">
-    <configuration name="AdministradorTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;co.edu.uniquindio.projectClinica.AdministradorTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
     <configuration name="AdministradorTest.crearMedicoTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -203,6 +178,54 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="PacienteTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;co.edu.uniquindio.projectClinica.PacienteTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="PacienteTest.actualizarTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;co.edu.uniquindio.projectClinica.PacienteTest.actualizarTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="projectApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="projectClinica.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="co.edu.uniquindio.projectClinica.projectApplication" />
@@ -213,9 +236,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.AdministradorTest.crearMedicoTest" />
+        <item itemvalue="Gradle.PacienteTest" />
+        <item itemvalue="Gradle.PacienteTest.actualizarTest" />
         <item itemvalue="Gradle.Clinica [build]" />
         <item itemvalue="Gradle.Clinica [clean]" />
-        <item itemvalue="Gradle.AdministradorTest" />
       </list>
     </recent_temporary>
   </component>
@@ -246,6 +270,7 @@
       <workItem from="1696714236147" duration="14686000" />
       <workItem from="1696860797920" duration="3712000" />
       <workItem from="1696866568959" duration="901000" />
+      <workItem from="1696884879268" duration="7505000" />
     </task>
     <task id="LOCAL-00001" summary="Actualizacion 25/09">
       <option name="closed" value="true" />
@@ -255,7 +280,15 @@
       <option name="project" value="LOCAL" />
       <updated>1695659950568</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Actualizacion 25/09">
+      <option name="closed" value="true" />
+      <created>1696885090790</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1696885090790</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -273,9 +306,9 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Actualizacion 25/09" />
     <MESSAGE value="ClinicaApplication" />
-    <option name="LAST_COMMIT_MESSAGE" value="ClinicaApplication" />
+    <MESSAGE value="Actualizacion 25/09" />
+    <option name="LAST_COMMIT_MESSAGE" value="Actualizacion 25/09" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/projectClinica$projectApplication.ic" NAME="projectApplication Coverage Results" MODIFIED="1695046702166" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

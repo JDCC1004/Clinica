@@ -2,6 +2,7 @@ package co.edu.uniquindio.projectClinica.servicios.implementacion;
 
 import co.edu.uniquindio.projectClinica.dto.CitaPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.DetalleCitaDTO;
+import co.edu.uniquindio.projectClinica.dto.ItemCitaDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.*;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.PacienteServicio;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ public class PacienteServicioImpl implements PacienteServicio {
     }
 
     @Override
-    public String editarInformacion(EditarPacienteDTO editarPacienteDTO) throws Exception {
+    public String editarInformacion(PacienteDTO editarPacienteDTO) throws Exception {
         return null;
     }
 
@@ -67,6 +68,16 @@ public class PacienteServicioImpl implements PacienteServicio {
 
     @Override
     public DetalleCitaDTO verDetalleCita(int codigoCita) {
+        return null;
+    }
+
+    @Override
+    public PacienteDTO verDetallePaciente(int i) {
+        return null;
+    }
+
+    @Override
+    public List<ItemCitaDTO> listarTodos() {
         return null;
     }
 }

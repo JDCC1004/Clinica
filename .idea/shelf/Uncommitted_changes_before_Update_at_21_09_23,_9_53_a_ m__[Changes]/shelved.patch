@@ -1,0 +1,106 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"f68ac8ae-f7d2-4c5c-bad1-cb15a5aec190\" name=\"Changes\" comment=\"\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/AgendarCitaDTO.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/paciente/AgendarCitaDTO.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/AtencionMedicaDTO.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/medico/AtencionMedicaDTO.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/CitaMedicoDTO.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/medico/CitaMedicoDTO.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/CitasAdminDTO.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/CitasAdminDTO.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/DetalleMedicoDTO.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/DetalleMedicoDTO.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/DetallePQRSDTO.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/DetallePQRSDTO.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/EditarPacienteDTO.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/paciente/EditarPacienteDTO.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/MedicoDTO.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/medico/MedicoDTO.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/PQRSAdminDTO.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/PQRSAdminDTO.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/PQRSPacienteDTO.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/paciente/PQRSPacienteDTO.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/PacienteDTO.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/paciente/PacienteDTO.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/RespuestaPQRSDTO.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/RespuestaPQRSDTO.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/RespuestaPQRSPDTO.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/paciente/RespuestaPQRSPDTO.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/infoMedicoAdminDTO.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/infoMedicoAdminDTO.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/AdministradorServicio.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/AdministradorServicio.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/MedicoServicio.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/MedicoServicio.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/PacienteServicio.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/PacienteServicio.java\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"ExternalProjectsData\">\n    <projectState path=\"$PROJECT_DIR$\">\n      <ProjectState />\n    </projectState>\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Enum\" />\n        <option value=\"Interface\" />\n        <option value=\"Class\" />\n        <option value=\"Record\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 3\n}</component>\n  <component name=\"ProjectId\" id=\"2VYChR3WsxFFLj9cOu6kP3AqLwg\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,\n    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,\n    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,\n    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\n    &quot;git-widget-placeholder&quot;: &quot;Daniela&quot;,\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/danie/IdeaProjects/projectClinica&quot;,\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\n    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,\n    &quot;spring.configuration.checksum&quot;: &quot;880ee35579a90843593311bdf23e83ea&quot;,\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\n  },\n  &quot;keyToStringList&quot;: {\n    &quot;ChangesTree.GroupingKeys&quot;: [\n      &quot;directory&quot;,\n      &quot;module&quot;\n    ]\n  }\n}</component>\n  <component name=\"RecentsManager\">\n    <key name=\"CreateClassDialog.RecentsKey\">\n      <recent name=\"co.edu.uniquindio.projectClinica.modelo.entidades\" />\n      <recent name=\"co.edu.uniquindio.projectClinica.dto\" />\n    </key>\n  </component>\n  <component name=\"RunManager\">\n    <configuration default=\"true\" type=\"JetRunConfigurationType\">\n      <module name=\"projectClinica.main\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration default=\"true\" type=\"KotlinStandaloneScriptRunConfigurationType\">\n      <module name=\"projectClinica.main\" />\n      <option name=\"filePath\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"projectApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\n      <module name=\"projectClinica.main\" />\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"co.edu.uniquindio.projectClinica.projectApplication\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"f68ac8ae-f7d2-4c5c-bad1-cb15a5aec190\" name=\"Changes\" comment=\"\" />\n      <created>1695003748677</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1695003748677</updated>\n      <workItem from=\"1695003749989\" duration=\"13542000\" />\n      <workItem from=\"1695046675383\" duration=\"5445000\" />\n      <workItem from=\"1695088718809\" duration=\"718000\" />\n      <workItem from=\"1695091256964\" duration=\"1079000\" />\n      <workItem from=\"1695262905080\" duration=\"4092000\" />\n    </task>\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\n    <SUITE FILE_PATH=\"coverage/projectClinica$projectApplication.ic\" NAME=\"projectApplication Coverage Results\" MODIFIED=\"1695046702166\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\">\n      <FILTER>co.edu.uniquindio.projectClinica.*</FILTER>\n    </SUITE>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -6,23 +6,10 @@
+   <component name="ChangeListManager">
+     <list default="true" id="f68ac8ae-f7d2-4c5c-bad1-cb15a5aec190" name="Changes" comment="">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/AgendarCitaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/paciente/AgendarCitaDTO.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/AtencionMedicaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/medico/AtencionMedicaDTO.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/CitaMedicoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/medico/CitaMedicoDTO.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/CitasAdminDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/CitasAdminDTO.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/DetalleMedicoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/DetalleMedicoDTO.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/DetallePQRSDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/DetallePQRSDTO.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/EditarPacienteDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/paciente/EditarPacienteDTO.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/MedicoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/medico/MedicoDTO.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/PQRSAdminDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/PQRSAdminDTO.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/PQRSPacienteDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/paciente/PQRSPacienteDTO.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/PacienteDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/paciente/PacienteDTO.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/RespuestaPQRSDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/RespuestaPQRSDTO.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/RespuestaPQRSPDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/paciente/RespuestaPQRSPDTO.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/infoMedicoAdminDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/infoMedicoAdminDTO.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/AdministradorServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/AdministradorServicio.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/MedicoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/MedicoServicio.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/PacienteServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/PacienteServicio.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Administrador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Administrador.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Medico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Medico.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Paciente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Paciente.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -46,6 +33,7 @@
+   </component>
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++    <option name="UPDATE_TYPE" value="REBASE" />
+   </component>
+   <component name="ProjectColorInfo">{
+   &quot;associatedIndex&quot;: 3
+@@ -92,13 +80,13 @@
+   </component>
+   <component name="RunManager">
+     <configuration default="true" type="JetRunConfigurationType">
+-      <module name="projectClinica.main" />
++      <module name="proyectoClinica" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+-      <module name="projectClinica.main" />
++      <module name="proyectoClinica" />
+       <option name="filePath" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+Index: src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Medico.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package co.edu.uniquindio.projectClinica.modelo.entidades;\n\nimport co.edu.uniquindio.projectClinica.Enum.Especialidad;\nimport jakarta.persistence.Column;\nimport jakarta.persistence.Entity;\nimport jakarta.persistence.OneToMany;\nimport lombok.Getter;\nimport lombok.NoArgsConstructor;\nimport lombok.Setter;\n\nimport java.io.Serializable;\nimport java.sql.Time;\nimport java.util.List;\n\n@Entity\n@Getter\n@Setter\n@NoArgsConstructor\npublic class Medico extends Usuario implements Serializable {\n\n    @Column(nullable = false)\n    private Time horaInicio;\n    @Column(nullable = false)\n    private Time horaFin;\n    @Column(nullable = false)\n    private Especialidad especialidad;\n    @OneToMany(mappedBy = \"medico\")\n    private List<Dia_libre> diaLibres;\n    @OneToMany(mappedBy = \"medico\")\n    private List<Cita> cita;\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Medico.java b/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Medico.java
+--- a/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Medico.java	
++++ b/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Medico.java	
+@@ -4,6 +4,7 @@
+ import jakarta.persistence.Column;
+ import jakarta.persistence.Entity;
+ import jakarta.persistence.OneToMany;
++import lombok.EqualsAndHashCode;
+ import lombok.Getter;
+ import lombok.NoArgsConstructor;
+ import lombok.Setter;
+@@ -16,6 +17,7 @@
+ @Getter
+ @Setter
+ @NoArgsConstructor
++@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+ public class Medico extends Usuario implements Serializable {
+ 
+     @Column(nullable = false)
+Index: src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Paciente.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package co.edu.uniquindio.projectClinica.modelo.entidades;\n\nimport co.edu.uniquindio.projectClinica.Enum.EPS;\nimport co.edu.uniquindio.projectClinica.Enum.Tipo_sangre;\nimport jakarta.persistence.Column;\nimport jakarta.persistence.Entity;\nimport jakarta.persistence.OneToMany;\nimport lombok.*;\nimport java.io.Serializable;\nimport java.util.Date;\nimport java.util.List;\n\n@Entity\n@Getter\n@Setter\n@NoArgsConstructor\npublic class Paciente extends Usuario implements Serializable {\n\n    @Column(nullable = false)\n    private Date fecha_nacimiento;\n    @Column(nullable = false, length = 30)\n    private String alergias;\n    @Column(nullable = false)\n    private EPS eps;\n    @Column(nullable = false)\n    private Tipo_sangre tipoSangre;\n\n    @OneToMany(mappedBy = \"paciente\")\n    private List<Cita> citas;\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Paciente.java b/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Paciente.java
+--- a/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Paciente.java	
++++ b/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Paciente.java	
+@@ -14,6 +14,7 @@
+ @Getter
+ @Setter
+ @NoArgsConstructor
++@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+ public class Paciente extends Usuario implements Serializable {
+ 
+     @Column(nullable = false)

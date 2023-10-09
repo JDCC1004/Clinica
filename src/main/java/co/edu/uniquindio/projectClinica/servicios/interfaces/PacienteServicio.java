@@ -3,13 +3,12 @@ package co.edu.uniquindio.projectClinica.servicios.interfaces;
 import co.edu.uniquindio.projectClinica.dto.*;
 import co.edu.uniquindio.projectClinica.dto.paciente.*;
 
-import java.util.Date;
 import java.util.List;
 
 public interface PacienteServicio {
     String registrarse(PacienteDTO pacienteDTO) throws Exception;
 
-    String editarInformacion(EditarPacienteDTO editarPacienteDTO) throws Exception;
+    String editarInformacion(PacienteDTO editarPacienteDTO) throws Exception;
 
     String eliminarCuenta(int codigo) throws Exception;
 
@@ -41,7 +40,12 @@ public interface PacienteServicio {
 
     List<CitaPacienteDTO> filtrarCitasPorMedico(int codigoMedico) throws Exception;
 
-    DetalleCitaDTO verDetalleCita(int codigoCita);
+    DetalleCitaDTO verDetalleCita(int codigoCita) throws Exception;
 
+    //Metodo creado para test
+    PacienteDTO verDetallePaciente(int i) throws  Exception;
+
+    //Metodo creado para test
+    List<ItemCitaDTO> listarTodos();
 }
 
