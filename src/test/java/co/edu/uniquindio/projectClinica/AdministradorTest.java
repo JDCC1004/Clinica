@@ -22,7 +22,7 @@ public class AdministradorTest {
     private AdministradorServicio administradorServicio;
     @Test
     @Sql("classpath:dataset.sql")
-    public void crearMedicoTest(){
+    public void crearMedicoTest() throws Exception {
 
         DetalleMedicoDTO medi = administradorServicio.obtenerMedico(1);
 
@@ -81,14 +81,14 @@ public class AdministradorTest {
 
     /**@Test
     public void obtenerMedico(){
-        DetalleMedicoDTO Medico = new DetalleMedicoDTO(
-                10324
-        );
+    DetalleMedicoDTO Medico = new DetalleMedicoDTO(
+    10324
+    );
 
-        try{
-            administradorServicio.obtenerMedico(Medico);
-        } catch (Exception e){
-            throw new RuntimeException(e);
-        }
+    try{
+    administradorServicio.obtenerMedico(Medico);
+    } catch (Exception e){
+    throw new RuntimeException(e);
+    }
     }*/
 }
