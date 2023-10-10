@@ -22,7 +22,7 @@ public class AdministradorTest {
     private AdministradorServicio administradorServicio;
     @Test
     @Sql("classpath:dataset.sql")
-    public void crearMedicoTest() throws Exception {
+    public void crearMedicoTest() throws Exception { //Muestra error en el sql usuario
 
         DetalleMedicoDTO medi = administradorServicio.obtenerMedico(5);
 
