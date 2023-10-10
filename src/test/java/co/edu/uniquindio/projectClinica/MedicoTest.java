@@ -28,6 +28,7 @@ public class MedicoTest {
     @Autowired
     private MedicoServicio medicoServicio;
 
+
     @Test
     @Sql("classpath:dataset.sql" )
     public void actualizarTest() throws Exception{
