@@ -24,7 +24,7 @@ public class AdministradorTest {
     @Sql("classpath:dataset.sql")
     public void crearMedicoTest() throws Exception {
 
-        DetalleMedicoDTO medi = administradorServicio.obtenerMedico(1);
+        DetalleMedicoDTO medi = administradorServicio.obtenerMedico(5);
 
         RegistroMedicoDTO medicoDTO = new RegistroMedicoDTO(
                 medi.nombre(),

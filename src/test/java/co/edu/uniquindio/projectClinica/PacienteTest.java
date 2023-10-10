@@ -1,13 +1,7 @@
 package co.edu.uniquindio.projectClinica;
 
 import co.edu.uniquindio.projectClinica.dto.ItemCitaDTO;
-import co.edu.uniquindio.projectClinica.dto.admin.DetalleMedicoDTO;
-import co.edu.uniquindio.projectClinica.dto.admin.RegistroMedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.PacienteDTO;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Ciudad;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Especialidad;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.EstadoUsuario;
-import co.edu.uniquindio.projectClinica.servicios.interfaces.AdministradorServicio;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.PacienteServicio;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;
