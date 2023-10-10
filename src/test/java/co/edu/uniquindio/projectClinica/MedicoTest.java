@@ -26,7 +26,7 @@ import java.util.List;
 public class MedicoTest {
 
     @Autowired
-    private MedicoServicio medicoServicio;;
+    private MedicoServicio medicoServicio;
 
     @Test
     @Sql("classpath:dataset.sql" )
