@@ -4,9 +4,12 @@ import co.edu.uniquindio.projectClinica.dto.CitaPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.DetalleCitaDTO;
 import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.admin.DetallePacienteDTO;
+import co.edu.uniquindio.projectClinica.dto.admin.PQRSAdminDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.*;
+import co.edu.uniquindio.projectClinica.modelo.entidades.PQRS;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Paciente;
 import co.edu.uniquindio.projectClinica.repositorios.PacienteRepository;
+import co.edu.uniquindio.projectClinica.repositorios.pqrsRepository;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.PacienteServicio;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +23,7 @@ import java.util.Optional;
 public class PacienteServicioImpl implements PacienteServicio {
 
     private final PacienteRepository pacienteRepository;
+    private final pqrsRepository pqrsRepository;
 
     @Override
     public int registrarse(PacienteDTO pacienteDTO) throws Exception {
@@ -126,8 +130,19 @@ public class PacienteServicioImpl implements PacienteServicio {
     }
 
     @Override
-    public List<PQRSPacienteDTO> listarPQRSPaciente() {
-        return null;
+    public List<PQRSPacienteDTO> listarPQRSPaciente(int codigoPaciente) throws Exception {
+        List<PQRS> listaPqrs = pqrsRepository.findAll();
+        List<PQRSPacienteDTO> respuesta = new ArrayList<>();
+
+        for (PQRS p: listaPqrs){
+            respuesta.add(new PQRSPacienteDTO(
+                    p.getCodigo(),
+                    p.getMotivo(),
+                    p.getFechaCreacion(),
+                    p.getEstadoPQRS()
+            ));
+        }
+        return respuesta;
     }
 
     @Override

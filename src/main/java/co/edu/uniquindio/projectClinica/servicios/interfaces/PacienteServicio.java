@@ -31,7 +31,7 @@ public interface PacienteServicio {
      */
     int crearPQRS(CrearPQRSPDTO crearPQRSPDTO) throws Exception;
 
-    List<PQRSPacienteDTO> listarPQRSPaciente();
+    List<PQRSPacienteDTO> listarPQRSPaciente(int codigoPaciente) throws Exception;
 
     String responderPQRSP(RespuestaPQRSPDTO respuestaPQRSPDTO) throws Exception;
 
