@@ -1,6 +1,7 @@
 package co.edu.uniquindio.projectClinica.servicios.interfaces;
 
 import co.edu.uniquindio.projectClinica.dto.ItemCitaDTO;
+import co.edu.uniquindio.projectClinica.dto.admin.DetalleMedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.*;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public interface MedicoServicio {
 
     //Metodo para el test
 
-    MedicoDTO verDetalleMedico(int i) throws Exception;
+    DetalleMedicoDTO verDetalleMedico(int i) throws Exception;
 
     //Metodo test
     void eliminarCuenta(int i) throws Exception ;

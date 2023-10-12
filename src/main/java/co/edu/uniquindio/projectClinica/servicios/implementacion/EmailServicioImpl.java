@@ -1,16 +1,32 @@
 package co.edu.uniquindio.projectClinica.servicios.implementacion;
 
+import co.edu.uniquindio.projectClinica.dto.EmailDTO;
+import co.edu.uniquindio.projectClinica.servicios.interfaces.EmailServicio;
 import jakarta.mail.internet.MimeMessage;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 @Service
-public class EmailServicioImpl{
+@RequiredArgsConstructor
+public class EmailServicioImpl implements EmailServicio{
 
-    @Autowired
-    private JavaMailSender javaMailSender;
+    private final JavaMailSender javaMailSender;
+
+    @Override
+    public void enviarEmail(EmailDTO emailDTO) throws Exception {
+        MimeMessage mensaje = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(mensaje, true);
+
+        helper.setSubject(emailDTO.asunto());
+        helper.setText(emailDTO.cuerpo(), true);
+        helper.setTo(emailDTO.destinatario());
+        helper.setFrom("no_reply@dominio.com");
+
+        javaMailSender.send(mensaje);
+    }
 
     public void enviarLinkRecuperacion(String correo, String linkRecuperacion) throws Exception {
         // Crear un mensaje MIME para el correo
@@ -24,25 +40,6 @@ public class EmailServicioImpl{
 
         // Enviar el correo electrónico
         javaMailSender.send(message);
-    }
-
-    public boolean enviarMail(String asunto, String contenido, String destinatario) {
-
-        MimeMessage mensaje = javaMailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(mensaje);
-
-        try{
-            helper.setText(contenido, true);
-            helper.setTo(destinatario);
-            helper.setSubject(asunto);
-
-            javaMailSender.send(mensaje);
-
-            return true;
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        return false;
     }
 }
 

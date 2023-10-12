@@ -25,11 +25,6 @@ public class Medico extends Usuario implements Serializable {
     private LocalTime horaFin;
     @Column(nullable = false)
     private Especialidad especialidad;
-    @Column
-    private int codigoCiudad;
-    @Column
-    private int codigoEspecialidad;
-
 
     @OneToMany(mappedBy = "medico")
     private List<Dia_libre> diaLibres;

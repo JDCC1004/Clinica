@@ -12,6 +12,7 @@ import co.edu.uniquindio.projectClinica.servicios.interfaces.MedicoServicio;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +27,7 @@ public class MedicoServicioImpl implements MedicoServicio {
 
     @Override
     public List<CitaMedicoDTO> listarCitasPendiente(int codigoMedico) throws Exception {
-        Optional<Cita> citas = citaRepository.findById(codigoMedico);
+        List<Cita> citas = citaRepository.obtenerCitasPendientesMedico(codigoMedico, LocalDate.now());
 
         if(citas.isEmpty()){
             throw new Exception("No hay citas registradas");
@@ -39,9 +40,7 @@ public class MedicoServicioImpl implements MedicoServicio {
                     c.getCodigoCita(),
                     c.getPaciente().getNombre(),
                     c.getMotivo(),
-                    c.getFechaCita(),
-                    c.getHoraCita() // Preguntar
-
+                    c.getFechaCita()
             ));
         }
         return respuesta;
@@ -58,13 +57,7 @@ public class MedicoServicioImpl implements MedicoServicio {
 
         Cita atender = optionalCita.get();
 
-        return new AtencionMedicaDTO(
-                atender.getAtencion().getDiagnostico(),
-                atender.getAtencion().getTratamiento(),
-                atender.getAtencion().getNotas_medicas(),
-
-                new ArrayList<>() //Preguntar constructor
-        );
+        return 1;
 
         }
 
@@ -89,12 +82,13 @@ public class MedicoServicioImpl implements MedicoServicio {
 
         List<ItemCitaDTO> respuesta = new ArrayList<>();
 
-        for (Cita i: historial){
+        /*for (Cita i: historial){
             respuesta.add(new ItemCitaDTO(
 
 
             ));
-        }
+        }*/
+
         return respuesta;
     }
 
@@ -109,12 +103,12 @@ public class MedicoServicioImpl implements MedicoServicio {
 
         List<ItemCitaDTO> respuesta = new ArrayList<>();
 
-        for (Cita o: atencion){
+        /*for (Cita o: atencion){
             respuesta.add(new ItemCitaDTO(
 
 
             ));
-        }
+        }*/
         return respuesta;
     }
 
@@ -125,7 +119,7 @@ public class MedicoServicioImpl implements MedicoServicio {
     }
 
     @Override
-    public MedicoDTO verDetalleMedico(int i) throws Exception {
+    public DetalleMedicoDTO verDetalleMedico(int i) throws Exception {
         Optional<Medico> opcional = medicoRepository.findById(i);
 
         if (opcional.isEmpty()){
@@ -145,9 +139,7 @@ public class MedicoServicioImpl implements MedicoServicio {
                 buscado.getEspecialidad(),
                 buscado.getEstadoUsuario(),
                 buscado.getHoraInicio(),
-                buscado.getHoraFin(),
-
-                new ArrayList<>()
+                buscado.getHoraFin()
         );
     }
 
@@ -157,7 +149,7 @@ public class MedicoServicioImpl implements MedicoServicio {
         Optional<Cuenta> eliminar = cuentaRepository.findById(i);
 
         if (eliminar.isEmpty()){
-            throw new Exception("No existe el medico con el código: " i);
+            throw new Exception("No existe el medico con el código: "+ i);
         }
 
         Cuenta buscado = eliminar.get();
@@ -180,10 +172,8 @@ public class MedicoServicioImpl implements MedicoServicio {
         medico.setNombre(medicoDTO.nombre());
         medico.setTelefono(medicoDTO.telefono());
         medico.setCiudad(medicoDTO.ciudad());
-        medico.setCodigoCiudad(medicoDTO.codigoCiudad());
         medico.setPassword(medicoDTO.password());
         medico.setEspecialidad(medicoDTO.especialidad());
-        medico.setCodigoEspecialidad(medicoDTO.codigoEspecialidad());
         medico.setCodigo(medicoDTO.codigo());
         medico.setCorreo(medicoDTO.correo());
         medico.setUrl_foto(medicoDTO.urlFoto());
@@ -195,5 +185,5 @@ public class MedicoServicioImpl implements MedicoServicio {
         return medico.getCodigo();
     }
 
-    }
+
 }

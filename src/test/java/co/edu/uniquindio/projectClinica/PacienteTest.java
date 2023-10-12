@@ -30,7 +30,7 @@ public class PacienteTest {
     @Sql("classpath:dataset.sql")
     public void registrarseTest() throws Exception{
 
-        DetallePacienteDTO guardado = PacienteServicioImpl.verDetallePaciente(6);
+        DetallePacienteDTO guardado = pacienteServicio.verDetallePaciente(6);
 
         DetallePacienteDTO modificado = new DetallePacienteDTO(
                 guardado.codigo(),
@@ -47,7 +47,7 @@ public class PacienteTest {
 
         pacienteServicio.editarInformacion(modificado);
 
-        DetallePacienteDTO objeto = PacienteServicioImpl.verDetallePaciente(6);
+        DetallePacienteDTO objeto = pacienteServicio.verDetallePaciente(6);
 
         Assertions.assertEquals("111111", objeto.telefono());
         /**PacienteDTO pacienteDTO = new PacienteDTO(
