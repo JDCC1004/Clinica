@@ -15,6 +15,7 @@ import jakarta.mail.Message;
 import jakarta.mail.Session;
 import jakarta.mail.Transport;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.net.PasswordAuthentication;
@@ -39,8 +40,11 @@ public class PacienteServicioImpl implements PacienteServicio {
     public int registrarse(PacienteDTO pacienteDTO) throws Exception {
         Paciente paciente = new Paciente();
 
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String passwordEncriptada = passwordEncoder.encode(pacienteDTO.password());
+        paciente.setPassword( passwordEncriptada );
+
         paciente.setCorreo(pacienteDTO.correo());
-        paciente.setPassword(pacienteDTO.password());
 
         paciente.setNombre(pacienteDTO.nombre());
         paciente.setCedula(pacienteDTO.cedula());
@@ -55,7 +59,6 @@ public class PacienteServicioImpl implements PacienteServicio {
 
         Paciente pacienteCreado = pacienteRepository.save(paciente);
         return pacienteCreado.getCodigo();
-
     }
 
     private boolean estaRepetidaCedula(String cedula){

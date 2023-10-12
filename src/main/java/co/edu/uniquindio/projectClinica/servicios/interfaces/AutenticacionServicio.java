@@ -1,8 +1,9 @@
 package co.edu.uniquindio.projectClinica.servicios.interfaces;
 
 import co.edu.uniquindio.projectClinica.dto.LoginDTO;
+import co.edu.uniquindio.projectClinica.dto.TokenDTO;
 
 public interface AutenticacionServicio {
-    void login(LoginDTO loginDTO) throws Exception;
+    TokenDTO login(LoginDTO loginDTO) throws Exception;
 
 }
