@@ -1,16 +1,18 @@
 package co.edu.uniquindio.projectClinica.servicios.interfaces;
 
 import co.edu.uniquindio.projectClinica.dto.*;
+import co.edu.uniquindio.projectClinica.dto.admin.DetallePacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.*;
 
 import java.util.List;
 
 public interface PacienteServicio {
-    String registrarse(PacienteDTO pacienteDTO) throws Exception;
+    int registrarse(PacienteDTO pacienteDTO) throws Exception;
 
-    String editarInformacion(PacienteDTO editarPacienteDTO) throws Exception;
+    int editarInformacion(DetallePacienteDTO pacienteDTO) throws Exception;
+    //String editarInformacion(PacienteDTO editarPacienteDTO) throws Exception;
 
-    String eliminarCuenta(int codigo) throws Exception;
+    void eliminarCuenta(int codigo) throws Exception;
 
     /**
      * PREGUNTAR
@@ -43,9 +45,9 @@ public interface PacienteServicio {
     DetalleCitaDTO verDetalleCita(int codigoCita) throws Exception;
 
     //Metodo creado para test
-    PacienteDTO verDetallePaciente(int i) throws  Exception;
+    DetallePacienteDTO verDetallePaciente(int codigo) throws  Exception;
 
     //Metodo creado para test
-    List<ItemCitaDTO> listarTodos();
+    List<ItemPacienteDTO> listarTodos();
 }
 

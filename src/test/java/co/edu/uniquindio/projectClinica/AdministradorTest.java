@@ -24,11 +24,9 @@ public class AdministradorTest {
     @Sql("classpath:dataset.sql")
     public void crearMedicoTest() throws Exception { //Muestra error en el sql usuario
 
-        DetalleMedicoDTO medi = administradorServicio.obtenerMedico(5);
-
         RegistroMedicoDTO medicoDTO = new RegistroMedicoDTO(
-                medi.nombre(),
-                medi.cedula(),
+                "Julian",
+                "1004827211",
                 "238222",
                 Ciudad.ARMENIA,
                 Especialidad.CARDIOLOGO,
@@ -47,11 +45,12 @@ public class AdministradorTest {
     }
 
     @Test
+    @Sql("classpath:dataset.sql")
     public void actualizarMedicoTest(){
         DetalleMedicoDTO medicoDTO = new DetalleMedicoDTO(
-                10324,
-                "",
-                "238222",
+                12,
+                "1004827211",
+                "Julian",
                 "3012980413",
                 "jdcc1004@gmail.com",
                 "url_Foto",

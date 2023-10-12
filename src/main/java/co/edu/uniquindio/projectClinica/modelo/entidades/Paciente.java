@@ -17,7 +17,7 @@ import java.util.List;
 public class Paciente extends Usuario implements Serializable {
 
     @Column(nullable = false)
-    private Date fecha_nacimiento;
+    private Date fechaNacimiento;
     @Column(nullable = false, length = 30)
     private String alergias;
     @Column(nullable = false)

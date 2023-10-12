@@ -2,28 +2,107 @@ package co.edu.uniquindio.projectClinica.servicios.implementacion;
 
 import co.edu.uniquindio.projectClinica.dto.CitaPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.DetalleCitaDTO;
-import co.edu.uniquindio.projectClinica.dto.ItemCitaDTO;
+import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
+import co.edu.uniquindio.projectClinica.dto.admin.DetallePacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.*;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Paciente;
+import co.edu.uniquindio.projectClinica.repositorios.PacienteRepository;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.PacienteServicio;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class PacienteServicioImpl implements PacienteServicio {
+
+    private final PacienteRepository pacienteRepository;
+
     @Override
-    public String registrarse(PacienteDTO pacienteDTO) throws Exception {
-        return null;
+    public int registrarse(PacienteDTO pacienteDTO) throws Exception {
+        Paciente paciente = new Paciente();
+
+        paciente.setCorreo(pacienteDTO.correo());
+        paciente.setPassword(pacienteDTO.password());
+
+        paciente.setNombre(pacienteDTO.nombre());
+        paciente.setCedula(pacienteDTO.cedula());
+        paciente.setTelefono(pacienteDTO.telefono());
+        paciente.setCiudad(pacienteDTO.ciudad());
+        paciente.setUrl_foto(pacienteDTO.urlFoto());
+
+        paciente.setFechaNacimiento(pacienteDTO.fechaNacimiento());
+        paciente.setEps(pacienteDTO.eps());
+        paciente.setAlergias(pacienteDTO.alergias());
+        paciente.setTipoSangre(pacienteDTO.tipoSangre());
+
+        Paciente pacienteCreado = pacienteRepository.save(paciente);
+        return pacienteCreado.getCodigo();
+
+    }
+
+    private boolean estaRepetidaCedula(String cedula){
+        return pacienteRepository.findByCedula(cedula) != null;
+    }
+
+    private boolean estaRepetidoCorreo(String correo){
+        return pacienteRepository.findByCorreo(correo) != null;
     }
 
     @Override
-    public String editarInformacion(PacienteDTO editarPacienteDTO) throws Exception {
-        return null;
+    public int editarInformacion(DetallePacienteDTO pacienteDTO) throws Exception {
+        Optional<Paciente> pacienteBuscado = pacienteRepository.findById(pacienteDTO.codigo());
+        if (pacienteBuscado.isEmpty()){
+            throw new Exception("No existe un paciente con el codigo " + pacienteDTO.codigo());
+        }
+
+        Paciente paciente = pacienteBuscado.get();
+
+        paciente.setCorreo(pacienteDTO.correo());
+
+        paciente.setNombre(pacienteDTO.nombre());
+        paciente.setCedula(pacienteDTO.cedula());
+        paciente.setTelefono(pacienteDTO.telefono());
+        paciente.setCiudad(pacienteDTO.ciudad());
+        paciente.setUrl_foto(pacienteDTO.urlFoto());
+
+        paciente.setFechaNacimiento(pacienteDTO.fechaNacimiento());
+        paciente.setEps(pacienteDTO.eps());
+        paciente.setAlergias(pacienteDTO.alergias());
+        paciente.setTipoSangre(pacienteDTO.tipoSangre());
+
+        pacienteRepository.save(paciente);
+        return paciente.getCodigo();
     }
 
     @Override
-    public String eliminarCuenta(int codigo) throws Exception {
-        return null;
+    public void eliminarCuenta(int codigo) throws Exception {
+        Optional<Paciente> pacienteBuscado = pacienteRepository.findById(codigo);
+
+        if (pacienteBuscado.isEmpty()){
+            throw new Exception("No existe un paciente con el codigo " + codigo);
+        }
+
+        pacienteRepository.delete(pacienteBuscado.get());
+    }
+
+    @Override
+    public DetallePacienteDTO verDetallePaciente(int codigo) throws Exception {
+        Optional<Paciente> pacienteBuscado = pacienteRepository.findById(codigo);
+
+        if (pacienteBuscado.isEmpty()){
+            throw new Exception("No existe un paciente con el codigo " + codigo);
+        }
+
+        Paciente paciente = pacienteBuscado.get();
+
+        return new DetallePacienteDTO(paciente.getCodigo(), paciente.getCedula(),
+        paciente.getNombre(), paciente.getTelefono(), paciente.getUrl_foto(), paciente.getCiudad(),
+        paciente.getFechaNacimiento(), paciente.getAlergias(), paciente.getEps(),
+        paciente.getTipoSangre(), paciente.getCorreo());
     }
 
     @Override
@@ -72,12 +151,16 @@ public class PacienteServicioImpl implements PacienteServicio {
     }
 
     @Override
-    public PacienteDTO verDetallePaciente(int i) {
-        return null;
-    }
+    public List<ItemPacienteDTO> listarTodos() {
+        List<Paciente> pacientes = pacienteRepository.findAll();
+        List<ItemPacienteDTO> respuesta = new ArrayList<>();
 
-    @Override
-    public List<ItemCitaDTO> listarTodos() {
-        return null;
+        for (Paciente paciente : pacientes) {
+            respuesta.add(new ItemPacienteDTO(paciente.getCodigo(), paciente.getCedula(),
+            paciente.getNombre(), paciente.getCiudad()));
+        }
+
+        return respuesta;
+
     }
 }
