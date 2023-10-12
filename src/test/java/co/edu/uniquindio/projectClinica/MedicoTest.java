@@ -16,7 +16,7 @@ import java.util.List;
 
 @SpringBootTest
 @Transactional
-public class MedicoTest {
+public class  MedicoTest {
 
     @Autowired
     private MedicoServicio medicoServicio;

@@ -9,7 +9,7 @@ public interface MedicoServicio {
     List<CitaMedicoDTO> listarCitasPendiente(int codigoMedico) throws Exception;
 
     /**PREGUNTAR*/
-    int atenderCita(RegistroAtencionDTO registroAtencionDTO) throws  Exception;
+    int atenderCita(RegistroAtencionDTO registroAtencionDTO, int codigo) throws  Exception;
 
     List<CitaMedicoDTO> listarCitasPendientes(int codigoPaciente) throws Exception;
 
@@ -30,5 +30,5 @@ public interface MedicoServicio {
 
     //Metodo test
 
-    void editarInformacion(MedicoDTO modificado) throws Exception;
+    int editarInformacion(MedicoDTO modificado) throws Exception;
 }
