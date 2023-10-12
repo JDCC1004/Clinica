@@ -1,5 +1,6 @@
 package co.edu.uniquindio.projectClinica;
 
+import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.admin.DetallePacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.PacienteDTO;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Ciudad;
@@ -16,6 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.util.Date;
+import java.util.List;
 
 @SpringBootTest
 @Transactional
@@ -69,7 +71,17 @@ public class PacienteTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void eliminarTest() throws Exception{
-        pacienteServicio.eliminarCuenta(1);
-        Assertions.assertNull(pacienteServicio.verDetallePaciente(1));
+        pacienteServicio.eliminarCuenta(6);
+        Assertions.assertThrows(Exception.class, () ->
+            pacienteServicio.verDetallePaciente(6));
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void listarTodosTest(){
+        List<ItemPacienteDTO> lista = pacienteServicio.listarTodos();
+        lista.forEach(System.out::println);
+
+        Assertions.assertEquals(5, lista.size());
     }
 }
