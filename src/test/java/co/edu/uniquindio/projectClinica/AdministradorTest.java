@@ -22,11 +22,13 @@ public class AdministradorTest {
     private AdministradorServicio administradorServicio;
     @Test
     @Sql("classpath:dataset.sql")
-    public void crearMedicoTest() throws Exception { //Muestra error en el sql usuario
+    public void crearMedicoTest() throws Exception {
+
+        DetalleMedicoDTO medi = administradorServicio.obtenerMedico(1);
 
         RegistroMedicoDTO medicoDTO = new RegistroMedicoDTO(
-                "Julian",
-                "1004827211",
+                medi.nombre(),
+                medi.cedula(),
                 "238222",
                 Ciudad.ARMENIA,
                 Especialidad.CARDIOLOGO,
@@ -45,12 +47,11 @@ public class AdministradorTest {
     }
 
     @Test
-    @Sql("classpath:dataset.sql")
     public void actualizarMedicoTest(){
         DetalleMedicoDTO medicoDTO = new DetalleMedicoDTO(
-                12,
-                "1004827211",
-                "Julian",
+                10324,
+                "",
+                "238222",
                 "3012980413",
                 "jdcc1004@gmail.com",
                 "url_Foto",
@@ -68,26 +69,26 @@ public class AdministradorTest {
         }
     }
 
-  /**  @Test
+    @Test
     @Sql("classpath:dataset.sql")
-    public void eliminarMedico(){
-       // administradorServicio.eliminarMedico(2);
+    public void eliminarMedico() throws Exception {
+        administradorServicio.eliminarMedico(2);
 
-      //  DetalleMedicoDTO medi = administradorServicio.obtenerMedico(2);
+        DetalleMedicoDTO medi = administradorServicio.obtenerMedico(2);
 
 
     }
 
     /**@Test
     public void obtenerMedico(){
-    DetalleMedicoDTO Medico = new DetalleMedicoDTO(
-    10324
-    );
+        DetalleMedicoDTO Medico = new DetalleMedicoDTO(
+                10324
+        );
 
-    try{
-    administradorServicio.obtenerMedico(Medico);
-    } catch (Exception e){
-    throw new RuntimeException(e);
-    }
+        try{
+            administradorServicio.obtenerMedico(Medico);
+        } catch (Exception e){
+            throw new RuntimeException(e);
+        }
     }*/
 }

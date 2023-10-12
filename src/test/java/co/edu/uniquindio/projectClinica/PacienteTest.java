@@ -47,7 +47,7 @@ public class PacienteTest {
 
         pacienteServicio.editarInformacion(modificado);
 
-        DetallePacienteDTO objeto = PacienteServicioImpl.verDetallePaciente(1);
+        DetallePacienteDTO objeto = PacienteServicioImpl.verDetallePaciente(6);
 
         Assertions.assertEquals("111111", objeto.telefono());
         /**PacienteDTO pacienteDTO = new PacienteDTO(

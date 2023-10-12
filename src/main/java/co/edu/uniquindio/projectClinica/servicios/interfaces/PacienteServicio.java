@@ -3,6 +3,8 @@ package co.edu.uniquindio.projectClinica.servicios.interfaces;
 import co.edu.uniquindio.projectClinica.dto.*;
 import co.edu.uniquindio.projectClinica.dto.admin.DetallePacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.*;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Cita;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Medico;
 
 import java.util.List;
 
@@ -17,11 +19,6 @@ public interface PacienteServicio {
     /**
      * PREGUNTAR
      */
-    String enviarLinkRecuperacion(String correo) throws Exception;
-
-    /**
-     * PREGUNTAR
-     */
     String cambiarPassword(NuevaPasswordDTO nuevaPasswordDTO) throws Exception;
 
     int agendarCita(AgendarCitaDTO agendarCitaDTO) throws Exception;//Restricción: No tener mas de tres citas
@@ -29,18 +26,18 @@ public interface PacienteServicio {
     /**
      * PREGUNTAR
      */
-    int crearPQRS(CrearPQRSPDTO crearPQRSPDTO) throws Exception;
+    int crearPQRSPaciente(PQRSPacienteDTO crearPQRSPDTO) throws Exception;
 
     List<PQRSPacienteDTO> listarPQRSPaciente(int codigoPaciente) throws Exception;
 
-    String responderPQRSP(RespuestaPQRSPDTO respuestaPQRSPDTO) throws Exception;
+    int responderPQRSP(RespuestaPQRSPDTO respuestaPQRSPDTO) throws Exception;
 
     /**
      * PREGUNTAR
      */
-    List<CitaPacienteDTO> listarCitasPendientes(int codigoPaciente) throws Exception;
+    List<CitaPacienteDTO> listarCitasPendientes(String codigoPaciente) throws Exception;
 
-    List<CitaPacienteDTO> filtrarCitasPorMedico(int codigoMedico) throws Exception;
+    List<Cita> filtrarCitasPorMedico(int codigoMedico) throws Exception;
 
     DetalleCitaDTO verDetalleCita(int codigoCita) throws Exception;
 

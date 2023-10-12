@@ -6,17 +6,23 @@ import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.admin.DetallePacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.admin.PQRSAdminDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.*;
-import co.edu.uniquindio.projectClinica.modelo.entidades.PQRS;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Paciente;
-import co.edu.uniquindio.projectClinica.repositorios.PacienteRepository;
-import co.edu.uniquindio.projectClinica.repositorios.pqrsRepository;
+import co.edu.uniquindio.projectClinica.modelo.entidades.*;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_PQRS;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_cita;
+import co.edu.uniquindio.projectClinica.repositorios.*;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.PacienteServicio;
+import jakarta.mail.Message;
+import jakarta.mail.Session;
+import jakarta.mail.Transport;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.net.PasswordAuthentication;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Properties;
 
 @Service
 @RequiredArgsConstructor
@@ -24,6 +30,10 @@ public class PacienteServicioImpl implements PacienteServicio {
 
     private final PacienteRepository pacienteRepository;
     private final pqrsRepository pqrsRepository;
+    private final CuentaRepository cuentaRepository;
+    private final MensajeRepository mensajeRepository;
+    private final MedicoRepository medicoRepository;
+    private final CitaRepository citaRepository;
 
     @Override
     public int registrarse(PacienteDTO pacienteDTO) throws Exception {
@@ -109,24 +119,60 @@ public class PacienteServicioImpl implements PacienteServicio {
         paciente.getTipoSangre(), paciente.getCorreo());
     }
 
-    @Override
-    public String enviarLinkRecuperacion(String correo) throws Exception {
-        return null;
-    }
+
 
     @Override
     public String cambiarPassword(NuevaPasswordDTO nuevaPasswordDTO) throws Exception {
-        return null;
+
+        Optional<Cuenta> cuentaBuscada = cuentaRepository.findByCorreo(nuevaPasswordDTO.correo());
+
+        if(cuentaBuscada.isEmpty()){
+            throw new Exception("No existe una cuenta con el correo " + nuevaPasswordDTO.correo());
+        }else{
+            Cuenta cuenta = cuentaBuscada.get();
+
+            if(cuenta.getPassword().equals(nuevaPasswordDTO.passwordAntigua())){
+                cuenta.setPassword(nuevaPasswordDTO.passwordNueva());
+                cuentaRepository.save(cuenta);
+                return "Contraseña actualizada correctamente";
+            }else{
+                throw new Exception("La contraseña actual no coincide con la contraseña ingresada");
+            }
+        }
     }
 
     @Override
     public int agendarCita(AgendarCitaDTO agendarCitaDTO) throws Exception {
-        return 0;
+
+        Cita citaRepetida =  citaRepository.obtenerCitaPorFechaYMedico(agendarCitaDTO.horario(), agendarCitaDTO.medico());
+
+        if(citaRepetida != null){
+            throw new Exception("Ya existe una cita para el médico " + agendarCitaDTO.medico() + " en la fecha " + agendarCitaDTO.horario());
+        }else{
+            Cita cita = new Cita();
+            cita.setFechaCita(agendarCitaDTO.horario());
+            cita.setEstadoCita(Estado_cita.ASIGNADA);
+            cita.setMotivo(agendarCitaDTO.motivo());
+            cita.setMedico(medicoRepository.findByNombre(agendarCitaDTO.medico()));
+            cita.setPaciente(agendarCitaDTO.paciente());
+
+            Cita citaCreada = citaRepository.save(cita);
+            return citaCreada.getCodigoCita();
+        }
     }
 
     @Override
-    public int crearPQRS(CrearPQRSPDTO crearPQRSPDTO) throws Exception {
-        return 0;
+    public int crearPQRSPaciente(PQRSPacienteDTO crearPQRSPDTO) throws Exception {
+
+        PQRS pqrs = new PQRS();
+
+        pqrs.setCodigo(crearPQRSPDTO.codigo());
+        pqrs.setMotivo(crearPQRSPDTO.asunto());
+        pqrs.setFechaCreacion(LocalDateTime.now());
+        pqrs.setEstadoPQRS(Estado_PQRS.ACTIVO);
+
+        PQRS pqrsCreado = pqrsRepository.save(pqrs);
+        return pqrsCreado.getCodigo();
     }
 
     @Override
@@ -146,23 +192,84 @@ public class PacienteServicioImpl implements PacienteServicio {
     }
 
     @Override
-    public String responderPQRSP(RespuestaPQRSPDTO respuestaPQRSPDTO) throws Exception {
-        return null;
+    public int responderPQRSP(RespuestaPQRSPDTO respuestaPQRSPDTO) throws Exception {
+        Optional<PQRS> opcionalPQRS = pqrsRepository.findById(respuestaPQRSPDTO.codigoPQRS());
+
+        if (opcionalPQRS.isEmpty()) {
+            throw new Exception("No existe un PQRS con el código: " + respuestaPQRSPDTO.codigoPQRS());
+        }
+
+        Optional<Cuenta> optionalCuenta = cuentaRepository.findById(respuestaPQRSPDTO.codigoPQRS());
+
+        if (optionalCuenta.isEmpty()) {
+            throw new Exception("No existe le cuenta con el código: " + respuestaPQRSPDTO.codigoPQRS());
+        }
+
+        Mensaje mensajeNuevo = new Mensaje();
+        mensajeNuevo.setPqrs(opcionalPQRS.get());
+        mensajeNuevo.setFecha_creacion(LocalDateTime.now());
+        mensajeNuevo.setCuenta(optionalCuenta.get());
+        mensajeNuevo.setMensaje(respuestaPQRSPDTO.mensaje());
+
+        Mensaje respuesta = mensajeRepository.save(mensajeNuevo);
+
+        return respuesta.getCodigo();
     }
 
     @Override
-    public List<CitaPacienteDTO> listarCitasPendientes(int codigoPaciente) throws Exception {
-        return null;
+    public List<CitaPacienteDTO> listarCitasPendientes(String codigoPaciente) throws Exception {
+
+        List<Cita> citas = citaRepository.obtenerCitasPaciente(codigoPaciente);
+
+        if(citas != null){
+            List<CitaPacienteDTO> respuesta = new ArrayList<>();
+
+            for (Cita cita : citas) {
+                respuesta.add(new CitaPacienteDTO(
+                        cita.getCodigoCita(),
+                        cita.getFechaCita(),
+                        cita.getMedico().getNombre(),
+                        cita.getMotivo()
+                ));
+            }
+            return respuesta;
+        }else{
+            throw new Exception("No existen citas para el paciente con el codigo " + codigoPaciente);
+        }
     }
 
     @Override
-    public List<CitaPacienteDTO> filtrarCitasPorMedico(int codigoMedico) throws Exception {
-        return null;
+    public List<Cita> filtrarCitasPorMedico(int codigoMedico) throws Exception {
+        Optional<Medico> medicoBuscado = medicoRepository.findById(codigoMedico);
+        List<Cita> respuesta;
+
+        if (medicoBuscado.isEmpty()) {
+            throw new Exception("No se encontró un médico con el código " + codigoMedico);
+        } else {
+            Medico medico = medicoBuscado.get();
+            respuesta = citaRepository.findByMedico(medico);
+        }
+        return respuesta;
     }
 
+
     @Override
-    public DetalleCitaDTO verDetalleCita(int codigoCita) {
-        return null;
+    public DetalleCitaDTO verDetalleCita(int codigoCita) throws Exception {
+
+        Cita citaObtenida = citaRepository.findById(codigoCita).orElse(null);
+
+        if(citaObtenida == null){
+            throw new Exception("No existe una cita con el codigo " + codigoCita);
+        }else{
+            return new DetalleCitaDTO(
+                    citaObtenida.getCodigoCita(),
+                    citaObtenida.getEstadoCita(),
+                    citaObtenida.getFechaCita(),
+                    citaObtenida.getMotivo(),
+                    citaObtenida.getMedico().getEspecialidad(),
+                    citaObtenida.getMedico().getNombre()
+            );
+        }
     }
 
     @Override
@@ -174,8 +281,6 @@ public class PacienteServicioImpl implements PacienteServicio {
             respuesta.add(new ItemPacienteDTO(paciente.getCodigo(), paciente.getCedula(),
             paciente.getNombre(), paciente.getCiudad()));
         }
-
         return respuesta;
-
     }
 }
