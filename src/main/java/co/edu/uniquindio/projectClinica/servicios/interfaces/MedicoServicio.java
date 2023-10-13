@@ -7,6 +7,8 @@ import co.edu.uniquindio.projectClinica.dto.medico.*;
 import java.util.List;
 
 public interface MedicoServicio {
+    int registrarse(MedicoDTO medicoDTO) throws Exception;
+
     List<CitaMedicoDTO> listarCitasPendiente(int codigoMedico) throws Exception;
 
     /**PREGUNTAR*/
