@@ -1,15 +1,10 @@
 package co.edu.uniquindio.projectClinica.servicios.implementacion;
 
 import co.edu.uniquindio.projectClinica.dto.ItemCitaDTO;
-import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.admin.DetalleMedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.*;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Cita;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Cuenta;
+import co.edu.uniquindio.projectClinica.modelo.entidades.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.EstadoUsuario;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_cita;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Medico;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Paciente;
 import co.edu.uniquindio.projectClinica.repositorios.*;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.MedicoServicio;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -60,7 +56,7 @@ public class MedicoServicioImpl implements MedicoServicio {
 
     @Override
     public List<CitaMedicoDTO> listarCitasPendiente(int codigoMedico) throws Exception {
-        List<Cita> citas = citaRepository.obtenerCitasPendientesMedico(codigoMedico, LocalDate.now());
+        List<Cita> citas = citaRepository.obtenerCitasPendientesMedico(codigoMedico, LocalDateTime.now());
 
         if(citas.isEmpty()){
             throw new Exception("No hay citas registradas");
@@ -95,11 +91,6 @@ public class MedicoServicioImpl implements MedicoServicio {
         }
 
     @Override
-    public List<CitaMedicoDTO> listarCitasPendientes(int codigoPaciente) throws Exception {
-        return null;//Si se borra el metodo se daña la clase
-    }
-
-    @Override
     public int agendarDiaLibre(DiaLibreDTO diaLibreDTO) throws Exception {
         return 0;
     }
@@ -118,11 +109,6 @@ public class MedicoServicioImpl implements MedicoServicio {
             return medico.getCodigoMedico();
         }*/
 
-
-
-
-
-
     @Override
     public List<ItemCitaDTO> listarHistorialAtencionPaciente(int codigoPaciente) throws Exception {
         List<Cita> historial = citaRepository.obtenerHistorialAtencionPaciente(codigoPaciente);
@@ -135,8 +121,6 @@ public class MedicoServicioImpl implements MedicoServicio {
 
         for (Cita i: historial){
             respuesta.add(new ItemCitaDTO(
-
-
             ));
         }
 
@@ -146,7 +130,7 @@ public class MedicoServicioImpl implements MedicoServicio {
 
     @Override
     public List<ItemCitaDTO> listarCitasRealizadasMedico(int codigoMedico) throws Exception {
-        List<Cita> atencion = citaRepository.obtenerCitasRealizadas(codigoMedico, LocalDate.now());
+        List<Cita> atencion = citaRepository.obtenerCitasRealizadas(codigoMedico, LocalDateTime.now());
 
         if(atencion.isEmpty()){
             throw new Exception("No hay citas realizadas por el medico");
@@ -156,8 +140,6 @@ public class MedicoServicioImpl implements MedicoServicio {
 
         for (Cita o: atencion){
             respuesta.add(new ItemCitaDTO(
-
-
             ));
         }
         return respuesta;
@@ -170,7 +152,8 @@ public class MedicoServicioImpl implements MedicoServicio {
         List<ItemCitaDTO> respuesta = new ArrayList<>();
 
         for (Medico medico : medicos) {
-            respuesta.add(new ItemCitaDTO());
+            respuesta.add(new ItemCitaDTO(
+            ));
         }
         return respuesta;
     }

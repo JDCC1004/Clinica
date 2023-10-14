@@ -48,10 +48,10 @@ insert into medico values (3, '12:00:00', '08:00:00', 13)
 insert into medico values (1, '12:00:00', '08:00:00', 14)
 insert into medico values (4, '12:00:00', '08:00:00', 15)
 
-insert into cita values ( 1, 0, '2023-10-15 15:00:00', '2023-10-10 10:00:00', 'Dolor lumbar',  11, 6)
+insert into cita values ( 1, 0, '2023-09-15 15:00:00', '2023-10-10 10:00:00', 'Dolor lumbar',  11, 6)
 insert into cita values ( 2, 1, '2023-10-16 15:30:00', '2023-10-10 10:00:00', 'Dolor abdominal',  12, 7)
 insert into cita values ( 3, 2, '2023-10-20 09:00:00', '2023-10-10 10:00:00', 'Dolor de cabeza', 13, 6 )
-insert into cita values ( 4, 0, '2023-10-25 10:00:00', '2023-10-10 09:00:00', 'Consulta general', 11, 8 )
+insert into cita values ( 4, 0, '2023-10-25 10:00:00', '2023-10-10 09:00:00', 'Consulta general', 11, 7 )
 insert into cita values ( 5, 1, '2023-10-30 11:00:00', '2023-10-10 11:00:00', 'Dolor lumbar',  12, 7 )
 
 insert into atencion values ( '1010', 'Fiebre', 'Calor en el cuerpo y malestar general', 'Tomar ibuprofeno',1)
@@ -95,6 +95,3 @@ insert into resultado_examenes values (193,'2022-12-04', 01, '1013' )
 insert into resultado_examenes values (883,'2022-12-04', 02, '1010' )
 insert into resultado_examenes values (153,'2022-12-04', 03, '1012' )
 insert into resultado_examenes values (133,'2022-12-04', 04, '1011' )
-
-
-

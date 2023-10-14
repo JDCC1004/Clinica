@@ -14,11 +14,12 @@ public interface MedicoServicio {
     /**PREGUNTAR*/
     int atenderCita(RegistroAtencionDTO registroAtencionDTO, int codigo) throws  Exception;
 
-    List<CitaMedicoDTO> listarCitasPendientes(int codigoPaciente) throws Exception;
+    //List<CitaMedicoDTO> listarCitasPendientes(int codigoPaciente) throws Exception;
 
     int agendarDiaLibre(DiaLibreDTO diaLibreDTO) throws Exception;
 
     List<ItemCitaDTO> listarHistorialAtencionPaciente(int codigoPaciente) throws Exception;
+
     List<ItemCitaDTO> listarCitasRealizadasMedico(int codigoMedico) throws Exception;
 
    //Metodo para el test
