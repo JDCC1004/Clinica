@@ -1,13 +1,16 @@
 package co.edu.uniquindio.projectClinica;
 
+import co.edu.uniquindio.projectClinica.dto.CitaPacienteDTO;
+import co.edu.uniquindio.projectClinica.dto.DetalleCitaDTO;
 import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.admin.DetallePacienteDTO;
-import co.edu.uniquindio.projectClinica.dto.paciente.PacienteDTO;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Ciudad;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.EPS;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.EstadoUsuario;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Tipo_sangre;
-import co.edu.uniquindio.projectClinica.servicios.implementacion.PacienteServicioImpl;
+import co.edu.uniquindio.projectClinica.dto.paciente.AgendarCitaDTO;
+import co.edu.uniquindio.projectClinica.dto.paciente.NuevaPasswordDTO;
+import co.edu.uniquindio.projectClinica.dto.paciente.PQRSPacienteDTO;
+import co.edu.uniquindio.projectClinica.dto.paciente.RespuestaPQRSPDTO;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Cita;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Especialidad;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_PQRS;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.PacienteServicio;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;
@@ -52,6 +55,28 @@ public class PacienteTest {
         Assertions.assertEquals("111111", objeto.telefono());
     }
 
+   /* @Test
+    @Sql("classpath:dataset.sql")
+    public void agendarCitaTest() throws Exception {
+        AgendarCitaDTO agendarCitaDTO = new AgendarCitaDTO(Paciente, Especialidad.CARDIOLOGO,"Pablo" , "2023-11-12", "Me duele la cabecita");
+        int codigoCita = pacienteServicio.agendarCita(agendarCitaDTO);
+
+        Assertions.assertTrue(codigoCita > 0);
+
+        DetalleCitaDTO detalleCita = pacienteServicio.verDetalleCita(codigoCita);
+        Assertions.assertEquals("Dolor de cabeza", detalleCita.Motivo());
+
+    }*/
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void cambiarPasswordTest() throws Exception {
+        NuevaPasswordDTO nuevaPasswordDTO = new NuevaPasswordDTO( "f", "nuevaContrasena123","soy gay");
+        String resultado = pacienteServicio.cambiarPassword(nuevaPasswordDTO);
+        Assertions.assertEquals("Contraseña cambiada con éxito", resultado);
+
+    }
+
     @Test
     @Sql("classpath:dataset.sql")
     public void eliminarTest() throws Exception{
@@ -59,6 +84,62 @@ public class PacienteTest {
         Assertions.assertThrows(Exception.class, () ->
             pacienteServicio.verDetallePaciente(6));
     }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void filtrarCitasPorMedicoTest() throws Exception {
+        int codigoMedico = 11;
+        List<Cita> citasMedico = pacienteServicio.filtrarCitasPorMedico(codigoMedico);
+        Assertions.assertNotNull(citasMedico);
+        Assertions.assertTrue(citasMedico.size() > 0);
+    }
+
+
+
+   /* @Test
+    @Sql("classpath:dataset.sql")
+    public void crearPQRSPacienteTest() throws Exception {
+        PQRSPacienteDTO pqrspDTO = new PQRSPacienteDTO(6, "Cita médica urgente", "Tipo de solicitud", Estado_PQRS.ACTIVO);
+        int codigoPQRS = pacienteServicio.crearPQRSPaciente(pqrspDTO);
+
+        Assertions.assertTrue(codigoPQRS > 0);
+    }*/
+
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void listarPQRSPacienteTest() throws Exception {
+        List<PQRSPacienteDTO> pqrspList = pacienteServicio.listarPQRSPaciente(6);
+        Assertions.assertEquals(5, pqrspList.size());
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void responderPQRSPTest() throws Exception {
+        List<PQRSPacienteDTO> pqrspList = pacienteServicio.listarPQRSPaciente(6);
+        RespuestaPQRSPDTO respuestaPQRSPDTO = new RespuestaPQRSPDTO(2,4,"Su solicitud esta activa");
+        int respuestaCodigo = pacienteServicio.responderPQRSP(respuestaPQRSPDTO);
+        Assertions.assertTrue(respuestaCodigo > 0);
+
+        }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void verDetallePacienteTest() throws Exception {
+        DetallePacienteDTO pacienteDTO = pacienteServicio.verDetallePaciente(6);
+        Assertions.assertNotNull(pacienteDTO);
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void listarCitasPendientesTest() throws Exception {
+        List<CitaPacienteDTO> lista = pacienteServicio.listarCitasPendientes(7);
+        lista.forEach(System.out::println);
+        Assertions.assertEquals(3, lista.size());
+
+
+    }
+
 
     @Test
     @Sql("classpath:dataset.sql")

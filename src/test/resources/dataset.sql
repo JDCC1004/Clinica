@@ -78,11 +78,11 @@ insert into ordenes_medicamentos values (153, '2023-11-25', 'acetaminophen', '10
 insert into ordenes_medicamentos values (163, '2023-09-23', 'acetaminophen', '1013',163)
 insert into ordenes_medicamentos values (173, '2023-11-22', 'acetaminophen', '1014',163)
 
-insert into pqrs values (001, 0, '2023-12-04', 'Cita medica de urgencia', 'tipo', 1)
-insert into pqrs values (002, 0, '2023-11-04', 'Cita medica de urgencia', 'tipo', 2)
-insert into pqrs values (004, 0, '2023-10-04', 'Cita medica de urgencia', 'tipo', 1)
-insert into pqrs values (009, 0, '2023-09-04', 'Cita medica de urgencia', 'tipo', 3)
-insert into pqrs values (000, 0, '2023-11-05', 'Cita medica de urgencia', 'tipo', 2)
+insert into pqrs values (1, 0, '2023-12-04', 'Cita medica de urgencia', 'tipo', 1)
+insert into pqrs values (2, 0, '2023-11-04', 'Cita medica de urgencia', 'tipo', 2)
+insert into pqrs values (4, 0, '2023-10-04', 'Cita medica de urgencia', 'tipo', 1)
+insert into pqrs values (9, 0, '2023-09-04', 'Cita medica de urgencia', 'tipo', 3)
+insert into pqrs values (0, 0, '2023-11-05', 'Cita medica de urgencia', 'tipo', 2)
 
 insert into mensaje values (123, '2021-10-11', 'Necesito una cita urgente', 6, 001)
 insert into mensaje values (122, '2021-11-13', 'Necesito una cita urgente', 7, 002)

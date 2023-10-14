@@ -4,7 +4,6 @@ import co.edu.uniquindio.projectClinica.dto.*;
 import co.edu.uniquindio.projectClinica.dto.admin.DetallePacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Cita;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Medico;
 
 import java.util.List;
 
@@ -35,7 +34,7 @@ public interface PacienteServicio {
     /**
      * PREGUNTAR
      */
-    List<CitaPacienteDTO> listarCitasPendientes(String codigoPaciente) throws Exception;
+    List<CitaPacienteDTO> listarCitasPendientes(int codigoPaciente) throws Exception;
 
     List<Cita> filtrarCitasPorMedico(int codigoMedico) throws Exception;
 

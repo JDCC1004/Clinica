@@ -13,7 +13,6 @@ public record PQRSPacienteDTO(
         @NotNull
         @Length(max = 100, message = "El asunto no puede tener mas de 100 caracteres")
         String asunto,
-        @NotNull
         LocalDateTime fechaCreacion,
         @NotNull
         Estado_PQRS estadoPqrs

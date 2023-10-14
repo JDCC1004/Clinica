@@ -4,26 +4,20 @@ import co.edu.uniquindio.projectClinica.dto.CitaPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.DetalleCitaDTO;
 import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.admin.DetallePacienteDTO;
-import co.edu.uniquindio.projectClinica.dto.admin.PQRSAdminDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_PQRS;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_cita;
 import co.edu.uniquindio.projectClinica.repositorios.*;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.PacienteServicio;
-import jakarta.mail.Message;
-import jakarta.mail.Session;
-import jakarta.mail.Transport;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.net.PasswordAuthentication;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Properties;
 
 @Service
 @RequiredArgsConstructor
@@ -220,27 +214,25 @@ public class PacienteServicioImpl implements PacienteServicio {
     }
 
     @Override
-    public List<CitaPacienteDTO> listarCitasPendientes(String codigoPaciente) throws Exception {
+    public List<CitaPacienteDTO> listarCitasPendientes(int codigoPaciente) throws Exception {
 
-        List<Cita> citas = citaRepository.obtenerCitasPaciente(codigoPaciente);
+        List<Cita> citas = citaRepository.obtenerCitasPaciente(codigoPaciente, LocalDateTime.now());
 
-        if(citas != null){
-            List<CitaPacienteDTO> respuesta = new ArrayList<>();
-
-            for (Cita cita : citas) {
-                respuesta.add(new CitaPacienteDTO(
-                        cita.getCodigoCita(),
-                        cita.getFechaCita(),
-                        cita.getMedico().getNombre(),
-                        cita.getMotivo()
-                ));
-            }
-            return respuesta;
-        }else{
-            throw new Exception("No existen citas para el paciente con el codigo " + codigoPaciente);
+        if (citas.isEmpty()) {
+            throw new Exception("No hay citas registradas");
         }
-    }
 
+        List<CitaPacienteDTO> respuesta = new ArrayList<>();
+        for (Cita cita : citas) {
+            respuesta.add(new CitaPacienteDTO(
+                    cita.getCodigoCita(),
+                    cita.getMedico().getNombre(),
+                    cita.getMotivo(),
+                    cita.getFechaCita()
+            ));
+        }
+        return respuesta;
+    }
     @Override
     public List<Cita> filtrarCitasPorMedico(int codigoMedico) throws Exception {
         Optional<Medico> medicoBuscado = medicoRepository.findById(codigoMedico);
