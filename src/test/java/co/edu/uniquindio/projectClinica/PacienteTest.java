@@ -50,22 +50,6 @@ public class PacienteTest {
         DetallePacienteDTO objeto = pacienteServicio.verDetallePaciente(6);
 
         Assertions.assertEquals("111111", objeto.telefono());
-        /**PacienteDTO pacienteDTO = new PacienteDTO(
-                "1004827211",
-                "Julian",
-                "3012980413",
-                new Date(2002, 10, 4),
-                "3012980413",
-                Tipo_sangre.A,
-                "Perro",
-                EPS.NUEVA_EPS,
-                "jdcc1004@gmail.com",
-                "12345",
-                Ciudad.ARMENIA
-        );
-    int nuevo = pacienteServicio.registrarse(pacienteDTO);
-    System.out.println(nuevo);
-    Assertions.assertNotEquals(0, nuevo);**/
     }
 
     @Test

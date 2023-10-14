@@ -7,6 +7,7 @@ import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Especialidad;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.EstadoUsuario;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.AdministradorServicio;
 import jakarta.transaction.Transactional;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,11 +25,11 @@ public class AdministradorTest {
     @Sql("classpath:dataset.sql")
     public void crearMedicoTest() throws Exception {
 
-        DetalleMedicoDTO medi = administradorServicio.obtenerMedico(1);
+        DetalleMedicoDTO guardado = administradorServicio.obtenerMedico(11);
 
         RegistroMedicoDTO medicoDTO = new RegistroMedicoDTO(
-                medi.nombre(),
-                medi.cedula(),
+                guardado.nombre(),
+                guardado.cedula(),
                 "238222",
                 Ciudad.ARMENIA,
                 Especialidad.CARDIOLOGO,
@@ -39,6 +40,13 @@ public class AdministradorTest {
                 LocalTime.of(12, 0)
         );
 
+        administradorServicio.crearMedico(medicoDTO);
+
+        DetalleMedicoDTO objeto = administradorServicio.obtenerMedico(12);
+
+        System.out.println(objeto.nombre());
+        Assertions.assertEquals("238222", objeto.nombre());
+
         try{
             administradorServicio.crearMedico(medicoDTO);
         } catch (Exception e){
@@ -47,20 +55,31 @@ public class AdministradorTest {
     }
 
     @Test
-    public void actualizarMedicoTest(){
+    @Sql("classpath:dataset.sql")
+    public void actualizarMedicoTest() throws Exception{
+
+        DetalleMedicoDTO guardado = administradorServicio.obtenerMedico(11);
+
         DetalleMedicoDTO medicoDTO = new DetalleMedicoDTO(
-                10324,
-                "",
-                "238222",
+                guardado.codigo(),
+                guardado.cedula(),
+                guardado.nombre(),
                 "3012980413",
-                "jdcc1004@gmail.com",
-                "url_Foto",
-                Ciudad.ARMENIA,
-                Especialidad.CARDIOLOGO,
-                EstadoUsuario.ACTIVO,
-                LocalTime.of(8, 0),
-                LocalTime.of(12, 0)
+                guardado.correo(),
+                guardado.urlFoto(),
+                guardado.ciudad(),
+                guardado.especialidad(),
+                guardado.estadoUsuario(),
+                guardado.horaInicio(),
+                guardado.horaFin()
         );
+
+        administradorServicio.actualizarMedico(medicoDTO);
+
+        DetalleMedicoDTO objeto = administradorServicio.obtenerMedico(11);
+
+        Assertions.assertEquals("3012980413", objeto.telefono());
+        System.out.println("Medico " + objeto.cedula() + " actualizado con el número " + objeto.telefono());
 
         try {
             administradorServicio.actualizarMedico(medicoDTO);
@@ -71,12 +90,18 @@ public class AdministradorTest {
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void eliminarMedico() throws Exception {
-        administradorServicio.eliminarMedico(2);
+    public void eliminarTest() throws Exception {
 
-        DetalleMedicoDTO medi = administradorServicio.obtenerMedico(2);
+        administradorServicio.eliminarMedico(11);
 
+        Assertions.assertThrows(Exception.class, () -> administradorServicio.obtenerMedico(11));
 
+            System.out.println("Medico eliminado con exito " + 11);
+        try {
+            administradorServicio.eliminarMedico(11);
+        } catch (Exception e){
+            throw new RuntimeException(e);
+        }
     }
 
     /**@Test

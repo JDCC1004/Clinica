@@ -41,7 +41,7 @@ public class AutenticacionServicioImpl implements AutenticacionServicio {
         return new TokenDTO(crearToken(cuenta));
     }
 
-    private String crearToken(Cuenta cuenta){
+    public String crearToken(Cuenta cuenta){
         String rol;
         String nombre;
 

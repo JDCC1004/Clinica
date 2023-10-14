@@ -1,7 +1,7 @@
 package co.edu.uniquindio.projectClinica.dto;
 
 public record MensajeDTO<T>(
-        boolean erro,
+        boolean error,
         T respuesta
 ) {
 }
