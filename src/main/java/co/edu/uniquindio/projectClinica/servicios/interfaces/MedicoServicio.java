@@ -26,12 +26,12 @@ public interface MedicoServicio {
 
     //Metodo para el test
 
-    DetalleMedicoDTO verDetalleMedico(int i) throws Exception;
+    DetalleMedicoDTO obtenerMedico(int codigo) throws Exception;
 
     //Metodo test
     void eliminarCuenta(int i) throws Exception ;
 
     //Metodo test
 
-    int editarInformacion(MedicoDTO modificado) throws Exception;
+    int editarInformacion(DetalleMedicoDTO medicoDTO) throws Exception;
 }

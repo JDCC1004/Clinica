@@ -146,7 +146,7 @@ public class MedicoServicioImpl implements MedicoServicio {
 
     @Override
     public List<ItemCitaDTO> listarCitasRealizadasMedico(int codigoMedico) throws Exception {
-        List<Cita> atencion = citaRepository.obtenerCitasRealizadas(codigoMedico);
+        List<Cita> atencion = citaRepository.obtenerCitasRealizadas(codigoMedico, LocalDate.now());
 
         if(atencion.isEmpty()){
             throw new Exception("No hay citas realizadas por el medico");
@@ -176,11 +176,11 @@ public class MedicoServicioImpl implements MedicoServicio {
     }
 
     @Override
-    public DetalleMedicoDTO verDetalleMedico(int i) throws Exception {
-        Optional<Medico> opcional = medicoRepository.findById(i);
+    public DetalleMedicoDTO obtenerMedico(int codigo) throws Exception {
+        Optional<Medico> opcional = medicoRepository.findById(codigo);
 
         if (opcional.isEmpty()){
-            throw new Exception("No existe un medico con el código: " +i);
+            throw new Exception("No existe un medico con el código: " +codigo);
         }
 
         Medico buscado = opcional.get();
@@ -217,7 +217,7 @@ public class MedicoServicioImpl implements MedicoServicio {
 
 
     @Override
-    public int editarInformacion(MedicoDTO medicoDTO) throws Exception {
+    public int editarInformacion(DetalleMedicoDTO medicoDTO) throws Exception {
 
         Optional<Medico> medicoBuscado = medicoRepository.findById(medicoDTO.codigo());
         if (medicoBuscado.isEmpty()){
@@ -229,7 +229,7 @@ public class MedicoServicioImpl implements MedicoServicio {
         medico.setNombre(medicoDTO.nombre());
         medico.setTelefono(medicoDTO.telefono());
         medico.setCiudad(medicoDTO.ciudad());
-        medico.setPassword(medicoDTO.password());
+        //medico.setPassword(medicoDTO.password());
         medico.setEspecialidad(medicoDTO.especialidad());
         medico.setCodigo(medicoDTO.codigo());
         medico.setCorreo(medicoDTO.correo());

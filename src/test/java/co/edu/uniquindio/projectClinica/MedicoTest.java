@@ -26,32 +26,27 @@ public class  MedicoTest {
     @Sql("classpath:dataset.sql" )
     public void actualizarTest() throws Exception{
 //Para actualizar el paciente primero lo obtenemos
-        DetalleMedicoDTO guardado = medicoServicio.verDetalleMedico(5);
+        DetalleMedicoDTO guardado = medicoServicio.obtenerMedico(11);
 //Le modificamos el número de teléfono, lo demás lo dejamos igual
-       /* MedicoDTO modificado = new MedicoDTO(
+       DetalleMedicoDTO medicoDTO = new DetalleMedicoDTO(
+                guardado.codigo(),
                 guardado.cedula(),
                 guardado.nombre(),
-                guardado.telefono(),
-                guardado.ciudad(),
-                guardado.codigoCiudad(),
-                guardado.password(),
-                guardado.especialidad(),
-                guardado.codigoEspecialidad(),
-                guardado.codigo(),
+                "111111",
                 guardado.correo(),
                 guardado.urlFoto(),
+                guardado.ciudad(),
+                guardado.especialidad(),
+                guardado.estadoUsuario(),
                 guardado.horaInicio(),
                 guardado.horaFin()
         );
 //Se invoca el servicio de actualizar los datos
-        medicoServicio.editarInformacion(modificado);
+        medicoServicio.editarInformacion(medicoDTO);
 //Se obtiene nuevamente el paciente para comprobar que sí se haya actualizado
-        MedicoDTO objetoModificado = medicoServicio.verDetalleMedico(5);
+        DetalleMedicoDTO objetoModificado = medicoServicio.obtenerMedico(11);
 //Se comprueba que el teléfono del paciente sea el que se le asignó en la actualización
         Assertions.assertEquals("111111", objetoModificado.telefono());
-
-        
-        */
     }
 
     @Test
@@ -60,7 +55,7 @@ public class  MedicoTest {
 //Se borra por ejemplo el paciente con el código 1
         medicoServicio.eliminarCuenta(5);
 //Si intentamos buscar un paciente con el código del paciente borrado debemos obtener unaexcepción indicando que ya no existe
-        Assertions.assertThrows(Exception.class, () -> medicoServicio.verDetalleMedico(1));
+        Assertions.assertThrows(Exception.class, () -> medicoServicio.obtenerMedico(1));
     }
     @Test
     @Sql("classpath:dataset.sql" )

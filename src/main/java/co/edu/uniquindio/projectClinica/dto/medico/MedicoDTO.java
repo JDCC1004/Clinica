@@ -22,14 +22,10 @@ public record MedicoDTO (
         String telefono,
         @NotNull
         Ciudad ciudad,
-        @NotNull
-        int codigoCiudad,
         @NotBlank
         String password,
         @NotNull
         Especialidad especialidad,
-        @NotNull
-        int codigoEspecialidad,
         @NotNull
         @Length(max = 10, message = "El codigo no puede tener mas de 10 caracteres")
         int codigo,
