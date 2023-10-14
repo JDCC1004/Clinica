@@ -1,15 +1,19 @@
 package co.edu.uniquindio.projectClinica.servicios.implementacion;
 
 import co.edu.uniquindio.projectClinica.dto.ItemCitaDTO;
+import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.admin.DetalleMedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Cita;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Cuenta;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.EstadoUsuario;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_cita;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Medico;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Paciente;
 import co.edu.uniquindio.projectClinica.repositorios.*;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.MedicoServicio;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -24,6 +28,35 @@ public class MedicoServicioImpl implements MedicoServicio {
     private final CitaRepository citaRepository;
     private final CuentaRepository cuentaRepository;
     private final MedicoRepository medicoRepository;
+
+    @Override
+    public int registrarse(MedicoDTO medicoDTO) throws Exception {
+        Medico medico = new Medico();
+
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String passwordEncriptada = passwordEncoder.encode(medicoDTO.password());
+        medico.setPassword( passwordEncriptada );
+
+
+
+        medico.setCorreo(medicoDTO.correo());
+        medico.setCedula(medicoDTO.cedula());
+        medico.setNombre(medicoDTO.nombre());
+        medico.setTelefono(medicoDTO.telefono());
+        medico.setCiudad(medicoDTO.ciudad());
+        medico.setPassword(medicoDTO.password());
+        medico.setEspecialidad(medicoDTO.especialidad());
+        medico.setCodigo(medicoDTO.codigo());
+        medico.setCorreo(medicoDTO.correo());
+        medico.setUrl_foto(medicoDTO.urlFoto());
+        medico.setHoraInicio(medicoDTO.horaInicio());
+        medico.setHoraFin(medicoDTO.horaFin());
+
+
+        medicoRepository.save(medico);
+        return medico.getCodigo();
+    }
+
 
     @Override
     public List<CitaMedicoDTO> listarCitasPendiente(int codigoMedico) throws Exception {
@@ -66,15 +99,33 @@ public class MedicoServicioImpl implements MedicoServicio {
         return null;//Si se borra el metodo se daña la clase
     }
 
-
     @Override
     public int agendarDiaLibre(DiaLibreDTO diaLibreDTO) throws Exception {
         return 0;
     }
 
+
+ /*   @Override
+    public int agendarDiaLibre(DiaLibreDTO diaLibreDTO) throws Exception {
+
+        Medico MedicoLibre =  medicoRepository.obtenerDiaLibreMedico(diaLibreDTO.agendar());
+
+        if(MedicoLibre != null){
+            throw new Exception("Ya tiene dia libre " + diaLibreDTO.agendar());
+        }else{
+
+            Medico medico = medicoRepository.save(medico);
+            return medico.getCodigoMedico();
+        }*/
+
+
+
+
+
+
     @Override
     public List<ItemCitaDTO> listarHistorialAtencionPaciente(int codigoPaciente) throws Exception {
-        Optional<Cita> historial = citaRepository.findById(codigoPaciente);
+        List<Cita> historial = citaRepository.obtenerHistorialAtencionPaciente(codigoPaciente);
 
         if(historial.isEmpty()){
             throw new Exception("No hay historial de atencion al paciente");
@@ -82,12 +133,12 @@ public class MedicoServicioImpl implements MedicoServicio {
 
         List<ItemCitaDTO> respuesta = new ArrayList<>();
 
-        /*for (Cita i: historial){
+        for (Cita i: historial){
             respuesta.add(new ItemCitaDTO(
 
 
             ));
-        }*/
+        }
 
         return respuesta;
     }
@@ -95,7 +146,7 @@ public class MedicoServicioImpl implements MedicoServicio {
 
     @Override
     public List<ItemCitaDTO> listarCitasRealizadasMedico(int codigoMedico) throws Exception {
-        Optional<Cita> atencion = citaRepository.findById(codigoMedico);
+        List<Cita> atencion = citaRepository.obtenerCitasRealizadas(codigoMedico);
 
         if(atencion.isEmpty()){
             throw new Exception("No hay citas realizadas por el medico");
@@ -103,19 +154,25 @@ public class MedicoServicioImpl implements MedicoServicio {
 
         List<ItemCitaDTO> respuesta = new ArrayList<>();
 
-        /*for (Cita o: atencion){
+        for (Cita o: atencion){
             respuesta.add(new ItemCitaDTO(
 
 
             ));
-        }*/
+        }
         return respuesta;
     }
 
 
     @Override
     public List<ItemCitaDTO> listarTodos() {
-        return null;
+        List<Medico> medicos = medicoRepository.findAll();
+        List<ItemCitaDTO> respuesta = new ArrayList<>();
+
+        for (Medico medico : medicos) {
+            respuesta.add(new ItemCitaDTO());
+        }
+        return respuesta;
     }
 
     @Override
