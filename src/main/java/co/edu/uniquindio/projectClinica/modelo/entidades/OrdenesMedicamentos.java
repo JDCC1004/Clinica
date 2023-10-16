@@ -20,6 +20,8 @@ public class OrdenesMedicamentos implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     private int codigoOrdenes;
+//    @Column(nullable = false, length = 30)
+//    private int dosis;
     @Column(nullable = false)
     private LocalDate fechaAtencion;
     @Column(nullable = false, length = 30)

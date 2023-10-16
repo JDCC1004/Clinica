@@ -17,7 +17,7 @@ public class Atencion implements Serializable {
     @Id
     @EqualsAndHashCode.Include
     @Column(nullable = false, length = 10, unique = true)
-    private String Codigo;
+    private int Codigo;
     @Column(nullable = false, length = 200)
     private String diagnostico;
     @Lob

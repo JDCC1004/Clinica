@@ -4,6 +4,7 @@ import co.edu.uniquindio.projectClinica.dto.ItemCitaDTO;
 import co.edu.uniquindio.projectClinica.dto.admin.DetalleMedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.*;
 
+import java.util.Date;
 import java.util.List;
 
 public interface MedicoServicio {
@@ -16,7 +17,7 @@ public interface MedicoServicio {
 
     //List<CitaMedicoDTO> listarCitasPendientes(int codigoPaciente) throws Exception;
 
-    int agendarDiaLibre(DiaLibreDTO diaLibreDTO) throws Exception;
+    Date agendarDiaLibre(DiaLibreDTO diaLibreDTO) throws Exception;
 
     List<ItemCitaDTO> listarHistorialAtencionPaciente(int codigoPaciente) throws Exception;
 

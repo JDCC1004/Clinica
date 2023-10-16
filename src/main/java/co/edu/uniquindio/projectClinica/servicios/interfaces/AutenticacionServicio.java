@@ -5,7 +5,7 @@ import co.edu.uniquindio.projectClinica.dto.TokenDTO;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Cuenta;
 
 public interface AutenticacionServicio {
-    TokenDTO login(LoginDTO loginDTO) throws Exception;
+    TokenDTO login(LoginDTO loginDTO, int codigo) throws Exception;
 
     String crearToken(Cuenta cuenta) throws Exception;
 

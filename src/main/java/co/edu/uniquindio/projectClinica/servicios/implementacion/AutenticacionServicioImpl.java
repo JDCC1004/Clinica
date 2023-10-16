@@ -24,7 +24,7 @@ public class AutenticacionServicioImpl implements AutenticacionServicio {
     private final JWTUtils jwtUtils;
 
     @Override
-    public TokenDTO login(LoginDTO loginDTO) throws Exception{
+    public TokenDTO login(LoginDTO loginDTO, int codigo) throws Exception{
 
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         Optional<Cuenta> cuentaOptional = cuentaRepository.findByCorreo(loginDTO.correo());

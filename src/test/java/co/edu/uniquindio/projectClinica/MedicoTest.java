@@ -3,6 +3,7 @@ package co.edu.uniquindio.projectClinica;
 import co.edu.uniquindio.projectClinica.dto.ItemCitaDTO;
 import co.edu.uniquindio.projectClinica.dto.admin.DetalleMedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.CitaMedicoDTO;
+import co.edu.uniquindio.projectClinica.dto.medico.DiaLibreDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.MedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.RegistroAtencionDTO;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.MedicoServicio;
@@ -15,6 +16,7 @@ import org.springframework.test.context.jdbc.Sql;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 
 
@@ -110,11 +112,28 @@ public class  MedicoTest {
                 "",
                 LocalDate.now()
         );
-        medicoServicio.atenderCita(registroAtencionDTO);
+        medicoServicio.atenderCita(registroAtencionDTO, 1);
 
-        RegistroAtencionDTO objetoModificado = medicoServicio.atenderCita(registroAtencionDTO);
+        int objetoModificado = medicoServicio.atenderCita(registroAtencionDTO, 1);
 
-        Assertions.assertEquals(1, objetoModificado.codigoCita());
+        Assertions.assertEquals(1, objetoModificado);
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql" )
+    public void agendarDiaLibreTest() throws Exception{
+
+        DiaLibreDTO diaLibreDTO = new DiaLibreDTO(
+          "11129",
+            new Date(2023-11-12)
+        );
+
+        medicoServicio.agendarDiaLibre(diaLibreDTO);
+
+        Date objetoModificado = medicoServicio.agendarDiaLibre(diaLibreDTO);
+
+        Assertions.assertEquals(new Date(2023-11-12), objetoModificado);
+
     }
 }
 

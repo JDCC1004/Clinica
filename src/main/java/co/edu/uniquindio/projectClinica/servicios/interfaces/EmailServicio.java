@@ -5,4 +5,6 @@ import co.edu.uniquindio.projectClinica.dto.EmailDTO;
 public interface EmailServicio {
     void enviarEmail(EmailDTO emailDTO) throws Exception;
 
+    void enviarLinkRecuperacion(String correo, String linkRecuperacion) throws Exception;
+
 }

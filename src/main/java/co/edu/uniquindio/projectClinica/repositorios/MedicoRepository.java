@@ -1,10 +1,12 @@
 package co.edu.uniquindio.projectClinica.repositorios;
 
+import co.edu.uniquindio.projectClinica.modelo.entidades.Dia_libre;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Medico;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 

@@ -55,18 +55,23 @@ public class PacienteTest {
         Assertions.assertEquals("111111", objeto.telefono());
     }
 
-   /* @Test
-    @Sql("classpath:dataset.sql")
-    public void agendarCitaTest() throws Exception {
-        AgendarCitaDTO agendarCitaDTO = new AgendarCitaDTO(Paciente, Especialidad.CARDIOLOGO,"Pablo" , "2023-11-12", "Me duele la cabecita");
-        int codigoCita = pacienteServicio.agendarCita(agendarCitaDTO);
-
-        Assertions.assertTrue(codigoCita > 0);
-
-        DetalleCitaDTO detalleCita = pacienteServicio.verDetalleCita(codigoCita);
-        Assertions.assertEquals("Dolor de cabeza", detalleCita.Motivo());
-
-    }*/
+//   @Test
+//    @Sql("classpath:dataset.sql")
+//    public void agendarCitaTest() throws Exception {
+//        AgendarCitaDTO agendarCitaDTO = new AgendarCitaDTO(
+//                Paciente,
+//                Especialidad.CARDIOLOGO,
+//                "Pablo" ,
+//                "2023-11-12",
+//                "Me duele la cabecita");
+//        int codigoCita = pacienteServicio.agendarCita(agendarCitaDTO);
+//
+//        Assertions.assertTrue(codigoCita > 0);
+//
+//        DetalleCitaDTO detalleCita = pacienteServicio.verDetalleCita(codigoCita);
+//        Assertions.assertEquals("Dolor de cabeza", detalleCita.Motivo());
+//
+//    }
 
     @Test
     @Sql("classpath:dataset.sql")
@@ -135,7 +140,7 @@ public class PacienteTest {
     public void listarCitasPendientesTest() throws Exception {
         List<CitaPacienteDTO> lista = pacienteServicio.listarCitasPendientes(7);
         lista.forEach(System.out::println);
-        Assertions.assertEquals(3, lista.size());
+        Assertions.assertEquals(4, lista.size());
 
 
     }

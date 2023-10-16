@@ -11,9 +11,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +24,7 @@ public class MedicoServicioImpl implements MedicoServicio {
     private final CitaRepository citaRepository;
     private final CuentaRepository cuentaRepository;
     private final MedicoRepository medicoRepository;
+    private final DiaLibreRepository DiaLibreRepository;
 
     @Override
     public int registrarse(MedicoDTO medicoDTO) throws Exception {
@@ -86,28 +87,26 @@ public class MedicoServicioImpl implements MedicoServicio {
 
         Cita atender = optionalCita.get();
 
-        return 1;
+        return atender.getCodigoCita();
 
         }
 
     @Override
-    public int agendarDiaLibre(DiaLibreDTO diaLibreDTO) throws Exception {
-        return 0;
+    public Date agendarDiaLibre(DiaLibreDTO diaLibreDTO) throws Exception {
+
+        Dia_libre MedicoLibre = DiaLibreRepository.agendarDiaLibre(diaLibreDTO.codigo(), diaLibreDTO.dia());
+
+        if (MedicoLibre != null) {
+            throw new Exception("Ya tiene un dia libre " + diaLibreDTO.dia());
+        } else {
+
+            Dia_libre diaLibre = new Dia_libre();
+            diaLibre.setDia(diaLibreDTO.dia());
+
+            Dia_libre diaAgendado = DiaLibreRepository.save(diaLibre);
+            return diaAgendado.getDia();
+        }
     }
-
-
- /*   @Override
-    public int agendarDiaLibre(DiaLibreDTO diaLibreDTO) throws Exception {
-
-        Medico MedicoLibre =  medicoRepository.obtenerDiaLibreMedico(diaLibreDTO.agendar());
-
-        if(MedicoLibre != null){
-            throw new Exception("Ya tiene dia libre " + diaLibreDTO.agendar());
-        }else{
-
-            Medico medico = medicoRepository.save(medico);
-            return medico.getCodigoMedico();
-        }*/
 
     @Override
     public List<ItemCitaDTO> listarHistorialAtencionPaciente(int codigoPaciente) throws Exception {
