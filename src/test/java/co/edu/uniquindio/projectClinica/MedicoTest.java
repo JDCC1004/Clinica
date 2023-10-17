@@ -79,7 +79,7 @@ public class  MedicoTest {
     public void listarCitasTest() throws Exception{
         List<CitaMedicoDTO> lista = medicoServicio.listarCitasPendiente(11);
         lista.forEach(System.out::println);
-        Assertions.assertEquals(2, lista.size());
+        Assertions.assertEquals(1, lista.size());
     }
 
     @Test

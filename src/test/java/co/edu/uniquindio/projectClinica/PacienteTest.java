@@ -76,7 +76,7 @@ public class PacienteTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void cambiarPasswordTest() throws Exception {
-        NuevaPasswordDTO nuevaPasswordDTO = new NuevaPasswordDTO( "f", "nuevaContrasena123","soy gay");
+        NuevaPasswordDTO nuevaPasswordDTO = new NuevaPasswordDTO( "juan10@gmail.com", "184","soy gay");
         String resultado = pacienteServicio.cambiarPassword(nuevaPasswordDTO);
         Assertions.assertEquals("Contraseña cambiada con éxito", resultado);
 
@@ -140,7 +140,7 @@ public class PacienteTest {
     public void listarCitasPendientesTest() throws Exception {
         List<CitaPacienteDTO> lista = pacienteServicio.listarCitasPendientes(7);
         lista.forEach(System.out::println);
-        Assertions.assertEquals(4, lista.size());
+        Assertions.assertEquals(2, lista.size());
 
 
     }

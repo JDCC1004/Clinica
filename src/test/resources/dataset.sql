@@ -1,4 +1,3 @@
-
 insert into cuenta values (1,  'santi@email.com', '123');
 insert into cuenta values (2,  'manu@email.com', '128');
 insert into cuenta values (3,  'juli@email.com', '127');
@@ -31,43 +30,6 @@ insert into usuario values ( '12358', 1, 1, 'Julian', '3105033322', 'julian', 13
 insert into usuario values ( '12359', 1, 1, 'Miguel', '3105033322', 'migue', 14);
 insert into usuario values ( '12360', 1, 1, 'Carolina', '3105033322', 'caro', 15);
 
-
-insert into cuenta values (1,  'santi@email.com', '123')
-insert into cuenta values (2,  'manu@email.com', '128')
-insert into cuenta values (3,  'juli@email.com', '127')
-insert into cuenta values (4,  'dani@email.com', '163')
-insert into cuenta values (5,  'luis@email.com', '143')
-insert into cuenta values (6,  'juan@gmial.com', '154')
-insert into cuenta values (7,  'seb10@gmail.com', '154')
-insert into cuenta values (8,  'ana@gmial.com', '154')
-insert into cuenta values (9,  'juan10@gmial.com', '184')
-insert into cuenta values (10,  'juanp@gmial.com', '146')
-insert into cuenta values (11,  'maria@gmail.com', '147')
-insert into cuenta values (12,  'cam@gmail,com', '148')
-insert into cuenta values (13,  'juliand@gmail.com', '149')
-insert into cuenta values (14,  'migue@gmail.com', '150')
-insert into cuenta values (15,  'caro@gmail.com', '151')
-insert into cuenta values (16,  'cari@gmail.com', '152')
-
-
-insert into usuario values ( '12345', 1, 1, 'Santiago', '3004556789', 'santiago', 1)
-insert into usuario values ( '12355', 1, 1, 'Manuel', '3223332233', 'miguel', 2)
-insert into usuario values ( '12377', 1, 1, 'Julian', '3202221125', 'luis', 3)
-insert into usuario values ( '12348', 1, 1, 'Daniela', '3150002266', 'ana', 4)
-insert into usuario values ( '12349', 1, 1, 'Luis', '3105033322', 'julian', 5)
-insert into usuario values ( '12350', 1, 1, 'Juan', '3105033322', 'juan', 6)
-insert into usuario values ( '12351', 1, 1, 'Sebastian', '3105033322', 'seb', 7)
-insert into usuario values ( '12352', 1, 1, 'Ana', '3105033322', 'ana', 8)
-insert into usuario values ( '12353', 1, 1, 'Juan Sebastian', '3105033322', 'juanSeb', 9)
-insert into usuario values ( '12354', 1, 1, 'Juan Pablo', '3105033322', 'juanp', 10)
-insert into usuario values ( '12356', 1, 1, 'Maria', '3105033322', 'maria', 11)
-insert into usuario values ( '12357', 1, 1, 'Camila', '3105033322', 'cam', 12)
-insert into usuario values ( '12358', 1, 1, 'Julian', '3105033322', 'julian', 13)
-insert into usuario values ( '12359', 1, 1, 'Miguel', '3105033322', 'migue', 14)
-insert into usuario values ( '12360', 1, 1, 'Carolina', '3105033322', 'caro', 15)
-insert into usuario values ( '12361', 1, 1, 'Caro', '3105033323', 'cari', 16)
-
-
 insert into administrador values ( 1 );
 insert into administrador values ( 2 );
 insert into administrador values ( 3 );
@@ -85,13 +47,6 @@ insert into medico values (2, '12:00:00', '08:00:00', 12);
 insert into medico values (3, '12:00:00', '08:00:00', 13);
 insert into medico values (1, '12:00:00', '08:00:00', 14);
 insert into medico values (4, '12:00:00', '08:00:00', 15);
-
-insert into medico values (1, '12:00:00', '08:00:00', 11)
-insert into medico values (2, '12:00:00', '08:00:00', 12)
-insert into medico values (3, '12:00:00', '08:00:00', 13)
-insert into medico values (1, '12:00:00', '08:00:00', 14)
-insert into medico values (4, '12:00:00', '08:00:00', 15)
-insert into medico values (5, '12:00:00', '08:00:00', 16)
 
 insert into cita values ( 1, 0, '2023-09-15 15:00:00', '2023-10-10 10:00:00', 'Dolor lumbar',  11, 6);
 insert into cita values ( 2, 1, '2023-10-16 15:30:00', '2023-10-10 10:00:00', 'Dolor abdominal',  12, 7);

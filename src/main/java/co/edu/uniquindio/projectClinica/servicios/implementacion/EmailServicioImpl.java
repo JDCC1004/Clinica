@@ -4,7 +4,6 @@ import co.edu.uniquindio.projectClinica.dto.EmailDTO;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.EmailServicio;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -18,12 +17,12 @@ public class EmailServicioImpl implements EmailServicio{
     @Override
     public void enviarEmail(EmailDTO emailDTO) throws Exception {
         MimeMessage mensaje = javaMailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(mensaje, true);
+        MimeMessageHelper helper = new MimeMessageHelper(mensaje);
 
         helper.setSubject(emailDTO.asunto());
         helper.setText(emailDTO.cuerpo(), true);
         helper.setTo(emailDTO.destinatario());
-        helper.setFrom("no_reply@dominio.com");
+        helper.setFrom("clinicasdj149@gmail.com");
 
         javaMailSender.send(mensaje);
     }
