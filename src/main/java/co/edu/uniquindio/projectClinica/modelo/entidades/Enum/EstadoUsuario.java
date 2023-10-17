@@ -4,7 +4,7 @@ public enum EstadoUsuario {
 
     ACTIVO("Activo"),
     INACTIVO("Inactivo"),
-    INABILITADO("Inabilitado");
+    INABILITADO("Inhabilitado");
 
     private String estadoUsuario;
 

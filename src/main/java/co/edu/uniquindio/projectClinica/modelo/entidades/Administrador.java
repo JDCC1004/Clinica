@@ -8,6 +8,6 @@ import java.io.Serializable;
 @Getter
 @Setter
 @NoArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 public class Administrador extends Cuenta implements Serializable {
 }

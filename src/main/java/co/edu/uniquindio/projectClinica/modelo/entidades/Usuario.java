@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 public class Usuario extends Cuenta implements Serializable {
 
     @Column(nullable = false, length = 10)

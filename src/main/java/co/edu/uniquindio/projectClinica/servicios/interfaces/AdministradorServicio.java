@@ -13,7 +13,7 @@ public interface AdministradorServicio {
 
     void eliminarMedico(int codigo) throws Exception;
 
-    List<infoMedicoAdminDTO>listarMedico() throws Exception;
+    List<infoMedicoAdminDTO>listarMedico(String number) throws Exception;
 
     DetalleMedicoDTO obtenerMedico(int codigo) throws Exception;
 

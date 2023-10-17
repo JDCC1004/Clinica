@@ -108,6 +108,22 @@ public class MedicoServicioImpl implements MedicoServicio {
         }
     }
 
+
+ /*   @Override
+    public int agendarDiaLibre(DiaLibreDTO diaLibreDTO) throws Exception {
+
+        Medico MedicoLibre =  medicoRepository.obtenerDiaLibreMedico(diaLibreDTO.agendar());
+
+        if(MedicoLibre != null){
+            throw new Exception("Ya tiene dia libre " + diaLibreDTO.agendar());
+        }else{
+
+            Medico medico = medicoRepository.save(medico);
+            return medico.getCodigoMedico();
+        }*/
+
+
+
     @Override
     public List<ItemCitaDTO> listarHistorialAtencionPaciente(int codigoPaciente) throws Exception {
         List<Cita> historial = citaRepository.obtenerHistorialAtencionPaciente(codigoPaciente);
@@ -129,7 +145,9 @@ public class MedicoServicioImpl implements MedicoServicio {
 
     @Override
     public List<ItemCitaDTO> listarCitasRealizadasMedico(int codigoMedico) throws Exception {
+
         List<Cita> atencion = citaRepository.obtenerCitasRealizadas(codigoMedico, LocalDateTime.now());
+
 
         if(atencion.isEmpty()){
             throw new Exception("No hay citas realizadas por el medico");
@@ -143,7 +161,6 @@ public class MedicoServicioImpl implements MedicoServicio {
         }
         return respuesta;
     }
-
 
     @Override
     public List<ItemCitaDTO> listarTodos() {

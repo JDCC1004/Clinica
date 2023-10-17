@@ -1,10 +1,14 @@
 package co.edu.uniquindio.projectClinica;
 
-import co.edu.uniquindio.projectClinica.dto.admin.DetalleMedicoDTO;
-import co.edu.uniquindio.projectClinica.dto.admin.RegistroMedicoDTO;
+import co.edu.uniquindio.projectClinica.dto.admin.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Ciudad;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Especialidad;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.EstadoUsuario;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_PQRS;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Medico;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Mensaje;
+import co.edu.uniquindio.projectClinica.repositorios.MedicoRepository;
+import co.edu.uniquindio.projectClinica.repositorios.MensajeRepository;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.AdministradorServicio;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;
@@ -13,7 +17,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @SpringBootTest
 @Transactional
@@ -21,31 +29,26 @@ public class AdministradorTest {
 
     @Autowired
     private AdministradorServicio administradorServicio;
+    @Autowired
+    private MedicoRepository medicoRepository;
+    @Autowired
+    private MensajeRepository mensajeRepository;
     @Test
     @Sql("classpath:dataset.sql")
     public void crearMedicoTest() throws Exception {
 
-        DetalleMedicoDTO guardado = administradorServicio.obtenerMedico(11);
-
         RegistroMedicoDTO medicoDTO = new RegistroMedicoDTO(
-                guardado.nombre(),
-                guardado.cedula(),
-                "238222",
+                "Pepito",
+                "1234567",
+                "3006985787",
                 Ciudad.ARMENIA,
                 Especialidad.CARDIOLOGO,
-                "pep123@gmail.com",
-                "12345",
-                "url_Foto",
+                "pepito@email.com",
+                "url_foto",
+                "123a",
                 LocalTime.of(8, 0),
                 LocalTime.of(12, 0)
         );
-
-        administradorServicio.crearMedico(medicoDTO);
-
-        DetalleMedicoDTO objeto = administradorServicio.obtenerMedico(12);
-
-        System.out.println(objeto.nombre());
-        Assertions.assertEquals("238222", objeto.nombre());
 
         try{
             administradorServicio.crearMedico(medicoDTO);
@@ -94,26 +97,86 @@ public class AdministradorTest {
 
         administradorServicio.eliminarMedico(11);
 
-        Assertions.assertThrows(Exception.class, () -> administradorServicio.obtenerMedico(11));
+        Medico medico = medicoRepository.findById(11).orElse(null);
+        Assertions.assertNull(medico);
 
-            System.out.println("Medico eliminado con exito " + 11);
-        try {
-            administradorServicio.eliminarMedico(11);
+        System.out.println("Medico eliminado con exito " + 11);
+    }
+
+
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void  listarMedicosTest() throws Exception {
+
+        List<infoMedicoAdminDTO> medicos = administradorServicio.listarMedico("16");
+        medicos.forEach(System.out::println);
+        Assertions.assertEquals(6, medicos.size());
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerMedico(){
+
+        try{
+           DetalleMedicoDTO medico = administradorServicio.obtenerMedico(12);
+           // System.out.println(medico);
+            Assertions.assertEquals(12, medico.codigo());
         } catch (Exception e){
             throw new RuntimeException(e);
         }
     }
 
-    /**@Test
-    public void obtenerMedico(){
-        DetalleMedicoDTO Medico = new DetalleMedicoDTO(
-                10324
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void  listarPQRSTest() throws Exception {
+
+        List<PQRSAdminDTO> pqrs = administradorServicio.listarPQRS();
+        pqrs.forEach(System.out::println);
+        Assertions.assertEquals(5, pqrs.size());
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void verDetallePQRS() throws Exception {
+
+        DetallePQRSDTO detallePQRSDTO = administradorServicio.verDetallePQRS(004);
+        Assertions.assertNotNull(detallePQRSDTO);
+        Assertions.assertEquals(LocalDateTime.parse("2023-10-04T00:00"), detallePQRSDTO.fechaCreacion());
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void  listarCitasTest() throws Exception {
+        List<CitasAdminDTO> cita = administradorServicio.listarCitas();
+        cita.forEach(System.out::println);
+        Assertions.assertEquals(5, cita.size());
+
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void cambiarEstadoPQRS() throws Exception{
+        administradorServicio.cambiarEstadoPQRS(002, Estado_PQRS.ARCHIVADA);
+        DetallePQRSDTO detallePQRSDTO = administradorServicio.verDetallePQRS(002);
+        Assertions.assertEquals(Estado_PQRS.ARCHIVADA, detallePQRSDTO.estadoPqrs());
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void responderPQRS() throws Exception{
+
+        RespuestaPQRSDTO respuestaPQRSDTO = new RespuestaPQRSDTO(
+                002,
+                7,
+                "Respuesta de prueba"
         );
 
-        try{
-            administradorServicio.obtenerMedico(Medico);
-        } catch (Exception e){
-            throw new RuntimeException(e);
-        }
-    }*/
+        int codigo = administradorServicio.responderPQRS(respuestaPQRSDTO);
+
+        Mensaje mensaje = mensajeRepository.findById(codigo).orElse(null);
+
+        Assertions.assertNotNull(mensaje);
+    }
+
 }

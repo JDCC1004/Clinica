@@ -32,6 +32,18 @@
       <change beforePath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/projectClinica/AutenticacionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/projectClinica/AutenticacionTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/projectClinica/MedicoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/projectClinica/MedicoTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/projectClinica/PacienteTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/projectClinica/PacienteTest.java" afterDir="false" />
+    </list>
+    <list default="true" id="a7a088f8-a405-496f-b489-4d6935349b00" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Administrador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Administrador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Enum/EstadoUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Enum/EstadoUsuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/repositorios/CitaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/repositorios/CitaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/AdminServicioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/AdminServicioImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/MedicoServicioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/MedicoServicioImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/interfaces/AdministradorServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/interfaces/AdministradorServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/projectClinica/AdministradorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/projectClinica/AdministradorTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/resources/dataset.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/dataset.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,27 +92,22 @@
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
-  <component name="ProjectId" id="2VYChR3WsxFFLj9cOu6kP3AqLwg" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectId" id="2WeC4XLrKGAs6BY7HzPd9xYLydd" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
     &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
     &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;Daniela&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Samuel/Downloads/clinica-aurora&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/danie/IdeaProjects/Clinicaproyecto&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -135,8 +142,8 @@
       <recent name="$PROJECT_DIR$/src/test/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.ImagenesTest.subirImagenTest">
-    <configuration name="AutenticacionTest.TokenTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.AdministradorTest.cambiarEstadoPQRS">
+    <configuration name="AdministradorTest.cambiarEstadoPQRS" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -150,6 +157,56 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;co.edu.uniquindio.projectClinica.AutenticacionTest.TokenTest&quot;" />
+            <option value="&quot;co.edu.uniquindio.projectClinica.AdministradorTest.cambiarEstadoPQRS&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="AdministradorTest.responderPQRS" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;co.edu.uniquindio.projectClinica.OrdenesTest.listarOrdenesMedicamentosTest&quot;" />
+            <option value="&quot;co.edu.uniquindio.projectClinica.AdministradorTest.responderPQRS&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="AdministradorTest.verDetallePQRS" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;co.edu.uniquindio.projectClinica.AdministradorTest.verDetallePQRS&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -211,49 +268,41 @@
     <configuration name="ImagenesTest.subirImagenTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalProjectPath" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
+        <option name="scriptParameters" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;co.edu.uniquindio.projectClinica.ImagenesTest.subirImagenTest&quot;" />
-          </list>
+          <list />
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
+      <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
     <configuration name="OrdenesTest.listarOrdenesMedicamentosTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalProjectPath" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
+        <option name="scriptParameters" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;co.edu.uniquindio.projectClinica.OrdenesTest.listarOrdenesMedicamentosTest&quot;" />
-          </list>
+          <list />
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
+      <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
     <configuration name="projectApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
@@ -269,15 +318,17 @@
         <item itemvalue="Gradle.ImagenesTest.eliminarImagenTest" />
         <item itemvalue="Gradle.OrdenesTest.listarOrdenesMedicamentosTest" />
         <item itemvalue="Gradle.EmailTest.enviarEmailTest" />
-        <item itemvalue="Gradle.AutenticacionTest.TokenTest" />
+        <item itemvalue="Gradle.AdministradorTest.responderPQRS" />
+        <item itemvalue="Gradle.AdministradorTest.cambiarEstadoPQRS" />
+        <item itemvalue="Gradle.AdministradorTest.verDetallePQRS" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f68ac8ae-f7d2-4c5c-bad1-cb15a5aec190" name="Changes" comment="" />
-      <created>1695003748677</created>
+      <changelist id="a7a088f8-a405-496f-b489-4d6935349b00" name="Changes" comment="" />
+      <created>1697083468530</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1695003748677</updated>
@@ -398,6 +449,12 @@
       <updated>1697254783018</updated>
     </task>
     <option name="localTasksCounter" value="11" />
+    <updated>1697083468530</updated>
+    <workItem from="1697083469601" duration="163000" />
+    <workItem from="1697083657215" duration="7130000" />
+    <workItem from="1697090940839" duration="189000" />
+    <workItem from="1697247372873" duration="1596000" />
+    <workItem from="1697249119743" duration="17409000" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -425,5 +482,15 @@
     <SUITE FILE_PATH="coverage/projectClinica$projectApplication.ic" NAME="projectApplication Coverage Results" MODIFIED="1695046702166" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>co.edu.uniquindio.projectClinica.*</FILTER>
     </SUITE>
+    <component name="XDebuggerManager">
+      <breakpoint-manager>
+        <breakpoints>
+          <breakpoint enabled="true" type="java-exception">
+            <properties class="org.hibernate.tool.schema.spi.CommandAcceptanceException" package="org.hibernate.tool.schema.spi" />
+            <option name="timeStamp" value="1" />
+          </breakpoint>
+        </breakpoints>
+      </breakpoint-manager>
+    </component>
   </component>
 </project>

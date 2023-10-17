@@ -87,12 +87,10 @@ public class AdminServicioImpl implements AdministradorServicio {
 
         if (opcional.isEmpty()){
             throw new Exception("No existe el medico con el código: " +codigo);
+        }else{
+            Medico buscado = opcional.get();
+            medicoRepository.delete(buscado);
         }
-
-        Medico buscado = opcional.get();
-        buscado.setEstadoUsuario(EstadoUsuario.INABILITADO);
-        medicoRepository.save(buscado);
-
     }
 
     private boolean estaRepetidaCedula(String cedula){
@@ -104,7 +102,7 @@ public class AdminServicioImpl implements AdministradorServicio {
     }
 
     @Override
-    public List<infoMedicoAdminDTO> listarMedico() throws Exception{
+    public List<infoMedicoAdminDTO> listarMedico(String number) throws Exception{
         List<Medico> medicos = medicoRepository.findAll();
 
         if (medicos.isEmpty()){
