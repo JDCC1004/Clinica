@@ -22,7 +22,7 @@ public class EmailServicioImpl implements EmailServicio{
         helper.setSubject(emailDTO.asunto());
         helper.setText(emailDTO.cuerpo(), true);
         helper.setTo(emailDTO.destinatario());
-        helper.setFrom("clinicasdj149@gmail.com");
+        helper.setFrom("no_reply@dominio.com");
 
         javaMailSender.send(mensaje);
     }

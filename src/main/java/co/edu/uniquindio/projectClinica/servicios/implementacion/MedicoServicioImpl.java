@@ -8,6 +8,7 @@ import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.EstadoUsuario;
 import co.edu.uniquindio.projectClinica.repositorios.*;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.MedicoServicio;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 

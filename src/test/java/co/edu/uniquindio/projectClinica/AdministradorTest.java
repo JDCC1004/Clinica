@@ -3,10 +3,7 @@ package co.edu.uniquindio.projectClinica;
 import co.edu.uniquindio.projectClinica.dto.admin.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Ciudad;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Especialidad;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.EstadoUsuario;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_PQRS;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Medico;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Mensaje;
 import co.edu.uniquindio.projectClinica.repositorios.MedicoRepository;
 import co.edu.uniquindio.projectClinica.repositorios.MensajeRepository;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.AdministradorServicio;
@@ -19,9 +16,7 @@ import org.springframework.test.context.jdbc.Sql;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @SpringBootTest
 @Transactional
