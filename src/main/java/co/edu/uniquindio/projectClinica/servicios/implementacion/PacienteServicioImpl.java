@@ -122,14 +122,15 @@ public class PacienteServicioImpl implements PacienteServicio {
     public String cambiarPassword(NuevaPasswordDTO nuevaPasswordDTO) throws Exception {
 
         Optional<Cuenta> cuentaBuscada = cuentaRepository.findByCorreo(nuevaPasswordDTO.correo());
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
         if(cuentaBuscada.isEmpty()){
             throw new Exception("No existe una cuenta con el correo " + nuevaPasswordDTO.correo());
         }else{
             Cuenta cuenta = cuentaBuscada.get();
 
-            if(cuenta.getPassword().equals(nuevaPasswordDTO.passwordAntigua())){
-                cuenta.setPassword(nuevaPasswordDTO.passwordNueva());
+            if( passwordEncoder.matches(nuevaPasswordDTO.passwordAntigua(), cuenta.getPassword()) ){
+                cuenta.setPassword( passwordEncoder.encode( nuevaPasswordDTO.passwordNueva())) ;
                 cuentaRepository.save(cuenta);
                 return "Contraseña actualizada correctamente";
             }else{
@@ -141,17 +142,21 @@ public class PacienteServicioImpl implements PacienteServicio {
     @Override
     public int agendarCita(AgendarCitaDTO agendarCitaDTO) throws Exception {
 
-        Cita citaRepetida =  citaRepository.obtenerCitaPorFechaYMedico(agendarCitaDTO.horario(), agendarCitaDTO.medico());
+        Cita citaRepetida =  citaRepository.obtenerCitaPorFechaYMedico(agendarCitaDTO.horario(), agendarCitaDTO.medicoId());
+
+        // no puede tener más de 3 citas
+        //no puede agendar una cita si el médico está libre ese día
 
         if(citaRepetida != null){
-            throw new Exception("Ya existe una cita para el médico " + agendarCitaDTO.medico() + " en la fecha " + agendarCitaDTO.horario());
+            throw new Exception("Ya existe una cita para el médico " + agendarCitaDTO.medicoId() + " en la fecha " + agendarCitaDTO.horario());
         }else{
             Cita cita = new Cita();
+            cita.setFechaCreacion(LocalDateTime.now());
             cita.setFechaCita(agendarCitaDTO.horario());
             cita.setEstadoCita(Estado_cita.ASIGNADA);
             cita.setMotivo(agendarCitaDTO.motivo());
-            cita.setMedico(medicoRepository.findByNombre(agendarCitaDTO.medico()));
-            cita.setPaciente(agendarCitaDTO.paciente());
+            cita.setMedico(medicoRepository.findById(agendarCitaDTO.medicoId()).get());
+            cita.setPaciente(pacienteRepository.findById(agendarCitaDTO.pacienteId()).get());
 
             Cita citaCreada = citaRepository.save(cita);
             return citaCreada.getCodigoCita();

@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface OrdenesRepository extends JpaRepository<OrdenesMedicamentos, Integer> {
 
-    @Query ("select o from OrdenesMedicamentos o where o.atencionMedica.Codigo = :codigoAtencion")
-    List<OrdenesMedicamentos> listarOrdenesMedicamentos(int codigoAtencion);
+    @Query ("select o from OrdenesMedicamentos o where o.atencionMedica.codigo_cita.paciente.codigo = :codigoPaciente")
+    List<OrdenesMedicamentos> listarOrdenesMedicamentos(int codigoPaciente);
 }

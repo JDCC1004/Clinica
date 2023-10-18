@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -55,30 +56,30 @@ public class PacienteTest {
         Assertions.assertEquals("111111", objeto.telefono());
     }
 
-//   @Test
-//    @Sql("classpath:dataset.sql")
-//    public void agendarCitaTest() throws Exception {
-//        AgendarCitaDTO agendarCitaDTO = new AgendarCitaDTO(
-//                Paciente,
-//                Especialidad.CARDIOLOGO,
-//                "Pablo" ,
-//                "2023-11-12",
-//                "Me duele la cabecita");
-//        int codigoCita = pacienteServicio.agendarCita(agendarCitaDTO);
-//
-//        Assertions.assertTrue(codigoCita > 0);
-//
-//        DetalleCitaDTO detalleCita = pacienteServicio.verDetalleCita(codigoCita);
-//        Assertions.assertEquals("Dolor de cabeza", detalleCita.Motivo());
-//
-//    }
+   @Test
+    @Sql("classpath:dataset.sql")
+    public void agendarCitaTest() throws Exception {
+        AgendarCitaDTO agendarCitaDTO = new AgendarCitaDTO(
+                6,
+                Especialidad.CARDIOLOGO,
+                11,
+                LocalDateTime.of(2023, 10, 20, 8, 0),
+                "Me duele la cabecita");
+        int codigoCita = pacienteServicio.agendarCita(agendarCitaDTO);
+
+        Assertions.assertTrue(codigoCita > 0);
+
+        DetalleCitaDTO detalleCita = pacienteServicio.verDetalleCita(codigoCita);
+        Assertions.assertEquals("Me duele la cabecita", detalleCita.Motivo());
+
+    }
 
     @Test
     @Sql("classpath:dataset.sql")
     public void cambiarPasswordTest() throws Exception {
-        NuevaPasswordDTO nuevaPasswordDTO = new NuevaPasswordDTO( "juan10@gmail.com", "184","soy gay");
+        NuevaPasswordDTO nuevaPasswordDTO = new NuevaPasswordDTO( "juan10@gmail.com", "123","soy gay");
         String resultado = pacienteServicio.cambiarPassword(nuevaPasswordDTO);
-        Assertions.assertEquals("Contraseña cambiada con éxito", resultado);
+        Assertions.assertEquals("Contraseña actualizada correctamente", resultado);
 
     }
 

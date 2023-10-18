@@ -9,7 +9,7 @@ public record OrdenMedicamentosDTO(
         int codigoOrdenes,
         LocalDate fechaAtencion,
         String medicamentos,
-        Atencion atenciónMedica,
-        Medicamentos dosis
+        int atencionMedica,
+        int dosis
 ) {
 }

@@ -19,6 +19,7 @@ public class Cita implements Serializable {
 
     @Id
     @EqualsAndHashCode.Include
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, length = 10, unique = true)
     private int codigoCita;
     @Column(nullable = false)

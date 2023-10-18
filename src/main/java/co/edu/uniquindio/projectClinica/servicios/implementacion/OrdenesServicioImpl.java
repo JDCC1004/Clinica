@@ -27,8 +27,8 @@ public class OrdenesServicioImpl implements OrdenesServicio {
                     o.getCodigoOrdenes(),
                     o.getFechaAtencion(),
                     o.getMedicamentos(),
-                    o.getAtencionMedica(),
-                    o.getMedicamento())
+                    o.getAtencionMedica().getCodigo(),
+                    o.getMedicamento().getDosis())
             );
         }
         return respuesta;

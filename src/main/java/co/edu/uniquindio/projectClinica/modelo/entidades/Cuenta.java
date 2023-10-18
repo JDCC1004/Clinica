@@ -24,7 +24,7 @@ public class Cuenta implements Serializable {
 
     @Column(nullable = false, length = 30)
     private String correo;
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false)
     private String password;
 
     @OneToMany(mappedBy = "cuenta")

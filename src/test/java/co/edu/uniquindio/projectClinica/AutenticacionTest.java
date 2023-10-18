@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.jdbc.Sql;
 
 @SpringBootTest
@@ -19,23 +20,16 @@ public class AutenticacionTest {
     @Autowired
     private AutenticacionServicio autenticacionServicio;
 
+
     @Test
     @Sql("classpath:dataset.sql")
     public void loginTest() throws Exception {
-        LoginDTO loginDTO = new LoginDTO("juan10@gmail.com", "184");
-
-        autenticacionServicio.login(loginDTO, 9);
+        LoginDTO loginDTO = new LoginDTO("juan10@gmail.com", "123");
 
         TokenDTO objeto = autenticacionServicio.login(loginDTO, 9);
+        System.out.println(objeto);
 
         Assertions.assertNotNull(objeto);
     }
 
-    @Test
-    @Sql("classpath:dataset.sql")
-    public String TokenTest() throws Exception {
-        Cuenta cuenta = new Cuenta();
-
-        return autenticacionServicio.crearToken(cuenta);
-    }
 }

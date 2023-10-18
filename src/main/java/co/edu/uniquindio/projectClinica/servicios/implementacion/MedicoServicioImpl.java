@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -93,9 +94,11 @@ public class MedicoServicioImpl implements MedicoServicio {
         }
 
     @Override
-    public Date agendarDiaLibre(DiaLibreDTO diaLibreDTO) throws Exception {
+    public int agendarDiaLibre(DiaLibreDTO diaLibreDTO) throws Exception {
 
-        Dia_libre MedicoLibre = DiaLibreRepository.agendarDiaLibre(diaLibreDTO.codigo(), diaLibreDTO.dia());
+        Dia_libre MedicoLibre = DiaLibreRepository.agendarDiaLibre(diaLibreDTO.codigoMedico(), LocalDate.now());
+
+        //validar que el médico NO tenga citas ese día
 
         if (MedicoLibre != null) {
             throw new Exception("Ya tiene un dia libre " + diaLibreDTO.dia());
@@ -103,9 +106,10 @@ public class MedicoServicioImpl implements MedicoServicio {
 
             Dia_libre diaLibre = new Dia_libre();
             diaLibre.setDia(diaLibreDTO.dia());
+            diaLibre.setMedico( medicoRepository.findById(diaLibreDTO.codigoMedico()).get());
 
             Dia_libre diaAgendado = DiaLibreRepository.save(diaLibre);
-            return diaAgendado.getDia();
+            return diaAgendado.getCodigo();
         }
     }
 

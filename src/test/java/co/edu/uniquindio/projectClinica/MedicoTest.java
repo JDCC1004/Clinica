@@ -124,15 +124,13 @@ public class  MedicoTest {
     public void agendarDiaLibreTest() throws Exception{
 
         DiaLibreDTO diaLibreDTO = new DiaLibreDTO(
-          "11129",
-            new Date(2023-11-12)
+          11,
+            LocalDate.of(2023,11, 12)
         );
 
-        medicoServicio.agendarDiaLibre(diaLibreDTO);
+        int objetoModificado = medicoServicio.agendarDiaLibre(diaLibreDTO);
 
-        Date objetoModificado = medicoServicio.agendarDiaLibre(diaLibreDTO);
-
-        Assertions.assertEquals(new Date(2023-11-12), objetoModificado);
+        Assertions.assertNotEquals(0, objetoModificado);
 
     }
 }

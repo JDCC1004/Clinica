@@ -20,11 +20,12 @@ public class Dia_libre implements Serializable {
 
     @Id
     @EqualsAndHashCode.Include
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, length = 10, unique = true)
-    private String Codigo;
+    private int codigo;
     @Column(nullable = false)
     @Future(message = "La fecha debe ser futura")
-    private Date dia;
+    private LocalDate dia;
     @ManyToOne
     private Medico medico;
 }
