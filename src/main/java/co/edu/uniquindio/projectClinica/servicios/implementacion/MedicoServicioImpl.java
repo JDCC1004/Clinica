@@ -114,20 +114,6 @@ public class MedicoServicioImpl implements MedicoServicio {
     }
 
 
- /*   @Override
-    public int agendarDiaLibre(DiaLibreDTO diaLibreDTO) throws Exception {
-
-        Medico MedicoLibre =  medicoRepository.obtenerDiaLibreMedico(diaLibreDTO.agendar());
-
-        if(MedicoLibre != null){
-            throw new Exception("Ya tiene dia libre " + diaLibreDTO.agendar());
-        }else{
-
-            Medico medico = medicoRepository.save(medico);
-            return medico.getCodigoMedico();
-        }*/
-
-
 
     @Override
     public List<ItemCitaDTO> listarHistorialAtencionPaciente(int codigoPaciente) throws Exception {

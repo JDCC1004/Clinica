@@ -15,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -142,26 +143,32 @@ public class PacienteServicioImpl implements PacienteServicio {
     @Override
     public int agendarCita(AgendarCitaDTO agendarCitaDTO) throws Exception {
 
-        Cita citaRepetida =  citaRepository.obtenerCitaPorFechaYMedico(agendarCitaDTO.horario(), agendarCitaDTO.medicoId());
+        Cita citaRepetida = citaRepository.obtenerCitaPorFechaYMedico(agendarCitaDTO.horario(), agendarCitaDTO.medicoId());
 
         // no puede tener más de 3 citas
+        int maxCitasPermitidas = 3;
+        LocalDateTime fechaActual = LocalDateTime.now();
+        int cantidadCitasPaciente = citaRepository.obtenerCitasPaciente(agendarCitaDTO.pacienteId(), fechaActual).size();
+
+        if (cantidadCitasPaciente >= maxCitasPermitidas) {
+            throw new Exception("El paciente ya tiene " + maxCitasPermitidas + " citas programadas.");
+        }
         //no puede agendar una cita si el médico está libre ese día
 
-        if(citaRepetida != null){
-            throw new Exception("Ya existe una cita para el médico " + agendarCitaDTO.medicoId() + " en la fecha " + agendarCitaDTO.horario());
-        }else{
-            Cita cita = new Cita();
-            cita.setFechaCreacion(LocalDateTime.now());
-            cita.setFechaCita(agendarCitaDTO.horario());
-            cita.setEstadoCita(Estado_cita.ASIGNADA);
-            cita.setMotivo(agendarCitaDTO.motivo());
-            cita.setMedico(medicoRepository.findById(agendarCitaDTO.medicoId()).get());
-            cita.setPaciente(pacienteRepository.findById(agendarCitaDTO.pacienteId()).get());
+        else {
+                Cita cita = new Cita();
+                cita.setFechaCreacion(LocalDateTime.now());
+                cita.setFechaCita(agendarCitaDTO.horario());
+                cita.setEstadoCita(Estado_cita.ASIGNADA);
+                cita.setMotivo(agendarCitaDTO.motivo());
+                cita.setMedico(medicoRepository.findById(agendarCitaDTO.medicoId()).get());
+                cita.setPaciente(pacienteRepository.findById(agendarCitaDTO.pacienteId()).get());
 
-            Cita citaCreada = citaRepository.save(cita);
-            return citaCreada.getCodigoCita();
+                Cita citaCreada = citaRepository.save(cita);
+                return citaCreada.getCodigoCita();
+            }
         }
-    }
+
 
     @Override
     public int crearPQRSPaciente(PQRSPacienteDTO crearPQRSPDTO) throws Exception {

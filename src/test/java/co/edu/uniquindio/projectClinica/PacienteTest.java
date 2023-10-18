@@ -60,10 +60,10 @@ public class PacienteTest {
     @Sql("classpath:dataset.sql")
     public void agendarCitaTest() throws Exception {
         AgendarCitaDTO agendarCitaDTO = new AgendarCitaDTO(
-                6,
+                7,
                 Especialidad.CARDIOLOGO,
-                11,
-                LocalDateTime.of(2023, 10, 20, 8, 0),
+                13,
+                LocalDateTime.of(2023, 11, 12, 8, 0),
                 "Me duele la cabecita");
         int codigoCita = pacienteServicio.agendarCita(agendarCitaDTO);
 

@@ -6,7 +6,7 @@ import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_PQRS;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public record DetallePQRSDTO(
+public record  DetallePQRSDTO(
         int codigo,
         Estado_PQRS estadoPqrs,
         LocalDateTime fechaCreacion,

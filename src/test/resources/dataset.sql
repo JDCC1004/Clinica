@@ -91,8 +91,8 @@ insert into mensaje values (124, '2021-04-16', 'Necesito una cita urgente', 8, 0
 insert into mensaje values (125, '2021-02-17', 'Necesito una cita urgente', 9, 009);
 insert into mensaje values (126, '2021-05-18', 'Necesito una cita urgente', 6, 000);
 
-insert into resultado_examenes values (123,'2022-12-04', 00, '1010' );
-insert into resultado_examenes values (193,'2022-12-04', 01, '1013' );
-insert into resultado_examenes values (883,'2022-12-04', 02, '1010' );
-insert into resultado_examenes values (153,'2022-12-04', 03, '1012' );
-insert into resultado_examenes values (133,'2022-12-04', 04, '1011' );
+insert into resultado_examenes values (123,'2022-12-04', 'maligno', 1010 );
+insert into resultado_examenes values (193,'2022-12-04', 'positivo', 1013 );
+insert into resultado_examenes values (883,'2022-12-04', 'negativo', 1010 );
+insert into resultado_examenes values (153,'2022-12-04', 'positivo', 1012 );
+insert into resultado_examenes values (133,'2022-12-04', 'negativo', 1011 );

@@ -16,6 +16,9 @@ import java.util.Optional;
 public interface CitaRepository extends JpaRepository<Cita, Integer> {
     List<Cita> findByMedico(Medico medico);
 
+    @Query("select c from Cita c where c.fechaCita = :horario and c.medico.codigo = :medicoID")
+    Cita obtenerCitasDelMedicoEnFecha(int medicoID, LocalDateTime horario );
+
     @Query("select c from Cita c where c.fechaCita = :fecha and c.medico.codigo = :medicoID")
     Cita obtenerCitaPorFechaYMedico(LocalDateTime fecha, int medicoID);
 
