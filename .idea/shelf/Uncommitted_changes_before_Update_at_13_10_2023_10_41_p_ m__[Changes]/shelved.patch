@@ -1,0 +1,253 @@
+Index: src/main/resources/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver\r\n\r\nspring.datasource.url=jdbc:mysql://localhost:3306/projectClinica\r\nspring.datasource.username=root\r\nspring.datasource.password=1234\r\n\r\nspring.jpa.show-sql=true\r\nspring.jpa.hibernate.ddl-auto=update\r\n\r\nspring.mail.host=smtp.gmail.com\r\nspring.mail.port=587\r\nspring.mail.username=SU_CORREO\r\nspring.mail.password=SU_CONTRASEÑA\r\nspring.mail.properties.mail.smtp.starttls.enable=true\r\nspring.mail.properties.mail.smtp.starttls.required=true\r\nspring.mail.properties.mail.smtp.auth=true
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/src/main/resources/application.properties b/src/main/resources/application.properties
+--- a/src/main/resources/application.properties	(revision 3ca89befac464453d3987e8ad610127a50ca8ea1)
++++ b/src/main/resources/application.properties	(date 1697253401815)
+@@ -2,7 +2,7 @@
+ 
+ spring.datasource.url=jdbc:mysql://localhost:3306/projectClinica
+ spring.datasource.username=root
+-spring.datasource.password=1234
++spring.datasource.password=1504
+ 
+ spring.jpa.show-sql=true
+ spring.jpa.hibernate.ddl-auto=update
+@@ -13,4 +13,5 @@
+ spring.mail.password=SU_CONTRASEÑA
+ spring.mail.properties.mail.smtp.starttls.enable=true
+ spring.mail.properties.mail.smtp.starttls.required=true
+-spring.mail.properties.mail.smtp.auth=true
+\ No newline at end of file
++spring.mail.properties.mail.smtp.auth=true
++jwt.secret=secretsecretsecretsecretsecretsecretsecretsecret
+\ No newline at end of file
+Index: src/main/java/co/edu/uniquindio/projectClinica/repositorios/CitaRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package co.edu.uniquindio.projectClinica.repositorios;\r\n\r\nimport co.edu.uniquindio.projectClinica.modelo.entidades.Cita;\r\nimport co.edu.uniquindio.projectClinica.modelo.entidades.Medico;\r\nimport co.edu.uniquindio.projectClinica.modelo.entidades.PQRS;\r\nimport org.springframework.data.jpa.repository.JpaRepository;\r\nimport org.springframework.data.jpa.repository.Query;\r\nimport org.springframework.stereotype.Repository;\r\n\r\nimport java.time.LocalDate;\r\nimport java.time.LocalDateTime;\r\nimport java.util.List;\r\nimport java.util.Optional;\r\n\r\n@Repository\r\npublic interface CitaRepository extends JpaRepository<Cita, Integer> {\r\n    List<Cita> findByMedico(Medico medico);\r\n\r\n    @Query(\"select c from Cita c where c.fechaCita = :fecha and c.medico.nombre = :nombreMedico\")\r\n    Cita obtenerCitaPorFechaYMedico(LocalDateTime fecha, String nombreMedico);\r\n\r\n    @Query(\"select c from Cita c where c.paciente.cedula = :cedula\")\r\n    List<Cita> obtenerCitasPaciente(String cedula);\r\n\r\n\r\n    @Query(\"select c from Cita c where c.medico.codigo = :codigoMedico and c.fechaCita >= :fechaActual\")\r\n    List<Cita> obtenerCitasPendientesMedico(int codigoMedico, LocalDate fechaActual);\r\n\r\n    @Query(\"select c from Cita c where c.paciente.codigo = :codigoPaciente \")\r\n    List<Cita> obtenerHistorialAtencionPaciente(int codigoPaciente);\r\n\r\n    @Query(\"select c from Cita c where c.medico.codigo = :codigoMedico \")\r\n    List<Cita> obtenerCitasRealizadas(int codigoPaciente);\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/co/edu/uniquindio/projectClinica/repositorios/CitaRepository.java b/src/main/java/co/edu/uniquindio/projectClinica/repositorios/CitaRepository.java
+--- a/src/main/java/co/edu/uniquindio/projectClinica/repositorios/CitaRepository.java	(revision 3ca89befac464453d3987e8ad610127a50ca8ea1)
++++ b/src/main/java/co/edu/uniquindio/projectClinica/repositorios/CitaRepository.java	(date 1697253751614)
+@@ -29,6 +29,6 @@
+     @Query("select c from Cita c where c.paciente.codigo = :codigoPaciente ")
+     List<Cita> obtenerHistorialAtencionPaciente(int codigoPaciente);
+ 
+-    @Query("select c from Cita c where c.medico.codigo = :codigoMedico ")
+-    List<Cita> obtenerCitasRealizadas(int codigoPaciente);
++    @Query("select c from Cita c where c.medico.codigo = :codigoMedico  and c.fechaCita >= :fechaActual ")
++    List<Cita> obtenerCitasRealizadas(int codigoMedico, LocalDate fechaActual);
+ }
+Index: src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/MedicoServicioImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package co.edu.uniquindio.projectClinica.servicios.implementacion;\r\n\r\nimport co.edu.uniquindio.projectClinica.dto.ItemCitaDTO;\r\nimport co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;\r\nimport co.edu.uniquindio.projectClinica.dto.admin.DetalleMedicoDTO;\r\nimport co.edu.uniquindio.projectClinica.dto.medico.*;\r\nimport co.edu.uniquindio.projectClinica.modelo.entidades.Cita;\r\nimport co.edu.uniquindio.projectClinica.modelo.entidades.Cuenta;\r\nimport co.edu.uniquindio.projectClinica.modelo.entidades.Enum.EstadoUsuario;\r\nimport co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_cita;\r\nimport co.edu.uniquindio.projectClinica.modelo.entidades.Medico;\r\nimport co.edu.uniquindio.projectClinica.modelo.entidades.Paciente;\r\nimport co.edu.uniquindio.projectClinica.repositorios.*;\r\nimport co.edu.uniquindio.projectClinica.servicios.interfaces.MedicoServicio;\r\nimport lombok.RequiredArgsConstructor;\r\nimport org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;\r\nimport org.springframework.stereotype.Service;\r\n\r\nimport java.time.LocalDate;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\nimport java.util.Optional;\r\n\r\n@Service\r\n@RequiredArgsConstructor\r\npublic class MedicoServicioImpl implements MedicoServicio {\r\n\r\n    private final CitaRepository citaRepository;\r\n    private final CuentaRepository cuentaRepository;\r\n    private final MedicoRepository medicoRepository;\r\n\r\n    @Override\r\n    public int registrarse(MedicoDTO medicoDTO) throws Exception {\r\n        Medico medico = new Medico();\r\n\r\n        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();\r\n        String passwordEncriptada = passwordEncoder.encode(medicoDTO.password());\r\n        medico.setPassword( passwordEncriptada );\r\n\r\n\r\n\r\n        medico.setCorreo(medicoDTO.correo());\r\n        medico.setCedula(medicoDTO.cedula());\r\n        medico.setNombre(medicoDTO.nombre());\r\n        medico.setTelefono(medicoDTO.telefono());\r\n        medico.setCiudad(medicoDTO.ciudad());\r\n        medico.setPassword(medicoDTO.password());\r\n        medico.setEspecialidad(medicoDTO.especialidad());\r\n        medico.setCodigo(medicoDTO.codigo());\r\n        medico.setCorreo(medicoDTO.correo());\r\n        medico.setUrl_foto(medicoDTO.urlFoto());\r\n        medico.setHoraInicio(medicoDTO.horaInicio());\r\n        medico.setHoraFin(medicoDTO.horaFin());\r\n\r\n\r\n        medicoRepository.save(medico);\r\n        return medico.getCodigo();\r\n    }\r\n\r\n\r\n    @Override\r\n    public List<CitaMedicoDTO> listarCitasPendiente(int codigoMedico) throws Exception {\r\n        List<Cita> citas = citaRepository.obtenerCitasPendientesMedico(codigoMedico, LocalDate.now());\r\n\r\n        if(citas.isEmpty()){\r\n            throw new Exception(\"No hay citas registradas\");\r\n        }\r\n\r\n        List<CitaMedicoDTO> respuesta = new ArrayList<>();\r\n\r\n        for (Cita c: citas){\r\n            respuesta.add(new CitaMedicoDTO(\r\n                    c.getCodigoCita(),\r\n                    c.getPaciente().getNombre(),\r\n                    c.getMotivo(),\r\n                    c.getFechaCita()\r\n            ));\r\n        }\r\n        return respuesta;\r\n    }\r\n\r\n    @Override\r\n    public int atenderCita(RegistroAtencionDTO registroAtencionDTO, int codigo ) throws Exception {\r\n        Optional<Cita> optionalCita = citaRepository.findById(codigo);\r\n\r\n        if(optionalCita.isEmpty()){\r\n            throw new Exception(\"No hay citas \");\r\n\r\n        }\r\n\r\n        Cita atender = optionalCita.get();\r\n\r\n        return 1;\r\n\r\n        }\r\n\r\n    @Override\r\n    public List<CitaMedicoDTO> listarCitasPendientes(int codigoPaciente) throws Exception {\r\n        return null;//Si se borra el metodo se daña la clase\r\n    }\r\n\r\n    @Override\r\n    public int agendarDiaLibre(DiaLibreDTO diaLibreDTO) throws Exception {\r\n        return 0;\r\n    }\r\n\r\n\r\n /*   @Override\r\n    public int agendarDiaLibre(DiaLibreDTO diaLibreDTO) throws Exception {\r\n\r\n        Medico MedicoLibre =  medicoRepository.obtenerDiaLibreMedico(diaLibreDTO.agendar());\r\n\r\n        if(MedicoLibre != null){\r\n            throw new Exception(\"Ya tiene dia libre \" + diaLibreDTO.agendar());\r\n        }else{\r\n\r\n            Medico medico = medicoRepository.save(medico);\r\n            return medico.getCodigoMedico();\r\n        }*/\r\n\r\n\r\n\r\n\r\n\r\n\r\n    @Override\r\n    public List<ItemCitaDTO> listarHistorialAtencionPaciente(int codigoPaciente) throws Exception {\r\n        List<Cita> historial = citaRepository.obtenerHistorialAtencionPaciente(codigoPaciente);\r\n\r\n        if(historial.isEmpty()){\r\n            throw new Exception(\"No hay historial de atencion al paciente\");\r\n        }\r\n\r\n        List<ItemCitaDTO> respuesta = new ArrayList<>();\r\n\r\n        for (Cita i: historial){\r\n            respuesta.add(new ItemCitaDTO(\r\n\r\n\r\n            ));\r\n        }\r\n\r\n        return respuesta;\r\n    }\r\n\r\n\r\n    @Override\r\n    public List<ItemCitaDTO> listarCitasRealizadasMedico(int codigoMedico) throws Exception {\r\n        List<Cita> atencion = citaRepository.obtenerCitasRealizadas(codigoMedico);\r\n\r\n        if(atencion.isEmpty()){\r\n            throw new Exception(\"No hay citas realizadas por el medico\");\r\n        }\r\n\r\n        List<ItemCitaDTO> respuesta = new ArrayList<>();\r\n\r\n        for (Cita o: atencion){\r\n            respuesta.add(new ItemCitaDTO(\r\n\r\n\r\n            ));\r\n        }\r\n        return respuesta;\r\n    }\r\n\r\n\r\n    @Override\r\n    public List<ItemCitaDTO> listarTodos() {\r\n        List<Medico> medicos = medicoRepository.findAll();\r\n        List<ItemCitaDTO> respuesta = new ArrayList<>();\r\n\r\n        for (Medico medico : medicos) {\r\n            respuesta.add(new ItemCitaDTO());\r\n        }\r\n        return respuesta;\r\n    }\r\n\r\n    @Override\r\n    public DetalleMedicoDTO verDetalleMedico(int i) throws Exception {\r\n        Optional<Medico> opcional = medicoRepository.findById(i);\r\n\r\n        if (opcional.isEmpty()){\r\n            throw new Exception(\"No existe un medico con el código: \" +i);\r\n        }\r\n\r\n        Medico buscado = opcional.get();\r\n\r\n        return new DetalleMedicoDTO(\r\n                buscado.getCodigo(),\r\n                buscado.getCedula(),\r\n                buscado.getNombre(),\r\n                buscado.getTelefono(),\r\n                buscado.getCorreo(),\r\n                buscado.getUrl_foto(),\r\n                buscado.getCiudad(),\r\n                buscado.getEspecialidad(),\r\n                buscado.getEstadoUsuario(),\r\n                buscado.getHoraInicio(),\r\n                buscado.getHoraFin()\r\n        );\r\n    }\r\n\r\n\r\n    @Override\r\n    public void eliminarCuenta(int i) throws Exception {\r\n        Optional<Cuenta> eliminar = cuentaRepository.findById(i);\r\n\r\n        if (eliminar.isEmpty()){\r\n            throw new Exception(\"No existe el medico con el código: \"+ i);\r\n        }\r\n\r\n        Cuenta buscado = eliminar.get();\r\n        buscado.setCodigo(EstadoUsuario.INABILITADO.ordinal());\r\n        cuentaRepository.save(buscado);\r\n\r\n    }\r\n\r\n\r\n    @Override\r\n    public int editarInformacion(MedicoDTO medicoDTO) throws Exception {\r\n\r\n        Optional<Medico> medicoBuscado = medicoRepository.findById(medicoDTO.codigo());\r\n        if (medicoBuscado.isEmpty()){\r\n            throw new Exception(\"No existe un medico con el codigo \" + medicoDTO.codigo());\r\n        }\r\n\r\n        Medico medico = medicoBuscado.get();\r\n        medico.setCedula(medicoDTO.cedula());\r\n        medico.setNombre(medicoDTO.nombre());\r\n        medico.setTelefono(medicoDTO.telefono());\r\n        medico.setCiudad(medicoDTO.ciudad());\r\n        medico.setPassword(medicoDTO.password());\r\n        medico.setEspecialidad(medicoDTO.especialidad());\r\n        medico.setCodigo(medicoDTO.codigo());\r\n        medico.setCorreo(medicoDTO.correo());\r\n        medico.setUrl_foto(medicoDTO.urlFoto());\r\n        medico.setHoraInicio(medicoDTO.horaInicio());\r\n        medico.setHoraFin(medicoDTO.horaFin());\r\n\r\n\r\n        medicoRepository.save(medico);\r\n        return medico.getCodigo();\r\n    }\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/MedicoServicioImpl.java b/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/MedicoServicioImpl.java
+--- a/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/MedicoServicioImpl.java	(revision 3ca89befac464453d3987e8ad610127a50ca8ea1)
++++ b/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/MedicoServicioImpl.java	(date 1697253751630)
+@@ -146,7 +146,7 @@
+ 
+     @Override
+     public List<ItemCitaDTO> listarCitasRealizadasMedico(int codigoMedico) throws Exception {
+-        List<Cita> atencion = citaRepository.obtenerCitasRealizadas(codigoMedico);
++        List<Cita> atencion = citaRepository.obtenerCitasRealizadas(codigoMedico, LocalDate.now());
+ 
+         if(atencion.isEmpty()){
+             throw new Exception("No hay citas realizadas por el medico");
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"f68ac8ae-f7d2-4c5c-bad1-cb15a5aec190\" name=\"Changes\" comment=\"Actualizacion 11/10\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/medico/DiaLibreDTO.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/medico/DiaLibreDTO.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/repositorios/CitaRepository.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/repositorios/CitaRepository.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/MedicoServicioImpl.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/MedicoServicioImpl.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/interfaces/MedicoServicio.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/interfaces/MedicoServicio.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ExternalProjectsData\">\r\n    <projectState path=\"$PROJECT_DIR$\">\r\n      <ProjectState />\r\n    </projectState>\r\n  </component>\r\n  <component name=\"ExternalProjectsManager\">\r\n    <system id=\"GRADLE\">\r\n      <state>\r\n        <task path=\"$PROJECT_DIR$\">\r\n          <activation />\r\n        </task>\r\n        <projects_view>\r\n          <tree_state>\r\n            <expand />\r\n            <select />\r\n          </tree_state>\r\n        </projects_view>\r\n      </state>\r\n    </system>\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"HTML File\" />\r\n        <option value=\"Enum\" />\r\n        <option value=\"Interface\" />\r\n        <option value=\"Record\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n    <option name=\"UPDATE_TYPE\" value=\"REBASE\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 3\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2VYChR3WsxFFLj9cOu6kP3AqLwg\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,\r\n    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,\r\n    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,\r\n    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,\r\n    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;Daniela&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/Samuel/Downloads/clinica-aurora&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.customizations&quot;,\r\n    &quot;spring.configuration.checksum&quot;: &quot;880ee35579a90843593311bdf23e83ea&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  },\r\n  &quot;keyToStringList&quot;: {\r\n    &quot;ChangesTree.GroupingKeys&quot;: [\r\n      &quot;directory&quot;,\r\n      &quot;module&quot;\r\n    ]\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CreateClassDialog.RecentsKey\">\r\n      <recent name=\"co.edu.uniquindio.projectClinica.modelo.entidades\" />\r\n      <recent name=\"co.edu.uniquindio.projectClinica.dto\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"$PROJECT_DIR$/src/test/resources\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Gradle.AdministradorTest.crearMedicoTest\">\r\n    <configuration name=\"AdministradorTest\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" value=\"\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\":test\" />\r\n            <option value=\"--tests\" />\r\n            <option value=\"&quot;co.edu.uniquindio.projectClinica.AdministradorTest&quot;\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <ForceTestExec>false</ForceTestExec>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"AdministradorTest.actualizarMedicoTest\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" value=\"\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\":test\" />\r\n            <option value=\"--tests\" />\r\n            <option value=\"&quot;co.edu.uniquindio.projectClinica.AdministradorTest.actualizarMedicoTest&quot;\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <ForceTestExec>false</ForceTestExec>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"AdministradorTest.crearMedicoTest\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" value=\"\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\":test\" />\r\n            <option value=\"--tests\" />\r\n            <option value=\"&quot;co.edu.uniquindio.projectClinica.AdministradorTest.crearMedicoTest&quot;\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <ForceTestExec>false</ForceTestExec>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"PacienteTest\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" value=\"\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\":test\" />\r\n            <option value=\"--tests\" />\r\n            <option value=\"&quot;co.edu.uniquindio.projectClinica.PacienteTest&quot;\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <ForceTestExec>false</ForceTestExec>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"PacienteTest.registrarseTest\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" value=\"\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\":test\" />\r\n            <option value=\"--tests\" />\r\n            <option value=\"&quot;co.edu.uniquindio.projectClinica.PacienteTest.registrarseTest&quot;\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <ForceTestExec>false</ForceTestExec>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"projectApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\r\n      <module name=\"projectClinica.main\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"co.edu.uniquindio.projectClinica.projectApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Gradle.AdministradorTest.crearMedicoTest\" />\r\n        <item itemvalue=\"Gradle.PacienteTest.registrarseTest\" />\r\n        <item itemvalue=\"Gradle.AdministradorTest.actualizarMedicoTest\" />\r\n        <item itemvalue=\"Gradle.PacienteTest\" />\r\n        <item itemvalue=\"Gradle.AdministradorTest\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"f68ac8ae-f7d2-4c5c-bad1-cb15a5aec190\" name=\"Changes\" comment=\"\" />\r\n      <created>1695003748677</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1695003748677</updated>\r\n      <workItem from=\"1695003749989\" duration=\"13542000\" />\r\n      <workItem from=\"1695046675383\" duration=\"5445000\" />\r\n      <workItem from=\"1695088718809\" duration=\"718000\" />\r\n      <workItem from=\"1695091256964\" duration=\"1079000\" />\r\n      <workItem from=\"1695262905080\" duration=\"4092000\" />\r\n      <workItem from=\"1695651174920\" duration=\"4570000\" />\r\n      <workItem from=\"1695659592434\" duration=\"162000\" />\r\n      <workItem from=\"1695659796663\" duration=\"483000\" />\r\n      <workItem from=\"1695854298261\" duration=\"255000\" />\r\n      <workItem from=\"1695910318121\" duration=\"6013000\" />\r\n      <workItem from=\"1696041791472\" duration=\"988000\" />\r\n      <workItem from=\"1696042800929\" duration=\"269000\" />\r\n      <workItem from=\"1696112538435\" duration=\"113000\" />\r\n      <workItem from=\"1696120015727\" duration=\"13201000\" />\r\n      <workItem from=\"1696208577276\" duration=\"88000\" />\r\n      <workItem from=\"1696256079325\" duration=\"7254000\" />\r\n      <workItem from=\"1696714236147\" duration=\"14686000\" />\r\n      <workItem from=\"1696860797920\" duration=\"3712000\" />\r\n      <workItem from=\"1696866568959\" duration=\"901000\" />\r\n      <workItem from=\"1696884879268\" duration=\"8079000\" />\r\n      <workItem from=\"1696907523384\" duration=\"6388000\" />\r\n      <workItem from=\"1696944502659\" duration=\"4742000\" />\r\n      <workItem from=\"1696964967915\" duration=\"558000\" />\r\n      <workItem from=\"1696972139489\" duration=\"491000\" />\r\n      <workItem from=\"1696972746237\" duration=\"14197000\" />\r\n      <workItem from=\"1697041657889\" duration=\"3879000\" />\r\n      <workItem from=\"1697066612539\" duration=\"20055000\" />\r\n      <workItem from=\"1697154263806\" duration=\"7542000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Actualizacion 25/09\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1695659950568</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1695659950568</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Actualizacion 25/09\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1696885090790</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1696885090790</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Actualizacion 25/09\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1696892760964</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1696892760964</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Actualizacion 25/09\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1696907827724</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1696907827724</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Actualizacion 25/09\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1696907946189</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1696907946189</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Actualizacion 25/09\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1696908062902</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1696908062902</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"Actualizacion 11/10\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1697071482968</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1697071482968</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"Actualizacion 11/10\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1697073179299</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1697073179299</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Actualizacion 11/10\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1697077436232</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1697077436232</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"10\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"ClinicaApplication\" />\r\n    <MESSAGE value=\"Actualizacion 25/09\" />\r\n    <MESSAGE value=\"Actualizacion 11/10\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Actualizacion 11/10\" />\r\n  </component>\r\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\r\n    <SUITE FILE_PATH=\"coverage/projectClinica$projectApplication.ic\" NAME=\"projectApplication Coverage Results\" MODIFIED=\"1695046702166\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\">\r\n      <FILTER>co.edu.uniquindio.projectClinica.*</FILTER>\r\n    </SUITE>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 3ca89befac464453d3987e8ad610127a50ca8ea1)
++++ b/.idea/workspace.xml	(date 1697254882647)
+@@ -4,12 +4,11 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="f68ac8ae-f7d2-4c5c-bad1-cb15a5aec190" name="Changes" comment="Actualizacion 11/10">
++    <list default="true" id="f68ac8ae-f7d2-4c5c-bad1-cb15a5aec190" name="Changes" comment="Actualizacion 12/10 Implemtacion MedicoServicioImpl">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/medico/DiaLibreDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/medico/DiaLibreDTO.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/repositorios/CitaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/repositorios/CitaRepository.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/MedicoServicioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/MedicoServicioImpl.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/interfaces/MedicoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/interfaces/MedicoServicio.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -105,8 +104,8 @@
+       <recent name="$PROJECT_DIR$/src/test/resources" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="Gradle.AdministradorTest.crearMedicoTest">
+-    <configuration name="AdministradorTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
++  <component name="RunManager" selected="Gradle.PacienteTest.eliminarTest">
++    <configuration name="AdministradorTest.actualizarMedicoTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+       <ExternalSystemSettings>
+         <option name="executionName" />
+         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+@@ -119,7 +118,7 @@
+           <list>
+             <option value=":test" />
+             <option value="--tests" />
+-            <option value="&quot;co.edu.uniquindio.projectClinica.AdministradorTest&quot;" />
++            <option value="&quot;co.edu.uniquindio.projectClinica.AdministradorTest.actualizarMedicoTest&quot;" />
+           </list>
+         </option>
+         <option name="vmOptions" />
+@@ -130,7 +129,7 @@
+       <ForceTestExec>false</ForceTestExec>
+       <method v="2" />
+     </configuration>
+-    <configuration name="AdministradorTest.actualizarMedicoTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
++    <configuration name="AdministradorTest.crearMedicoTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+       <ExternalSystemSettings>
+         <option name="executionName" />
+         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+@@ -143,7 +142,7 @@
+           <list>
+             <option value=":test" />
+             <option value="--tests" />
+-            <option value="&quot;co.edu.uniquindio.projectClinica.AdministradorTest.actualizarMedicoTest&quot;" />
++            <option value="&quot;co.edu.uniquindio.projectClinica.AdministradorTest.crearMedicoTest&quot;" />
+           </list>
+         </option>
+         <option name="vmOptions" />
+@@ -154,7 +153,7 @@
+       <ForceTestExec>false</ForceTestExec>
+       <method v="2" />
+     </configuration>
+-    <configuration name="AdministradorTest.crearMedicoTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
++    <configuration name="MedicoTest.eliminarTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+       <ExternalSystemSettings>
+         <option name="executionName" />
+         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+@@ -167,7 +166,7 @@
+           <list>
+             <option value=":test" />
+             <option value="--tests" />
+-            <option value="&quot;co.edu.uniquindio.projectClinica.AdministradorTest.crearMedicoTest&quot;" />
++            <option value="&quot;co.edu.uniquindio.projectClinica.MedicoTest.eliminarTest&quot;" />
+           </list>
+         </option>
+         <option name="vmOptions" />
+@@ -175,10 +174,10 @@
+       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+       <DebugAllEnabled>false</DebugAllEnabled>
+-      <ForceTestExec>false</ForceTestExec>
++      <ForceTestExec>true</ForceTestExec>
+       <method v="2" />
+     </configuration>
+-    <configuration name="PacienteTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
++    <configuration name="PacienteTest.eliminarTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+       <ExternalSystemSettings>
+         <option name="executionName" />
+         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+@@ -191,7 +190,7 @@
+           <list>
+             <option value=":test" />
+             <option value="--tests" />
+-            <option value="&quot;co.edu.uniquindio.projectClinica.PacienteTest&quot;" />
++            <option value="&quot;co.edu.uniquindio.projectClinica.PacienteTest.eliminarTest&quot;" />
+           </list>
+         </option>
+         <option name="vmOptions" />
+@@ -199,7 +198,7 @@
+       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+       <DebugAllEnabled>false</DebugAllEnabled>
+-      <ForceTestExec>false</ForceTestExec>
++      <ForceTestExec>true</ForceTestExec>
+       <method v="2" />
+     </configuration>
+     <configuration name="PacienteTest.registrarseTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+@@ -235,11 +234,11 @@
+     </configuration>
+     <recent_temporary>
+       <list>
+-        <item itemvalue="Gradle.AdministradorTest.crearMedicoTest" />
++        <item itemvalue="Gradle.PacienteTest.eliminarTest" />
+         <item itemvalue="Gradle.PacienteTest.registrarseTest" />
++        <item itemvalue="Gradle.MedicoTest.eliminarTest" />
++        <item itemvalue="Gradle.AdministradorTest.crearMedicoTest" />
+         <item itemvalue="Gradle.AdministradorTest.actualizarMedicoTest" />
+-        <item itemvalue="Gradle.PacienteTest" />
+-        <item itemvalue="Gradle.AdministradorTest" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -278,7 +277,8 @@
+       <workItem from="1696972746237" duration="14197000" />
+       <workItem from="1697041657889" duration="3879000" />
+       <workItem from="1697066612539" duration="20055000" />
+-      <workItem from="1697154263806" duration="7542000" />
++      <workItem from="1697154263806" duration="8497000" />
++      <workItem from="1697252492428" duration="2383000" />
+     </task>
+     <task id="LOCAL-00001" summary="Actualizacion 25/09">
+       <option name="closed" value="true" />
+@@ -352,7 +352,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1697077436232</updated>
+     </task>
+-    <option name="localTasksCounter" value="10" />
++    <task id="LOCAL-00010" summary="Actualizacion 12/10 Implemtacion MedicoServicioImpl">
++      <created>1697174435184</created>
++      <option name="number" value="00010" />
++      <option name="presentableId" value="LOCAL-00010" />
++      <option name="project" value="LOCAL" />
++      <updated>1697174435184</updated>
++    </task>
++    <option name="localTasksCounter" value="11" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -373,7 +380,32 @@
+     <MESSAGE value="ClinicaApplication" />
+     <MESSAGE value="Actualizacion 25/09" />
+     <MESSAGE value="Actualizacion 11/10" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Actualizacion 11/10" />
++    <MESSAGE value="Actualizacion 12/10 Implemtacion MedicoServicioImpl" />
++    <option name="LAST_COMMIT_MESSAGE" value="Actualizacion 12/10 Implemtacion MedicoServicioImpl" />
++  </component>
++  <component name="XDebuggerManager">
++    <breakpoint-manager>
++      <breakpoints>
++        <line-breakpoint enabled="true" type="java-method">
++          <url>file://$PROJECT_DIR$/src/test/java/co/edu/uniquindio/projectClinica/AdministradorTest.java</url>
++          <line>58</line>
++          <properties class="co.edu.uniquindio.projectClinica.AdministradorTest" method="actualizarMedicoTest">
++            <option name="EMULATED" value="true" />
++            <option name="WATCH_EXIT" value="false" />
++          </properties>
++          <option name="timeStamp" value="2" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-method">
++          <url>file://$PROJECT_DIR$/src/test/java/co/edu/uniquindio/projectClinica/MedicoTest.java</url>
++          <line>58</line>
++          <properties class="co.edu.uniquindio.projectClinica.MedicoTest" method="eliminarTest">
++            <option name="EMULATED" value="true" />
++            <option name="WATCH_EXIT" value="false" />
++          </properties>
++          <option name="timeStamp" value="3" />
++        </line-breakpoint>
++      </breakpoints>
++    </breakpoint-manager>
+   </component>
+   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+     <SUITE FILE_PATH="coverage/projectClinica$projectApplication.ic" NAME="projectApplication Coverage Results" MODIFIED="1695046702166" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
