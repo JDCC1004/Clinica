@@ -20,6 +20,8 @@ public interface PacienteServicio {
      */
     String cambiarPassword(NuevaPasswordDTO nuevaPasswordDTO) throws Exception;
 
+    String cambiarPasswordOlvidada(NuevaPasswordOlvidadaDTO nuevaPasswordOlvidadaDTO) throws Exception;
+
     int agendarCita(AgendarCitaDTO agendarCitaDTO) throws Exception;//Restricción: No tener mas de tres citas
 
     /**
@@ -42,6 +44,8 @@ public interface PacienteServicio {
 
     //Metodo creado para test
     DetallePacienteDTO verDetallePaciente(int codigo) throws  Exception;
+
+    List<DetalleCitaDTO> listarDetalleConsultasPorPaciente(int pacienteId) throws Exception;
 
     //Metodo creado para test
     List<ItemPacienteDTO> listarTodos();

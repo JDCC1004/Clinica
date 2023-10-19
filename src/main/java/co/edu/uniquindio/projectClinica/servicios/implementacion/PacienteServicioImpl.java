@@ -150,6 +150,21 @@ public class PacienteServicioImpl implements PacienteServicio {
             }
         }
     }
+    @Override
+    public String cambiarPasswordOlvidada(NuevaPasswordOlvidadaDTO nuevaPasswordOlvidadaDTO) throws Exception {
+        Optional<Cuenta> cuentaBuscada = cuentaRepository.findByCorreo(nuevaPasswordOlvidadaDTO.correo());
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        if (cuentaBuscada.isEmpty()) {
+            throw new Exception("No existe una cuenta con el correo " + nuevaPasswordOlvidadaDTO.correo());
+        } else {
+            Cuenta cuenta = cuentaBuscada.get();
+            cuenta.setPassword(passwordEncoder.encode(nuevaPasswordOlvidadaDTO.passwordNueva()));
+            cuentaRepository.save(cuenta);
+
+            return "Tu nueva contraseña esta actualizada: " ;
+        }
+    }
 
     @Override
     public int agendarCita(AgendarCitaDTO agendarCitaDTO) throws Exception {
@@ -319,6 +334,7 @@ public class PacienteServicioImpl implements PacienteServicio {
     }
 
 
+
     @Override
     public DetalleCitaDTO verDetalleCita(int codigoCita) throws Exception {
 
@@ -337,6 +353,27 @@ public class PacienteServicioImpl implements PacienteServicio {
             );
         }
     }
+
+
+    @Override
+    public List<DetalleCitaDTO> listarDetalleConsultasPorPaciente(int codigoPaciente) throws Exception {
+        List<Cita> listaDetalles = citaRepository.obtenerCitasPaciente(codigoPaciente, LocalDateTime.now());
+
+        List<DetalleCitaDTO> respuesta = new ArrayList<>();
+
+        for (Cita detalle : listaDetalles) {
+            respuesta.add(new DetalleCitaDTO(
+                    detalle.getCodigoCita(),
+                    detalle.getEstadoCita(),
+                    detalle.getFechaCita(),
+                    detalle.getMotivo(),
+                    detalle.getMedico().getEspecialidad(),
+                    detalle.getMedico().getCedula())
+            );
+        }
+        return respuesta;
+    }
+
 
     @Override
     public List<ItemPacienteDTO> listarTodos() {

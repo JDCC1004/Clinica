@@ -6,9 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
-import java.sql.Time;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public record DetalleCitaDTO(
         @NotNull
@@ -23,7 +21,6 @@ public record DetalleCitaDTO(
         String Motivo,
         @NotNull
         Especialidad especialidad,
-        @NotNull
         String medico
 ) {
 }
