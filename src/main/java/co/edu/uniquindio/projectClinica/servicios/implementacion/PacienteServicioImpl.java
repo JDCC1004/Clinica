@@ -2,6 +2,7 @@ package co.edu.uniquindio.projectClinica.servicios.implementacion;
 
 import co.edu.uniquindio.projectClinica.dto.CitaPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.DetalleCitaDTO;
+import co.edu.uniquindio.projectClinica.dto.EmailDTO;
 import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.admin.DetallePacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.*;
@@ -9,13 +10,14 @@ import co.edu.uniquindio.projectClinica.modelo.entidades.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_PQRS;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_cita;
 import co.edu.uniquindio.projectClinica.repositorios.*;
+import co.edu.uniquindio.projectClinica.servicios.interfaces.EmailServicio;
+import co.edu.uniquindio.projectClinica.servicios.interfaces.MedicoServicio;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.PacienteServicio;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -25,35 +27,44 @@ import java.util.Optional;
 public class PacienteServicioImpl implements PacienteServicio {
 
     private final PacienteRepository pacienteRepository;
-    private final pqrsRepository pqrsRepository;
+    private final PqrsRepository pqrsRepository;
     private final CuentaRepository cuentaRepository;
     private final MensajeRepository mensajeRepository;
     private final MedicoRepository medicoRepository;
     private final CitaRepository citaRepository;
+    private final MedicoServicio medicoServicio;
+    private final EmailServicio emailServicio;
+    private final AdministradorRepository administradorRepository;
 
     @Override
     public int registrarse(PacienteDTO pacienteDTO) throws Exception {
-        Paciente paciente = new Paciente();
 
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String passwordEncriptada = passwordEncoder.encode(pacienteDTO.password());
-        paciente.setPassword( passwordEncriptada );
+        if(estaRepetidaCedula(pacienteDTO.cedula())){
+            throw new Exception("Ya existe un paciente con la cedula " + pacienteDTO.cedula());
+        }else{
+            Paciente paciente = new Paciente();
 
-        paciente.setCorreo(pacienteDTO.correo());
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            String passwordEncriptada = passwordEncoder.encode(pacienteDTO.password());
+            paciente.setPassword( passwordEncriptada );
 
-        paciente.setNombre(pacienteDTO.nombre());
-        paciente.setCedula(pacienteDTO.cedula());
-        paciente.setTelefono(pacienteDTO.telefono());
-        paciente.setCiudad(pacienteDTO.ciudad());
-        paciente.setUrl_foto(pacienteDTO.urlFoto());
+            paciente.setCorreo(pacienteDTO.correo());
 
-        paciente.setFechaNacimiento(pacienteDTO.fechaNacimiento());
-        paciente.setEps(pacienteDTO.eps());
-        paciente.setAlergias(pacienteDTO.alergias());
-        paciente.setTipoSangre(pacienteDTO.tipoSangre());
+            paciente.setNombre(pacienteDTO.nombre());
+            paciente.setCedula(pacienteDTO.cedula());
+            paciente.setTelefono(pacienteDTO.telefono());
+            paciente.setCiudad(pacienteDTO.ciudad());
+            paciente.setUrl_foto(pacienteDTO.urlFoto());
 
-        Paciente pacienteCreado = pacienteRepository.save(paciente);
-        return pacienteCreado.getCodigo();
+            paciente.setFechaNacimiento(pacienteDTO.fechaNacimiento());
+            paciente.setEps(pacienteDTO.eps());
+            paciente.setAlergias(pacienteDTO.alergias());
+            paciente.setTipoSangre(pacienteDTO.tipoSangre());
+
+            Paciente pacienteCreado = pacienteRepository.save(paciente);
+            return pacienteCreado.getCodigo();
+        }
+
     }
 
     private boolean estaRepetidaCedula(String cedula){
@@ -152,10 +163,11 @@ public class PacienteServicioImpl implements PacienteServicio {
 
         if (cantidadCitasPaciente >= maxCitasPermitidas) {
             throw new Exception("El paciente ya tiene " + maxCitasPermitidas + " citas programadas.");
-        }
-        //no puede agendar una cita si el médico está libre ese día
+        }else{
 
-        else {
+            if(medicoServicio.verificarDiaLibreMedico(agendarCitaDTO.medicoId(), agendarCitaDTO.horario())){
+                throw new Exception("El médico está libre ese día");
+            }else{
                 Cita cita = new Cita();
                 cita.setFechaCreacion(LocalDateTime.now());
                 cita.setFechaCita(agendarCitaDTO.horario());
@@ -165,36 +177,81 @@ public class PacienteServicioImpl implements PacienteServicio {
                 cita.setPaciente(pacienteRepository.findById(agendarCitaDTO.pacienteId()).get());
 
                 Cita citaCreada = citaRepository.save(cita);
+
+                EmailDTO emailPaciente = new EmailDTO("Cita creada", "Su cita ha " +
+                        "sido creada exitosamente", citaCreada.getPaciente().getCorreo());
+
+                EmailDTO emailMedico = new EmailDTO("Nueva cita", "Se le ha asignado" +
+                        "una nueva cita", citaCreada.getMedico().getCorreo());
+
+                emailServicio.enviarEmail(emailPaciente);
+                emailServicio.enviarEmail(emailMedico);
+
                 return citaCreada.getCodigoCita();
             }
         }
+    }
+
+
 
 
     @Override
     public int crearPQRSPaciente(PQRSPacienteDTO crearPQRSPDTO) throws Exception {
 
-        PQRS pqrs = new PQRS();
+        if(obtenerCantidadPqrsActivas(crearPQRSPDTO.codigoPaciente()) >= 3){
+            throw new Exception("El paciente ya tiene 3 PQRS activas");
+        }else{
 
-        pqrs.setCodigo(crearPQRSPDTO.codigo());
-        pqrs.setMotivo(crearPQRSPDTO.asunto());
-        pqrs.setFechaCreacion(LocalDateTime.now());
-        pqrs.setEstadoPQRS(Estado_PQRS.ACTIVO);
+            if(!verificarExisteCita(crearPQRSPDTO.codigoCita())){
+                throw new Exception("No existe una cita con el código " + crearPQRSPDTO.codigoCita());
+            }else{
+                PQRS pqrs = new PQRS();
 
-        PQRS pqrsCreado = pqrsRepository.save(pqrs);
-        return pqrsCreado.getCodigo();
+                pqrs.setCodigo(crearPQRSPDTO.codigo());
+                pqrs.setMotivo(crearPQRSPDTO.asunto());
+                pqrs.setFechaCreacion(LocalDateTime.now());
+                pqrs.setEstadoPQRS(Estado_PQRS.ACTIVO);
+
+                PQRS pqrsCreado = pqrsRepository.save(pqrs);
+
+                enviarCorreoAdministradores();
+
+                return pqrsCreado.getCodigo();
+            }
+        }
+    }
+
+    public boolean verificarExisteCita(int codigo){
+        return citaRepository.existsById(codigo);
+    }
+
+    public void enviarCorreoAdministradores() throws Exception {
+        List<Administrador> administradores = administradorRepository.findAll();
+
+        for (Administrador administrador : administradores) {
+            EmailDTO email = new EmailDTO("Nueva PQRS", "Se ha creado una nueva PQRS", administrador.getCorreo());
+            emailServicio.enviarEmail(email);
+        }
+    }
+
+    public int obtenerCantidadPqrsActivas(int codigoPaciente) {
+        return pqrsRepository.obtenerPqrsActivas(codigoPaciente);
     }
 
     @Override
     public List<PQRSPacienteDTO> listarPQRSPaciente(int codigoPaciente) throws Exception {
-        List<PQRS> listaPqrs = pqrsRepository.findAll();
+        List<PQRS> listaPqrs = pqrsRepository.obtenerPqrsPorPaciente(codigoPaciente);
+
         List<PQRSPacienteDTO> respuesta = new ArrayList<>();
 
-        for (PQRS p: listaPqrs){
+        for (PQRS pqrs : listaPqrs) {
             respuesta.add(new PQRSPacienteDTO(
-                    p.getCodigo(),
-                    p.getMotivo(),
-                    p.getFechaCreacion(),
-                    p.getEstadoPQRS()
+                    pqrs.getCodigo(),
+                    pqrs.getCita().getPaciente().getCodigo(),
+                    pqrs.getCita().getCodigoCita(),
+                    pqrs.getMotivo(),
+                    pqrs.getFechaCreacion(),
+                    pqrs.getEstadoPQRS()
             ));
         }
         return respuesta;

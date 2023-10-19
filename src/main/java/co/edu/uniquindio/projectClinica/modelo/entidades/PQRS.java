@@ -21,7 +21,7 @@ public class PQRS implements Serializable {
     @Id
     @EqualsAndHashCode.Include
     @Column(nullable = false, length = 10, unique = true)
-    private int Codigo;
+    private int codigo;
     @Column(nullable = false)
     private LocalDateTime fechaCreacion;
     @Lob

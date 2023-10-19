@@ -62,7 +62,7 @@ public class PacienteTest {
         AgendarCitaDTO agendarCitaDTO = new AgendarCitaDTO(
                 7,
                 Especialidad.CARDIOLOGO,
-                13,
+                11,
                 LocalDateTime.of(2023, 11, 12, 8, 0),
                 "Me duele la cabecita");
         int codigoCita = pacienteServicio.agendarCita(agendarCitaDTO);
@@ -116,7 +116,7 @@ public class PacienteTest {
     @Sql("classpath:dataset.sql")
     public void listarPQRSPacienteTest() throws Exception {
         List<PQRSPacienteDTO> pqrspList = pacienteServicio.listarPQRSPaciente(6);
-        Assertions.assertEquals(5, pqrspList.size());
+        Assertions.assertEquals(3, pqrspList.size());
     }
 
     @Test

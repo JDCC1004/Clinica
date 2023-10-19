@@ -4,16 +4,19 @@ import co.edu.uniquindio.projectClinica.dto.ItemCitaDTO;
 import co.edu.uniquindio.projectClinica.dto.admin.DetalleMedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
 public interface MedicoServicio {
+
     int registrarse(MedicoDTO medicoDTO) throws Exception;
 
     List<CitaMedicoDTO> listarCitasPendiente(int codigoMedico) throws Exception;
 
     /**PREGUNTAR*/
-    int atenderCita(RegistroAtencionDTO registroAtencionDTO, int codigo) throws  Exception;
+    int atenderCita(RegistroAtencionDTO registroAtencionDTO) throws  Exception;
 
     //List<CitaMedicoDTO> listarCitasPendientes(int codigoPaciente) throws Exception;
 
@@ -36,4 +39,6 @@ public interface MedicoServicio {
     //Metodo test
 
     int editarInformacion(DetalleMedicoDTO medicoDTO) throws Exception;
+
+    boolean verificarDiaLibreMedico(int i, LocalDateTime horario);
 }

@@ -22,18 +22,18 @@ import java.util.List;
 
 @SpringBootTest
 @Transactional
-public class  MedicoTest {
+public class MedicoTest {
 
     @Autowired
     private MedicoServicio medicoServicio;
 
     @Test
-    @Sql("classpath:dataset.sql" )
-    public void actualizarTest() throws Exception{
+    @Sql("classpath:dataset.sql")
+    public void actualizarTest() throws Exception {
 //Para actualizar el paciente primero lo obtenemos
         DetalleMedicoDTO guardado = medicoServicio.obtenerMedico(11);
 //Le modificamos el número de teléfono, lo demás lo dejamos igual
-       DetalleMedicoDTO medicoDTO = new DetalleMedicoDTO(
+        DetalleMedicoDTO medicoDTO = new DetalleMedicoDTO(
                 guardado.codigo(),
                 guardado.cedula(),
                 guardado.nombre(),
@@ -55,8 +55,8 @@ public class  MedicoTest {
     }
 
     @Test
-    @Sql("classpath:dataset.sql" )
-    public void eliminarTest() throws Exception{
+    @Sql("classpath:dataset.sql")
+    public void eliminarTest() throws Exception {
 //Se borra por ejemplo el paciente con el código 1
         medicoServicio.eliminarCuenta(5);
 //Si intentamos buscar un paciente con el código del paciente borrado debemos obtener unaexcepción indicando que ya no existe
@@ -65,8 +65,8 @@ public class  MedicoTest {
     }
 
     @Test
-    @Sql("classpath:dataset.sql" )
-    public void listarTest(){
+    @Sql("classpath:dataset.sql")
+    public void listarTest() {
 //Obtenemos la lista de todos los pacientes
         List<ItemCitaDTO> lista = medicoServicio.listarTodos();
         lista.forEach(System.out::println);
@@ -75,33 +75,33 @@ public class  MedicoTest {
     }
 
     @Test
-    @Sql("classpath:dataset.sql" )
-    public void listarCitasTest() throws Exception{
+    @Sql("classpath:dataset.sql")
+    public void listarCitasTest() throws Exception {
         List<CitaMedicoDTO> lista = medicoServicio.listarCitasPendiente(11);
         lista.forEach(System.out::println);
         Assertions.assertEquals(1, lista.size());
     }
 
     @Test
-    @Sql("classpath:dataset.sql" )
-    public void listarCitasRealizadasTest() throws Exception{
+    @Sql("classpath:dataset.sql")
+    public void listarCitasRealizadasTest() throws Exception {
         List<ItemCitaDTO> lista = medicoServicio.listarCitasRealizadasMedico(11);
         lista.forEach(System.out::println);
         Assertions.assertEquals(1, lista.size());
     }
 
     @Test
-    @Sql("classpath:dataset.sql" )
-    public void listarHistorialAtencionTest() throws Exception{
+    @Sql("classpath:dataset.sql")
+    public void listarHistorialAtencionTest() throws Exception {
         List<ItemCitaDTO> lista = medicoServicio.listarHistorialAtencionPaciente(7);
         lista.forEach(System.out::println);
         Assertions.assertEquals(3, lista.size());
     }
 
     @Test
-    @Sql("classpath:dataset.sql" )
-    public void atenderCitaTest() throws Exception{
-        
+    @Sql("classpath:dataset.sql")
+    public void atenderCitaTest() throws Exception {
+
         RegistroAtencionDTO registroAtencionDTO = new RegistroAtencionDTO(
                 1,
                 "El paciente se encuentra bien",
@@ -112,20 +112,20 @@ public class  MedicoTest {
                 "",
                 LocalDate.now()
         );
-        medicoServicio.atenderCita(registroAtencionDTO, 1);
+        medicoServicio.atenderCita(registroAtencionDTO);
 
-        int objetoModificado = medicoServicio.atenderCita(registroAtencionDTO, 1);
+        int objetoModificado = medicoServicio.atenderCita(registroAtencionDTO);
 
         Assertions.assertEquals(1, objetoModificado);
     }
 
     @Test
-    @Sql("classpath:dataset.sql" )
-    public void agendarDiaLibreTest() throws Exception{
+    @Sql("classpath:dataset.sql")
+    public void agendarDiaLibreTest() throws Exception {
 
         DiaLibreDTO diaLibreDTO = new DiaLibreDTO(
-          11,
-            LocalDate.of(2023,11, 12)
+                11,
+                LocalDate.of(2023, 11, 12)
         );
 
         int objetoModificado = medicoServicio.agendarDiaLibre(diaLibreDTO);

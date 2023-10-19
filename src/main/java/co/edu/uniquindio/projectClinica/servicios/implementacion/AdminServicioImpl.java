@@ -19,7 +19,7 @@ import java.util.Optional;
 public class AdminServicioImpl implements AdministradorServicio {
 
     private final MedicoRepository medicoRepository;
-    private final pqrsRepository pqrsRepository;
+    private final PqrsRepository pqrsRepository;
     private final CuentaRepository cuentaRepository;
     private final MensajeRepository mensajeRepository;
     private final CitaRepository citaRepository;
@@ -218,19 +218,22 @@ public class AdminServicioImpl implements AdministradorServicio {
     public List<CitasAdminDTO> listarCitas() throws Exception{
         List<Cita> citas = citaRepository.findAll();
         List<CitasAdminDTO> respuesta = new ArrayList<>();
+        if(citas.isEmpty()){
+            throw new Exception("No hay citas registradas");
+        }else{
+            for(Cita c : citas){
+                respuesta.add(new CitasAdminDTO(
+                        c.getCodigoCita(),
+                        c.getEstadoCita(),
+                        c.getFechaCreacion(),
+                        c.getFechaCita(),
+                        c.getPaciente().getCedula(),
+                        c.getPaciente().getNombre(),
+                        c.getMedico().getNombre(),
+                        c.getMedico().getEspecialidad()
 
-        for(Cita c : citas){
-            respuesta.add(new CitasAdminDTO(
-                    c.getCodigoCita(),
-                    c.getEstadoCita(),
-                    c.getFechaCreacion(),
-                    c.getFechaCita(),
-                    c.getPaciente().getCedula(),
-                    c.getPaciente().getNombre(),
-                    c.getMedico().getNombre(),
-                    c.getMedico().getEspecialidad()
-
-            ));
+                ));
+            }
         }
         return respuesta;
     }

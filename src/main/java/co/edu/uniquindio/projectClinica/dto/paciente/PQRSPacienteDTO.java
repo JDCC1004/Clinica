@@ -10,6 +10,11 @@ public record PQRSPacienteDTO(
         @NotNull
         @Length(max = 10, message = "El codigo no puede tener mas de 10 caracteres")
         int codigo,
+
+        @NotNull
+        int codigoPaciente,
+        @NotNull
+        int codigoCita,
         @NotNull
         @Length(max = 100, message = "El asunto no puede tener mas de 100 caracteres")
         String asunto,

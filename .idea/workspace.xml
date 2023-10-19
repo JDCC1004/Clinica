@@ -4,15 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f68ac8ae-f7d2-4c5c-bad1-cb15a5aec190" name="Changes" comment="Actualización sin errores">
+    <list default="true" id="b4548272-f6bd-4bf6-9846-fb88680826dc" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/repositorios/AdministradorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/DetallePQRSDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/DetallePQRSDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/repositorios/CitaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/repositorios/CitaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/EmailDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/EmailDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/paciente/PQRSPacienteDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/paciente/PQRSPacienteDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/PQRS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/modelo/entidades/PQRS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/repositorios/CuentaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/repositorios/CuentaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/repositorios/DiaLibreRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/repositorios/DiaLibreRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/repositorios/pqrsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/repositorios/PqrsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/AdminServicioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/AdminServicioImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/MedicoServicioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/MedicoServicioImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/PacienteServicioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/PacienteServicioImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/interfaces/MedicoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/interfaces/MedicoServicio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/projectClinica/MedicoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/projectClinica/MedicoTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/projectClinica/PacienteTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/projectClinica/PacienteTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/dataset.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/dataset.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,17 +53,12 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
-        <option value="Enum" />
         <option value="Interface" />
-        <option value="Record" />
-        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -60,59 +66,28 @@
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
-  <component name="ProjectId" id="2WeC4XLrKGAs6BY7HzPd9xYLydd" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="2WwiYh8xI8kGSHuxd39tHyKg9vS" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Daniela&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/danie/IdeaProjects/Clinicaproyecto&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.new.ui&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;880ee35579a90843593311bdf23e83ea&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;ChangesTree.GroupingKeys&quot;: [
-      &quot;directory&quot;,
-      &quot;module&quot;
-    ],
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
-    ],
-    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/&quot;: [
-      &quot;MySQL&quot;
-    ]
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "Daniela",
+    "last_opened_file_path": "C:/Users/danie/OneDrive/Documentos/universidad/avanzada/projectClinica",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "spring.configuration.checksum": "880ee35579a90843593311bdf23e83ea",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="co.edu.uniquindio.projectClinica.modelo.entidades" />
-      <recent name="co.edu.uniquindio.projectClinica.dto" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/test/resources" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Gradle.PacienteTest.agendarCitaTest">
-    <configuration name="MedicoTest.agendarDiaLibreTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+}]]></component>
+  <component name="RunManager" selected="Gradle.ResultadosTest">
+    <configuration name="AdministradorTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -125,7 +100,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;co.edu.uniquindio.projectClinica.MedicoTest.agendarDiaLibreTest&quot;" />
+            <option value="&quot;co.edu.uniquindio.projectClinica.AdministradorTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -136,7 +111,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="OrdenesTest.listarOrdenesMedicamentosTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="AutenticacionTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -149,7 +124,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;co.edu.uniquindio.projectClinica.OrdenesTest.listarOrdenesMedicamentosTest&quot;" />
+            <option value="&quot;co.edu.uniquindio.projectClinica.AutenticacionTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -160,7 +135,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="PacienteTest.agendarCitaTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="MedicoTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -173,7 +148,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;co.edu.uniquindio.projectClinica.PacienteTest.agendarCitaTest&quot;" />
+            <option value="&quot;co.edu.uniquindio.projectClinica.MedicoTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -184,7 +159,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="PacienteTest.cambiarPasswordTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="PacienteTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -197,7 +172,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;co.edu.uniquindio.projectClinica.PacienteTest.cambiarPasswordTest&quot;" />
+            <option value="&quot;co.edu.uniquindio.projectClinica.PacienteTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -208,7 +183,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="ResultadosTest.listarResultadosExamenesTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ResultadosTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -221,7 +196,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;co.edu.uniquindio.projectClinica.ResultadosTest.listarResultadosExamenesTest&quot;" />
+            <option value="&quot;co.edu.uniquindio.projectClinica.ResultadosTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -241,150 +216,26 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.PacienteTest.agendarCitaTest" />
-        <item itemvalue="Gradle.ResultadosTest.listarResultadosExamenesTest" />
-        <item itemvalue="Gradle.OrdenesTest.listarOrdenesMedicamentosTest" />
-        <item itemvalue="Gradle.PacienteTest.cambiarPasswordTest" />
-        <item itemvalue="Gradle.MedicoTest.agendarDiaLibreTest" />
+        <item itemvalue="Gradle.ResultadosTest" />
+        <item itemvalue="Gradle.PacienteTest" />
+        <item itemvalue="Gradle.MedicoTest" />
+        <item itemvalue="Gradle.AutenticacionTest" />
+        <item itemvalue="Gradle.AdministradorTest" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f68ac8ae-f7d2-4c5c-bad1-cb15a5aec190" name="Changes" comment="Actualizacion 13/10" />
-      <created>1697083468530</created>
+      <changelist id="b4548272-f6bd-4bf6-9846-fb88680826dc" name="Changes" comment="" />
+      <created>1697650092258</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1695003748677</updated>
-      <workItem from="1695003749989" duration="13542000" />
-      <workItem from="1695046675383" duration="5445000" />
-      <workItem from="1695088718809" duration="718000" />
-      <workItem from="1695091256964" duration="1079000" />
-      <workItem from="1695262905080" duration="4092000" />
-      <workItem from="1695651174920" duration="4570000" />
-      <workItem from="1695659592434" duration="162000" />
-      <workItem from="1695659796663" duration="483000" />
-      <workItem from="1695854298261" duration="255000" />
-      <workItem from="1695910318121" duration="6013000" />
-      <workItem from="1696041791472" duration="988000" />
-      <workItem from="1696042800929" duration="269000" />
-      <workItem from="1696112538435" duration="113000" />
-      <workItem from="1696120015727" duration="13201000" />
-      <workItem from="1696208577276" duration="88000" />
-      <workItem from="1696256079325" duration="7254000" />
-      <workItem from="1696714236147" duration="14686000" />
-      <workItem from="1696860797920" duration="3712000" />
-      <workItem from="1696866568959" duration="901000" />
-      <workItem from="1696884879268" duration="8079000" />
-      <workItem from="1696907523384" duration="6388000" />
-      <workItem from="1696944502659" duration="4742000" />
-      <workItem from="1696964967915" duration="558000" />
-      <workItem from="1696972139489" duration="491000" />
-      <workItem from="1696972746237" duration="14197000" />
-      <workItem from="1697041657889" duration="3879000" />
-      <workItem from="1697066612539" duration="20055000" />
-      <workItem from="1697154263806" duration="7542000" />
-      <workItem from="1697267757166" duration="47000" />
-      <workItem from="1697267819612" duration="29000" />
-      <workItem from="1697267865450" duration="69000" />
-      <workItem from="1697267949440" duration="2280000" />
-      <workItem from="1697311288139" duration="958000" />
-      <workItem from="1697473919476" duration="1949000" />
-      <workItem from="1697476518058" duration="5537000" />
-      <workItem from="1697575397610" duration="2541000" />
-      <workItem from="1697582218794" duration="3180000" />
-      <workItem from="1697598961648" duration="8072000" />
+      <updated>1697650092258</updated>
+      <workItem from="1697650096393" duration="8682000" />
+      <workItem from="1697663788099" duration="672000" />
+      <workItem from="1697673903187" duration="2054000" />
     </task>
-    <task id="LOCAL-00001" summary="Actualizacion 25/09">
-      <option name="closed" value="true" />
-      <created>1695659950568</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1695659950568</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Actualizacion 25/09">
-      <option name="closed" value="true" />
-      <created>1696885090790</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1696885090790</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Actualizacion 25/09">
-      <option name="closed" value="true" />
-      <created>1696892760964</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1696892760964</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Actualizacion 25/09">
-      <option name="closed" value="true" />
-      <created>1696907827724</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1696907827724</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Actualizacion 25/09">
-      <option name="closed" value="true" />
-      <created>1696907946189</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1696907946189</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Actualizacion 25/09">
-      <option name="closed" value="true" />
-      <created>1696908062902</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1696908062902</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Actualizacion 11/10">
-      <option name="closed" value="true" />
-      <created>1697071482968</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1697071482968</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Actualizacion 11/10">
-      <option name="closed" value="true" />
-      <created>1697073179299</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1697073179299</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Actualizacion 11/10">
-      <option name="closed" value="true" />
-      <created>1697077436232</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1697077436232</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Actualizacion 13/10">
-      <option name="closed" value="true" />
-      <created>1697254783018</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1697254783018</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Actualización sin errores">
-      <option name="closed" value="true" />
-      <created>1697599053720</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1697599053720</updated>
-    </task>
-    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -400,18 +251,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Actualizacion 25/09" />
-    <MESSAGE value="Actualizacion 11/10" />
-    <MESSAGE value="Actualizacion 13/10" />
-    <MESSAGE value="ClinicaApplication" />
-    <MESSAGE value="Actualización sin errores" />
-    <option name="LAST_COMMIT_MESSAGE" value="Actualización sin errores" />
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/projectClinica$projectApplication.ic" NAME="projectApplication Coverage Results" MODIFIED="1695046702166" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>co.edu.uniquindio.projectClinica.*</FILTER>
-    </SUITE>
   </component>
 </project>
