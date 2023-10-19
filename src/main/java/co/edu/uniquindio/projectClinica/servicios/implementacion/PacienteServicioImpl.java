@@ -189,7 +189,7 @@ public class PacienteServicioImpl implements PacienteServicio {
                 Cita citaCreada = citaRepository.save(cita);
 
                 EmailDTO emailPaciente = new EmailDTO("Cita creada", "Su cita ha " +
-                        "sido creada exitosamente", "jdcc1004@gmail.com");
+                        "sido creada exitosamente", citaCreada.getPaciente().getCorreo());
 
                 //para probar que si envie el correo
                 /*EmailDTO emailPaciente = new EmailDTO("Cita creada", "Su cita ha " +
@@ -317,8 +317,6 @@ public class PacienteServicioImpl implements PacienteServicio {
         }
         return respuesta;
     }
-
-
     @Override
     public List<Cita> filtrarCitasPorMedico(int codigoMedico) throws Exception {
         Optional<Medico> medicoBuscado = medicoRepository.findById(codigoMedico);
