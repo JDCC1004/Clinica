@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 public record AgendarCitaDTO(
 
-        @NotNull
+        @NotNull @Length(max = 10)
         int pacienteId,
         @NotNull
         Especialidad especialidad,

@@ -22,7 +22,7 @@ public record DetalleMedicoDTO(
         String nombre,
         @NotNull @Length(max = 10)
         String telefono,
-        @NotNull @Length(max = 200) @Email
+        @NotNull @Length(max = 200) @Email(message = "Ingrese un correo valido")
         String correo,
         @NotNull
         String urlFoto,

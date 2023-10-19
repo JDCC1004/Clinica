@@ -21,6 +21,7 @@ public record DetalleCitaDTO(
         String Motivo,
         @NotNull
         Especialidad especialidad,
+        @NotNull
         String medico
 ) {
 }

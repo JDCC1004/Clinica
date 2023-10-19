@@ -5,8 +5,6 @@ import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Ciudad;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Especialidad;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.EstadoUsuario;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_PQRS;
-import co.edu.uniquindio.projectClinica.repositorios.MedicoRepository;
-import co.edu.uniquindio.projectClinica.repositorios.MensajeRepository;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.AdministradorServicio;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;

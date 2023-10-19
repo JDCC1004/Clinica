@@ -172,7 +172,7 @@ public class PacienteServicioImpl implements PacienteServicio {
             cuenta.setPassword(passwordEncoder.encode(nuevaPasswordOlvidadaDTO.passwordNueva()));
             cuentaRepository.save(cuenta);
 
-            return "Tu nueva contraseña esta actualizada: " ;
+            return "Contraseña actualizada correctamente" ;
         }
     }
 

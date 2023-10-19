@@ -24,7 +24,7 @@ public record RegistroMedicoDTO(
         Ciudad ciudad,
         @NotNull @Min(0) @Max(5)
         Especialidad especialidad,
-        @NotNull @Length(max = 20) @Email
+        @NotNull @Length(max = 20) @Email(message = "Ingrese un correo valido")
         String correo,
         @NotNull
         String urlFoto,

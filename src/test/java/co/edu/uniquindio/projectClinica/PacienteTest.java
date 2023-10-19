@@ -4,10 +4,7 @@ import co.edu.uniquindio.projectClinica.dto.CitaPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.DetalleCitaDTO;
 import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.admin.DetallePacienteDTO;
-import co.edu.uniquindio.projectClinica.dto.paciente.AgendarCitaDTO;
-import co.edu.uniquindio.projectClinica.dto.paciente.NuevaPasswordDTO;
-import co.edu.uniquindio.projectClinica.dto.paciente.PQRSPacienteDTO;
-import co.edu.uniquindio.projectClinica.dto.paciente.RespuestaPQRSPDTO;
+import co.edu.uniquindio.projectClinica.dto.paciente.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Cita;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Especialidad;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_PQRS;
@@ -83,7 +80,15 @@ public class PacienteTest {
         NuevaPasswordDTO nuevaPasswordDTO = new NuevaPasswordDTO( "juan10@gmail.com", "123","soy gay");
         String resultado = pacienteServicio.cambiarPassword(nuevaPasswordDTO);
         assertEquals("Contraseña actualizada correctamente", resultado);
+    }
 
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void cambiarPasswordOlvidadaTest() throws Exception{
+        NuevaPasswordOlvidadaDTO nuevaPasswordOlvidadaDTO = new NuevaPasswordOlvidadaDTO("juan10@gmail.com", "123");
+        String resultado = pacienteServicio.cambiarPasswordOlvidada(nuevaPasswordOlvidadaDTO);
+        assertEquals("Contraseña actualizada correctamente", resultado);
+        System.out.println(resultado);
     }
 
     @Test
@@ -163,8 +168,14 @@ public class PacienteTest {
         List<CitaPacienteDTO> lista = pacienteServicio.listarCitasPendientes(7);
         lista.forEach(System.out::println);
         assertEquals(2, lista.size());
+    }
 
-
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void listarDetalleConsultasPorPacienteTest() throws Exception {
+        List<DetalleCitaDTO> lista = pacienteServicio.listarDetalleConsultasPorPaciente(6);
+        lista.forEach(System.out::println);
+        assertEquals(1, lista.size());
     }
 
 

@@ -11,14 +11,12 @@ public record CitaPacienteDTO(
         @NotNull
         @Length(max = 10, message = "La cedula no puede tener mas de 10 caracteres")
         int codigoCita,
-
         @NotNull
         @Length(max = 200, message = "La cedula no puede tener mas de 200 caracteres")
         String nombreMedico,
         @NotNull
         @Length(max = 200, message = "La cedula no puede tener mas de 200 caracteres")
         String motivo,
-
         @NotNull
         LocalDateTime fechaHoraCita
 ) {
