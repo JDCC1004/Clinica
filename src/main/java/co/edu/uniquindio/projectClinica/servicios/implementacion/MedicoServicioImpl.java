@@ -28,42 +28,6 @@ public class MedicoServicioImpl implements MedicoServicio {
     private final MedicoRepository medicoRepository;
     private final DiaLibreRepository DiaLibreRepository;
 
-    @Override
-    public int registrarse(MedicoDTO medicoDTO) throws Exception {
-
-        if (verificarExisteCedulaMedico(medicoDTO.cedula())) {
-            throw new Exception("Ya existe un medico con la cedula " + medicoDTO.cedula());
-        } else {
-            Medico medico = new Medico();
-
-            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-            String passwordEncriptada = passwordEncoder.encode(medicoDTO.password());
-            medico.setPassword(passwordEncriptada);
-
-
-            medico.setCorreo(medicoDTO.correo());
-            medico.setCedula(medicoDTO.cedula());
-            medico.setNombre(medicoDTO.nombre());
-            medico.setTelefono(medicoDTO.telefono());
-            medico.setCiudad(medicoDTO.ciudad());
-            medico.setPassword(medicoDTO.password());
-            medico.setEspecialidad(medicoDTO.especialidad());
-            medico.setCodigo(medicoDTO.codigo());
-            medico.setCorreo(medicoDTO.correo());
-            medico.setUrl_foto(medicoDTO.urlFoto());
-            medico.setHoraInicio(medicoDTO.horaInicio());
-            medico.setHoraFin(medicoDTO.horaFin());
-
-
-            medicoRepository.save(medico);
-            return medico.getCodigo();
-        }
-    }
-
-    public boolean verificarExisteCedulaMedico(String cedula) {
-        return medicoRepository.findByCedula(cedula) != null;
-    }
-
 
     @Override
     public List<CitaMedicoDTO> listarCitasPendiente(int codigoMedico) throws Exception {

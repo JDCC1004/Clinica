@@ -19,9 +19,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @Transactional
@@ -53,7 +56,7 @@ public class PacienteTest {
 
         DetallePacienteDTO objeto = pacienteServicio.verDetallePaciente(6);
 
-        Assertions.assertEquals("111111", objeto.telefono());
+        assertEquals("111111", objeto.telefono());
     }
 
    @Test
@@ -70,7 +73,7 @@ public class PacienteTest {
         Assertions.assertTrue(codigoCita > 0);
 
         DetalleCitaDTO detalleCita = pacienteServicio.verDetalleCita(codigoCita);
-        Assertions.assertEquals("Me duele la cabecita", detalleCita.Motivo());
+        assertEquals("Me duele la cabecita", detalleCita.Motivo());
 
     }
 
@@ -79,7 +82,7 @@ public class PacienteTest {
     public void cambiarPasswordTest() throws Exception {
         NuevaPasswordDTO nuevaPasswordDTO = new NuevaPasswordDTO( "juan10@gmail.com", "123","soy gay");
         String resultado = pacienteServicio.cambiarPassword(nuevaPasswordDTO);
-        Assertions.assertEquals("Contraseña actualizada correctamente", resultado);
+        assertEquals("Contraseña actualizada correctamente", resultado);
 
     }
 
@@ -100,23 +103,41 @@ public class PacienteTest {
         Assertions.assertTrue(citasMedico.size() > 0);
     }
 
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void filtrarCitasPorFecha() throws Exception {
+
+        LocalDateTime fecha = LocalDateTime.of(2023,9,15,15,0,0);
+
+        List<Cita> citas = pacienteServicio.filtrarCitasPorFecha(fecha);
+
+        assertEquals(2, citas.size());
 
 
-   /* @Test
+    }
+
+    @Test
     @Sql("classpath:dataset.sql")
     public void crearPQRSPacienteTest() throws Exception {
-        PQRSPacienteDTO pqrspDTO = new PQRSPacienteDTO(6, "Cita médica urgente", "Tipo de solicitud", Estado_PQRS.ACTIVO);
+        PQRSPacienteDTO pqrspDTO = new PQRSPacienteDTO(
+                6,
+                7,
+                2,
+                "Mala atención",
+                LocalDateTime.now(),
+                Estado_PQRS.ACTIVO
+        );
         int codigoPQRS = pacienteServicio.crearPQRSPaciente(pqrspDTO);
 
         Assertions.assertTrue(codigoPQRS > 0);
-    }*/
-
+        System.out.println("PQR creado con exito, el código de su PQR es: " + codigoPQRS);
+    }
 
     @Test
     @Sql("classpath:dataset.sql")
     public void listarPQRSPacienteTest() throws Exception {
         List<PQRSPacienteDTO> pqrspList = pacienteServicio.listarPQRSPaciente(6);
-        Assertions.assertEquals(3, pqrspList.size());
+        assertEquals(3, pqrspList.size());
     }
 
     @Test
@@ -141,7 +162,7 @@ public class PacienteTest {
     public void listarCitasPendientesTest() throws Exception {
         List<CitaPacienteDTO> lista = pacienteServicio.listarCitasPendientes(7);
         lista.forEach(System.out::println);
-        Assertions.assertEquals(2, lista.size());
+        assertEquals(2, lista.size());
 
 
     }
@@ -153,6 +174,6 @@ public class PacienteTest {
         List<ItemPacienteDTO> lista = pacienteServicio.listarTodos();
         lista.forEach(System.out::println);
 
-        Assertions.assertEquals(5, lista.size());
+        assertEquals(5, lista.size());
     }
 }
