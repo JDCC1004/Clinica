@@ -3,6 +3,7 @@ package co.edu.uniquindio.projectClinica;
 import co.edu.uniquindio.projectClinica.dto.admin.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Ciudad;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Especialidad;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.EstadoUsuario;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_PQRS;
 import co.edu.uniquindio.projectClinica.repositorios.MedicoRepository;
 import co.edu.uniquindio.projectClinica.repositorios.MensajeRepository;
@@ -24,10 +25,7 @@ public class AdministradorTest {
 
     @Autowired
     private AdministradorServicio administradorServicio;
-    @Autowired
-    private MedicoRepository medicoRepository;
-    @Autowired
-    private MensajeRepository mensajeRepository;
+
     @Test
     @Sql("classpath:dataset.sql")
     public void crearMedicoTest() throws Exception {
@@ -42,7 +40,8 @@ public class AdministradorTest {
                 "url_foto",
                 "123a",
                 LocalTime.of(8, 0),
-                LocalTime.of(12, 0)
+                LocalTime.of(12, 0),
+                EstadoUsuario.ACTIVO
         );
 
         try{

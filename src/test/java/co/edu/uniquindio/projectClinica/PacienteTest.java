@@ -102,14 +102,22 @@ public class PacienteTest {
 
 
 
-   /* @Test
+   @Test
     @Sql("classpath:dataset.sql")
     public void crearPQRSPacienteTest() throws Exception {
-        PQRSPacienteDTO pqrspDTO = new PQRSPacienteDTO(6, "Cita médica urgente", "Tipo de solicitud", Estado_PQRS.ACTIVO);
+        PQRSPacienteDTO pqrspDTO = new PQRSPacienteDTO(
+                6,
+                7,
+                2,
+                "Mala atención",
+                LocalDateTime.now(),
+                Estado_PQRS.ACTIVO
+        );
         int codigoPQRS = pacienteServicio.crearPQRSPaciente(pqrspDTO);
 
         Assertions.assertTrue(codigoPQRS > 0);
-    }*/
+       System.out.println("PQR creado con exito, el código de su PQR es: " + codigoPQRS);
+    }
 
 
     @Test

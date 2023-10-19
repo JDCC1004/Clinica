@@ -2,6 +2,7 @@ package co.edu.uniquindio.projectClinica.dto.admin;
 
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Ciudad;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Especialidad;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.EstadoUsuario;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -32,7 +33,8 @@ public record RegistroMedicoDTO(
         @NotNull
         LocalTime horaInicio,
         @NotNull
-        LocalTime horaFin
+        LocalTime horaFin,
+        @NotNull EstadoUsuario estadoUsuario
 
 ) {
 }

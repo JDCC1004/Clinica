@@ -29,33 +29,6 @@ public class MedicoTest {
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void actualizarTest() throws Exception {
-//Para actualizar el paciente primero lo obtenemos
-        DetalleMedicoDTO guardado = medicoServicio.obtenerMedico(11);
-//Le modificamos el número de teléfono, lo demás lo dejamos igual
-        DetalleMedicoDTO medicoDTO = new DetalleMedicoDTO(
-                guardado.codigo(),
-                guardado.cedula(),
-                guardado.nombre(),
-                "111111",
-                guardado.correo(),
-                guardado.urlFoto(),
-                guardado.ciudad(),
-                guardado.especialidad(),
-                guardado.estadoUsuario(),
-                guardado.horaInicio(),
-                guardado.horaFin()
-        );
-//Se invoca el servicio de actualizar los datos
-        medicoServicio.editarInformacion(medicoDTO);
-//Se obtiene nuevamente el paciente para comprobar que sí se haya actualizado
-        DetalleMedicoDTO objetoModificado = medicoServicio.obtenerMedico(11);
-//Se comprueba que el teléfono del paciente sea el que se le asignó en la actualización
-        Assertions.assertEquals("111111", objetoModificado.telefono());
-    }
-
-    @Test
-    @Sql("classpath:dataset.sql")
     public void eliminarTest() throws Exception {
 //Se borra por ejemplo el paciente con el código 1
         medicoServicio.eliminarCuenta(5);

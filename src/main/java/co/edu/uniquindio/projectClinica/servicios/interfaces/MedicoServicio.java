@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface MedicoServicio {
 
-    int registrarse(MedicoDTO medicoDTO) throws Exception;
+    //int registrarse(MedicoDTO medicoDTO) throws Exception;
 
     List<CitaMedicoDTO> listarCitasPendiente(int codigoMedico) throws Exception;
 

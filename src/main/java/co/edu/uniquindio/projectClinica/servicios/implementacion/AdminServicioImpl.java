@@ -1,12 +1,12 @@
 package co.edu.uniquindio.projectClinica.servicios.implementacion;
 
 import co.edu.uniquindio.projectClinica.modelo.entidades.*;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.EstadoUsuario;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_PQRS;
 import co.edu.uniquindio.projectClinica.repositorios.*;
 import co.edu.uniquindio.projectClinica.dto.admin.*;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.AdministradorServicio;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -27,35 +27,37 @@ public class AdminServicioImpl implements AdministradorServicio {
     @Override
     public int crearMedico(RegistroMedicoDTO medicoDTO) throws Exception {
 
-        if( !medicoDTO.horaFin().isAfter( medicoDTO.horaInicio() ) ){
-            throw new Exception("La hora de inicio debe ser menor que la hora fin");
+        if (verificarExisteCedulaMedico(medicoDTO.cedula())) {
+            throw new Exception("Ya existe un medico con la cedula " + medicoDTO.cedula());
+        } else {
+            Medico medico = new Medico();
+
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            String passwordEncriptada = passwordEncoder.encode(medicoDTO.password());
+            medico.setPassword(passwordEncriptada);
+
+
+            medico.setCorreo(medicoDTO.correo());
+            medico.setCedula(medicoDTO.cedula());
+            medico.setNombre(medicoDTO.nombre());
+            medico.setTelefono(medicoDTO.telefono());
+            medico.setCiudad(medicoDTO.ciudad());
+            medico.setPassword(medicoDTO.password());
+            medico.setEspecialidad(medicoDTO.especialidad());
+            medico.setEstadoUsuario(medicoDTO.estadoUsuario());
+            medico.setCorreo(medicoDTO.correo());
+            medico.setUrl_foto(medicoDTO.urlFoto());
+            medico.setHoraInicio(medicoDTO.horaInicio());
+            medico.setHoraFin(medicoDTO.horaFin());
+
+
+            medicoRepository.save(medico);
+            return medico.getCodigo();
         }
-        if( estaRepetidaCedula(medicoDTO.cedula())){
-            throw new Exception("La cédula " +medicoDTO.cedula()+ " ya está en uso");
-        }
+    }
 
-        if ( estaRepetidoCorreo(medicoDTO.correo())){
-            throw new Exception("El correo " +medicoDTO.correo()+ " ya está en uso");
-        }
-
-        Medico medicoNuevo = new Medico();
-        medicoNuevo.setNombre(medicoDTO.nombre());
-        medicoNuevo.setCedula(medicoDTO.cedula());
-        medicoNuevo.setCiudad(medicoDTO.ciudad());
-        medicoNuevo.setTelefono(medicoDTO.telefono());
-        medicoNuevo.setUrl_foto(medicoDTO.urlFoto());
-
-        medicoNuevo.setHoraInicio( medicoDTO.horaInicio() );
-        medicoNuevo.setHoraFin( medicoDTO.horaFin() );
-        medicoNuevo.setEspecialidad(medicoDTO.especialidad());
-        medicoNuevo.setEstadoUsuario(EstadoUsuario.ACTIVO);
-
-        medicoNuevo.setCorreo(medicoDTO.correo());
-        medicoNuevo.setPassword(medicoDTO.password());
-
-        Medico medicoRegistrado = medicoRepository.save(medicoNuevo);
-
-        return medicoRegistrado.getCodigo();
+    public boolean verificarExisteCedulaMedico(String cedula) {
+        return medicoRepository.findByCedula(cedula) != null;
     }
 
     @Override
