@@ -28,6 +28,7 @@ public class MedicoServicioImpl implements MedicoServicio {
     private final MedicoRepository medicoRepository;
     private final DiaLibreRepository DiaLibreRepository;
 
+
     @Override
     public List<CitaMedicoDTO> listarCitasPendiente(int codigoMedico) throws Exception {
         List<Cita> citas = citaRepository.obtenerCitasPendientesMedico(codigoMedico, LocalDateTime.now());

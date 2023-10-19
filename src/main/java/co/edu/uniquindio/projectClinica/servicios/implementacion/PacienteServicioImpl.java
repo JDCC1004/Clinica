@@ -7,6 +7,7 @@ import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.admin.DetallePacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.*;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Especialidad;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_PQRS;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_cita;
 import co.edu.uniquindio.projectClinica.repositorios.*;
@@ -17,7 +18,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -128,6 +131,13 @@ public class PacienteServicioImpl implements PacienteServicio {
         paciente.getTipoSangre(), paciente.getCorreo());
     }
 
+    public List<Medico> obtenerMedicosPorEspecialidad(Especialidad especialidad){
+
+        List<Medico> medicos = medicoRepository.findByEspecialidad(especialidad);
+
+        return null;
+    }
+
 
 
     @Override
@@ -194,7 +204,12 @@ public class PacienteServicioImpl implements PacienteServicio {
                 Cita citaCreada = citaRepository.save(cita);
 
                 EmailDTO emailPaciente = new EmailDTO("Cita creada", "Su cita ha " +
-                        "sido creada exitosamente", "jdcc1004@gmail.com");
+                        "sido creada exitosamente", citaCreada.getPaciente().getCorreo());
+
+                //para probar que si envie el correo
+                /*EmailDTO emailPaciente = new EmailDTO("Cita creada", "Su cita ha " +
+                        "sido creada exitosamente", "jdcc1004@gmail.com"*/
+
 
                 EmailDTO emailMedico = new EmailDTO("Nueva cita", "Se le ha asignado" +
                         "una nueva cita", citaCreada.getMedico().getCorreo());
@@ -317,8 +332,6 @@ public class PacienteServicioImpl implements PacienteServicio {
         }
         return respuesta;
     }
-
-
     @Override
     public List<Cita> filtrarCitasPorMedico(int codigoMedico) throws Exception {
         Optional<Medico> medicoBuscado = medicoRepository.findById(codigoMedico);
@@ -331,6 +344,19 @@ public class PacienteServicioImpl implements PacienteServicio {
             respuesta = citaRepository.findByMedico(medico);
         }
         return respuesta;
+    }
+
+    @Override
+    public List<Cita> filtrarCitasPorFecha(LocalDateTime fecha) throws Exception {
+        List<Cita> respuesta = citaRepository.findByFechaCita(fecha);
+        if (fecha == null) {
+            throw new IllegalArgumentException("La fecha no puede ser nula.");
+        }else {
+            if (respuesta.isEmpty()) {
+                throw new Exception("no hay citas para esa fecha");
+            }
+            return respuesta;
+        }
     }
 
 

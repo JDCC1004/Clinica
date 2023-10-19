@@ -27,15 +27,24 @@ public class AdminServicioImpl implements AdministradorServicio {
     @Override
     public int crearMedico(RegistroMedicoDTO medicoDTO) throws Exception {
 
+        if (!medicoDTO.horaFin().isAfter(medicoDTO.horaInicio())) {
+            throw new Exception("La hora de inicio debe ser menor que la hora fin");
+        }
+        if( estaRepetidaCedula(medicoDTO.cedula())){
+            throw new Exception("La cédula " +medicoDTO.cedula()+ " ya está en uso");
+        }
         if (verificarExisteCedulaMedico(medicoDTO.cedula())) {
             throw new Exception("Ya existe un medico con la cedula " + medicoDTO.cedula());
-        } else {
+        }
+        if ( estaRepetidoCorreo(medicoDTO.correo())){
+            throw new Exception("El correo " +medicoDTO.correo()+ " ya está en uso");
+        }else {
             Medico medico = new Medico();
+
 
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
             String passwordEncriptada = passwordEncoder.encode(medicoDTO.password());
             medico.setPassword(passwordEncriptada);
-
 
             medico.setCorreo(medicoDTO.correo());
             medico.setCedula(medicoDTO.cedula());
@@ -50,15 +59,13 @@ public class AdminServicioImpl implements AdministradorServicio {
             medico.setHoraInicio(medicoDTO.horaInicio());
             medico.setHoraFin(medicoDTO.horaFin());
 
-
             medicoRepository.save(medico);
             return medico.getCodigo();
         }
     }
-
-    public boolean verificarExisteCedulaMedico(String cedula) {
-        return medicoRepository.findByCedula(cedula) != null;
-    }
+        public boolean verificarExisteCedulaMedico(String cedula) {
+            return medicoRepository.findByCedula(cedula) != null;
+        }
 
     @Override
     public int actualizarMedico(DetalleMedicoDTO medicoDTO) throws Exception {

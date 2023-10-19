@@ -25,7 +25,6 @@ public class AdministradorTest {
 
     @Autowired
     private AdministradorServicio administradorServicio;
-
     @Test
     @Sql("classpath:dataset.sql")
     public void crearMedicoTest() throws Exception {

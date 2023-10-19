@@ -3,6 +3,7 @@ package co.edu.uniquindio.projectClinica.repositorios;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Cita;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Medico;
 import co.edu.uniquindio.projectClinica.modelo.entidades.PQRS;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Paciente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -15,6 +16,7 @@ import java.util.Optional;
 @Repository
 public interface CitaRepository extends JpaRepository<Cita, Integer> {
     List<Cita> findByMedico(Medico medico);
+    List<Cita> findByFechaCita(LocalDateTime fecha);
 
     @Query("select c from Cita c where c.fechaCita = :horario and c.medico.codigo = :medicoID")
     Cita obtenerCitasDelMedicoEnFecha(int medicoID, LocalDateTime horario );

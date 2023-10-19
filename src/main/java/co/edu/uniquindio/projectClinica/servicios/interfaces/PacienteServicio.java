@@ -5,6 +5,8 @@ import co.edu.uniquindio.projectClinica.dto.admin.DetallePacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Cita;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface PacienteServicio {
@@ -39,6 +41,7 @@ public interface PacienteServicio {
     List<CitaPacienteDTO> listarCitasPendientes(int codigoPaciente) throws Exception;
 
     List<Cita> filtrarCitasPorMedico(int codigoMedico) throws Exception;
+    List<Cita> filtrarCitasPorFecha(LocalDateTime fecha) throws Exception;
 
     DetalleCitaDTO verDetalleCita(int codigoCita) throws Exception;
 

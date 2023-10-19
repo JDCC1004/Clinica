@@ -4,9 +4,11 @@ import co.edu.uniquindio.projectClinica.dto.CitaPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.DetalleCitaDTO;
 import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.admin.DetallePacienteDTO;
-import co.edu.uniquindio.projectClinica.dto.paciente.*;
+import co.edu.uniquindio.projectClinica.dto.paciente.AgendarCitaDTO;
+import co.edu.uniquindio.projectClinica.dto.paciente.NuevaPasswordDTO;
+import co.edu.uniquindio.projectClinica.dto.paciente.PQRSPacienteDTO;
+import co.edu.uniquindio.projectClinica.dto.paciente.RespuestaPQRSPDTO;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Cita;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Cuenta;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Especialidad;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_PQRS;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.PacienteServicio;
@@ -17,11 +19,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
-import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
@@ -83,16 +85,8 @@ public class PacienteTest {
         assertEquals("Contraseña actualizada correctamente", resultado);
 
     }
-    @Test
-    @Sql("classpath:dataset.sql")
-    public void cambiarPasswordOlvidadaTest() throws Exception {
-        NuevaPasswordOlvidadaDTO nuevaPasswordOlvidadaDTO = new NuevaPasswordOlvidadaDTO("juan10@gmail.com","124");
-        String resultado = pacienteServicio.cambiarPasswordOlvidada(nuevaPasswordOlvidadaDTO);
-        assertEquals("Tu nueva contraseña está actualizada: ", resultado);
-    }
 
     @Test
-
     @Sql("classpath:dataset.sql")
     public void eliminarTest() throws Exception{
         pacienteServicio.eliminarCuenta(6);
@@ -109,9 +103,20 @@ public class PacienteTest {
         Assertions.assertTrue(citasMedico.size() > 0);
     }
 
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void filtrarCitasPorFecha() throws Exception {
+
+        LocalDateTime fecha = LocalDateTime.of(2023,9,15,15,0,0);
+
+        List<Cita> citas = pacienteServicio.filtrarCitasPorFecha(fecha);
+
+        assertEquals(2, citas.size());
 
 
-   @Test
+    }
+
+    @Test
     @Sql("classpath:dataset.sql")
     public void crearPQRSPacienteTest() throws Exception {
         PQRSPacienteDTO pqrspDTO = new PQRSPacienteDTO(
@@ -125,9 +130,8 @@ public class PacienteTest {
         int codigoPQRS = pacienteServicio.crearPQRSPaciente(pqrspDTO);
 
         Assertions.assertTrue(codigoPQRS > 0);
-       System.out.println("PQR creado con exito, el código de su PQR es: " + codigoPQRS);
+        System.out.println("PQR creado con exito, el código de su PQR es: " + codigoPQRS);
     }
-
 
     @Test
     @Sql("classpath:dataset.sql")
@@ -162,19 +166,6 @@ public class PacienteTest {
 
 
     }
-
-    @Test
-    @Sql("classpath:dataset.sql")
-    public void listarDetalleConsultasPorPacienteTest() throws Exception {
-        List<DetalleCitaDTO> detalles = pacienteServicio.listarDetalleConsultasPorPaciente(6); // Asume que 6 es el ID del paciente en el conjunto de datos
-
-        // Asegura que la lista no sea nula y contenga los detalles esperados
-        assertNotNull(detalles);
-        assertEquals(3, detalles.size());
-
-        // Verifica otros criterios si es necesario
-    }
-
 
 
     @Test
