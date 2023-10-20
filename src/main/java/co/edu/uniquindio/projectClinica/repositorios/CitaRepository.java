@@ -27,8 +27,6 @@ public interface CitaRepository extends JpaRepository<Cita, Integer> {
     @Query("select c from Cita c where c.paciente.codigo = :codigoPaciente and c.fechaCita >= :fechaActual")
     List<Cita> obtenerCitasPaciente(int codigoPaciente, LocalDateTime fechaActual);
 
-
-
     @Query("select c from Cita c where c.medico.codigo = :codigoMedico and c.fechaCita >= :fechaActual")
     List<Cita> obtenerCitasPendientesMedico(int codigoMedico, LocalDateTime fechaActual);
 
