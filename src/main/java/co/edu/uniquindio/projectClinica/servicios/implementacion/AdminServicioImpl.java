@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class AdminServicioImpl implements AdministradorServicio {
+public class  AdminServicioImpl implements AdministradorServicio {
 
     private final MedicoRepository medicoRepository;
     private final PqrsRepository pqrsRepository;

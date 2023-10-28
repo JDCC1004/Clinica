@@ -3,10 +3,7 @@ package co.edu.uniquindio.projectClinica.dto.paciente;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Ciudad;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.EPS;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Tipo_sangre;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Future;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import org.hibernate.validator.constraints.Length;
 
 import java.util.Date;
@@ -22,7 +19,7 @@ public record PacienteDTO(
         @NotBlank
         @Length(max = 10, message = "El telefono no puede tener mas de 10 caracteres")
         String telefono,
-        @Future(message = "Seleccione una fecha de nacimiento correcta")
+        @Past(message = "Seleccione una fecha de nacimiento correcta")
         Date fechaNacimiento,
         @NotBlank
         String password,

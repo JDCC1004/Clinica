@@ -13,17 +13,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/paciente")
+@RequestMapping("/api/pacientes")
 @RequiredArgsConstructor
 public class PacienteController {
 
     private final PacienteServicio pacienteServicio;
 
-    @PostMapping("/registrar")
-    public ResponseEntity<MensajeDTO<String>> registrarse(@Valid @RequestBody PacienteDTO pacienteDTO) throws Exception {
-        pacienteServicio.registrarse(pacienteDTO);
-        return ResponseEntity.ok().body(new MensajeDTO<>(false, "Paciente registrado correctamente"));
-    }
+
 
     @PutMapping("/editar")
     public ResponseEntity<MensajeDTO<String>> editarPerfil(@Valid @RequestBody DetallePacienteDTO PacienteDTO) throws Exception {

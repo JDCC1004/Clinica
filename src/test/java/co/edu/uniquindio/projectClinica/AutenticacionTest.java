@@ -26,7 +26,7 @@ public class AutenticacionTest {
     public void loginTest() throws Exception {
         LoginDTO loginDTO = new LoginDTO("juan10@gmail.com", "123");
 
-        TokenDTO objeto = autenticacionServicio.login(loginDTO, 9);
+        TokenDTO objeto = autenticacionServicio.login(loginDTO);
         System.out.println(objeto);
 
         Assertions.assertNotNull(objeto);

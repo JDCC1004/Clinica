@@ -8,6 +8,7 @@ import co.edu.uniquindio.projectClinica.dto.admin.DetallePacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Especialidad;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.EstadoUsuario;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_PQRS;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_cita;
 import co.edu.uniquindio.projectClinica.repositorios.*;
@@ -63,6 +64,7 @@ public class PacienteServicioImpl implements PacienteServicio {
             paciente.setEps(pacienteDTO.eps());
             paciente.setAlergias(pacienteDTO.alergias());
             paciente.setTipoSangre(pacienteDTO.tipoSangre());
+            paciente.setEstadoUsuario(EstadoUsuario.ACTIVO);
 
             Paciente pacienteCreado = pacienteRepository.save(paciente);
             return pacienteCreado.getCodigo();

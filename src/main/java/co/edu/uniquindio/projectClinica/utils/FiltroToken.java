@@ -6,6 +6,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.security.SignatureException;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -13,7 +14,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.security.SignatureException;
 
 @Component
 @RequiredArgsConstructor
@@ -48,7 +48,7 @@ public class FiltroToken implements Filter {
             } else {
                 error = false;
             }
-        } catch (MalformedJwtException e) {
+        } catch (MalformedJwtException | SignatureException e) {
             crearRespuestaError("El tokeen es incorrecto", HttpServletResponse.SC_INTERNAL_SERVER_ERROR, res);
         } catch (ExpiredJwtException e) {
             crearRespuestaError("El token está vencido", HttpServletResponse.SC_INTERNAL_SERVER_ERROR, res);
