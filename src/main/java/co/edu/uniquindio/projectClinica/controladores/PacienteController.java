@@ -19,8 +19,6 @@ public class PacienteController {
 
     private final PacienteServicio pacienteServicio;
 
-
-
     @PutMapping("/editar")
     public ResponseEntity<MensajeDTO<String>> editarPerfil(@Valid @RequestBody DetallePacienteDTO PacienteDTO) throws Exception {
         pacienteServicio.editarInformacion(PacienteDTO);
@@ -33,7 +31,7 @@ public class PacienteController {
         return ResponseEntity.ok().body(new MensajeDTO<>(false, "Paciente eliminado correctamente"));
     }
 
-    @GetMapping("/ver/{codigo}")
+    @GetMapping("/detalle/{codigo}")
     public ResponseEntity<MensajeDTO<DetallePacienteDTO>> verDetallePaciente(@PathVariable int codigo) throws Exception {
         return ResponseEntity.ok().body(new MensajeDTO<>(false, pacienteServicio.verDetallePaciente(codigo)));
     }
