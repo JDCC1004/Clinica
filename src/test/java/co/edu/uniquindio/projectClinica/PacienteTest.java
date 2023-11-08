@@ -3,7 +3,7 @@ package co.edu.uniquindio.projectClinica;
 import co.edu.uniquindio.projectClinica.dto.CitaPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.DetalleCitaDTO;
 import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
-import co.edu.uniquindio.projectClinica.dto.admin.DetallePacienteDTO;
+import co.edu.uniquindio.projectClinica.dto.paciente.DetallePacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Cita;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Especialidad;
@@ -16,9 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

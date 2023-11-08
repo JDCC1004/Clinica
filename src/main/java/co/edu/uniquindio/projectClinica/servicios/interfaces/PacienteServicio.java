@@ -1,11 +1,10 @@
 package co.edu.uniquindio.projectClinica.servicios.interfaces;
 
 import co.edu.uniquindio.projectClinica.dto.*;
-import co.edu.uniquindio.projectClinica.dto.admin.DetallePacienteDTO;
+import co.edu.uniquindio.projectClinica.dto.paciente.DetallePacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Cita;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -46,7 +45,7 @@ public interface PacienteServicio {
     DetalleCitaDTO verDetalleCita(int codigoCita) throws Exception;
 
     //Metodo creado para test
-    DetallePacienteDTO verDetallePaciente(int codigo) throws  Exception;
+    DetallePacienteDTO verDetallePaciente(int codigoPaciente) throws Exception;
 
     List<DetalleCitaDTO> listarDetalleConsultasPorPaciente(int pacienteId) throws Exception;
 

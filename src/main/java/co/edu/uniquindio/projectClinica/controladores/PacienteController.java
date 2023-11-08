@@ -2,8 +2,7 @@ package co.edu.uniquindio.projectClinica.controladores;
 
 import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.MensajeDTO;
-import co.edu.uniquindio.projectClinica.dto.admin.DetallePacienteDTO;
-import co.edu.uniquindio.projectClinica.dto.paciente.PacienteDTO;
+import co.edu.uniquindio.projectClinica.dto.paciente.DetallePacienteDTO;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.PacienteServicio;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -13,8 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/pacientes")
 @RequiredArgsConstructor
+@RequestMapping("/api/pacientes")
 public class PacienteController {
 
     private final PacienteServicio pacienteServicio;
@@ -31,9 +30,9 @@ public class PacienteController {
         return ResponseEntity.ok().body(new MensajeDTO<>(false, "Paciente eliminado correctamente"));
     }
 
-    @GetMapping("/detalle/{codigo}")
-    public ResponseEntity<MensajeDTO<DetallePacienteDTO>> verDetallePaciente(@PathVariable int codigo) throws Exception {
-        return ResponseEntity.ok().body(new MensajeDTO<>(false, pacienteServicio.verDetallePaciente(codigo)));
+    @GetMapping("/detalle/{codigoPaciente}")
+    public ResponseEntity<MensajeDTO<DetallePacienteDTO>> verDetallePaciente(@PathVariable int codigoPaciente) throws Exception{
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, pacienteServicio.verDetallePaciente(codigoPaciente)));
     }
 
     @GetMapping("/listar")

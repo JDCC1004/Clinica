@@ -17,7 +17,7 @@ import java.util.List;
 public class ExcepcionesGlobales {
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<MensajeDTO<String>> generalExcetion(Exception e){
+    public ResponseEntity<MensajeDTO<String>> generalException(Exception e){
         return ResponseEntity.internalServerError().body(new MensajeDTO<>(true, e.getMessage()));
     }
 

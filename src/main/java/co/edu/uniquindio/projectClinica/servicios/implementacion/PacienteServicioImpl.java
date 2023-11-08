@@ -4,7 +4,7 @@ import co.edu.uniquindio.projectClinica.dto.CitaPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.DetalleCitaDTO;
 import co.edu.uniquindio.projectClinica.dto.EmailDTO;
 import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
-import co.edu.uniquindio.projectClinica.dto.admin.DetallePacienteDTO;
+import co.edu.uniquindio.projectClinica.dto.paciente.DetallePacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Especialidad;
@@ -19,9 +19,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.chrono.ChronoLocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -127,10 +125,18 @@ public class PacienteServicioImpl implements PacienteServicio {
 
         Paciente paciente = pacienteBuscado.get();
 
-        return new DetallePacienteDTO(paciente.getCodigo(), paciente.getCedula(),
-        paciente.getNombre(), paciente.getTelefono(), paciente.getUrl_foto(), paciente.getCiudad(),
-        paciente.getFechaNacimiento(), paciente.getAlergias(), paciente.getEps(),
-        paciente.getTipoSangre(), paciente.getCorreo());
+        return new DetallePacienteDTO(
+                paciente.getCodigo(),
+                paciente.getCedula(),
+                paciente.getNombre(),
+                paciente.getTelefono(),
+                paciente.getUrl_foto(),
+                paciente.getCiudad(),
+                paciente.getFechaNacimiento(),
+                paciente.getAlergias(),
+                paciente.getEps(),
+                paciente.getTipoSangre(),
+                paciente.getCorreo());
     }
 
     public List<Medico> obtenerMedicosPorEspecialidad(Especialidad especialidad){
