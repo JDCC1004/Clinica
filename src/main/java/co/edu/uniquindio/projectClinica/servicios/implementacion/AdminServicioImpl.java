@@ -51,7 +51,6 @@ public class  AdminServicioImpl implements AdministradorServicio {
             medico.setNombre(medicoDTO.nombre());
             medico.setTelefono(medicoDTO.telefono());
             medico.setCiudad(medicoDTO.ciudad());
-            medico.setPassword(medicoDTO.password());
             medico.setEspecialidad(medicoDTO.especialidad());
             medico.setEstadoUsuario(medicoDTO.estadoUsuario());
             medico.setCorreo(medicoDTO.correo());

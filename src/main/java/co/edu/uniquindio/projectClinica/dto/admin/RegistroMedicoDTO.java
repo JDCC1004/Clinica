@@ -20,9 +20,9 @@ public record RegistroMedicoDTO(
         String cedula,
         @NotNull @Length(max = 10)
         String telefono,
-        @NotNull @Min(0) @Max(2)
+        @NotNull
         Ciudad ciudad,
-        @NotNull @Min(0) @Max(5)
+        @NotNull
         Especialidad especialidad,
         @NotNull @Length(max = 20) @Email(message = "Ingrese un correo valido")
         String correo,

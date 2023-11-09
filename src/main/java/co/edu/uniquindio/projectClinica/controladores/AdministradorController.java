@@ -21,4 +21,10 @@ public class AdministradorController {
         administradorServicio.crearMedico(medicoDTO);
         return ResponseEntity.ok().body(new MensajeDTO<>(false, "Medico creado correctamente"));
     }
+
+    @DeleteMapping("/eliminarMedico/{codigo}")
+    public ResponseEntity<String> eliminarMedico(@PathVariable int codigo) throws Exception{
+        administradorServicio.eliminarMedico(codigo);
+        return ResponseEntity.ok().body("Medico eliminado correctamente");
+    }
 }
