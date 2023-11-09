@@ -1,10 +1,8 @@
 package co.edu.uniquindio.projectClinica;
 
 import co.edu.uniquindio.projectClinica.dto.ItemCitaDTO;
-import co.edu.uniquindio.projectClinica.dto.admin.DetalleMedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.CitaMedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.DiaLibreDTO;
-import co.edu.uniquindio.projectClinica.dto.medico.MedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.RegistroAtencionDTO;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.MedicoServicio;
 import jakarta.transaction.Transactional;
@@ -15,8 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Date;
 import java.util.List;
 
 

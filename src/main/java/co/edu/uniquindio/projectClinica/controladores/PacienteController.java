@@ -2,6 +2,7 @@ package co.edu.uniquindio.projectClinica.controladores;
 
 import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.MensajeDTO;
+import co.edu.uniquindio.projectClinica.dto.paciente.AgendarCitaDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.DetallePacienteDTO;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.PacienteServicio;
 import jakarta.validation.Valid;
@@ -18,10 +19,10 @@ public class PacienteController {
 
     private final PacienteServicio pacienteServicio;
 
-    @PutMapping("/editar")
-    public ResponseEntity<MensajeDTO<String>> editarPerfil(@Valid @RequestBody DetallePacienteDTO PacienteDTO) throws Exception {
-        pacienteServicio.editarInformacion(PacienteDTO);
-        return ResponseEntity.ok().body(new MensajeDTO<>(false, "Paciente actualizado correctamente"));
+    @PutMapping("/editar-perfil")
+    public ResponseEntity<MensajeDTO<String>> editarPerfil(@Valid @RequestBody DetallePacienteDTO pacienteDTO) throws Exception{
+        pacienteServicio.editarPerfil(pacienteDTO);
+        return ResponseEntity.ok().body( new MensajeDTO<>(false, "Paciente actualizado correctamete"));
     }
 
     @DeleteMapping("/eliminar/{codigo}")
@@ -38,5 +39,11 @@ public class PacienteController {
     @GetMapping("/listar")
     public ResponseEntity<MensajeDTO<List<ItemPacienteDTO>>> listarTodos() {
         return ResponseEntity.ok().body(new MensajeDTO<>(false, pacienteServicio.listarTodos()));
+    }
+
+    @PostMapping("/agendarCita")
+    public ResponseEntity<MensajeDTO<String>> agendarCita(@Valid @RequestBody AgendarCitaDTO pacienteDTO) throws Exception{
+        pacienteServicio.agendarCita(pacienteDTO);
+        return ResponseEntity.ok().body( new MensajeDTO<>(false, "Cita agendada correctamente"));
     }
 }

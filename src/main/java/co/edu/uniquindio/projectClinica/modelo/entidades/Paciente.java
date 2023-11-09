@@ -7,7 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import lombok.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -17,7 +17,7 @@ import java.util.List;
 public class Paciente extends Usuario implements Serializable {
 
     @Column(nullable = false)
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
     @Column(nullable = false, length = 30)
     private String alergias;
     @Column(nullable = false)

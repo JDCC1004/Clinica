@@ -11,7 +11,7 @@ import java.util.List;
 public interface PacienteServicio {
     int registrarse(PacienteDTO pacienteDTO) throws Exception;
 
-    int editarInformacion(DetallePacienteDTO pacienteDTO) throws Exception;
+    int editarPerfil(DetallePacienteDTO pacienteDTO) throws Exception;
     //String editarInformacion(PacienteDTO editarPacienteDTO) throws Exception;
 
     void eliminarCuenta(int codigo) throws Exception;

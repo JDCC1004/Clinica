@@ -47,7 +47,7 @@ public class PacienteTest {
                 guardado.tipoSangre(),
                 guardado.correo());
 
-        pacienteServicio.editarInformacion(modificado);
+        pacienteServicio.editarPerfil(modificado);
 
         DetallePacienteDTO objeto = pacienteServicio.verDetallePaciente(6);
 

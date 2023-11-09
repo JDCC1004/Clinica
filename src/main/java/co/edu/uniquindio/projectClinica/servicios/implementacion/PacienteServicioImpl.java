@@ -79,7 +79,7 @@ public class PacienteServicioImpl implements PacienteServicio {
     }
 
     @Override
-    public int editarInformacion(DetallePacienteDTO pacienteDTO) throws Exception {
+    public int editarPerfil(DetallePacienteDTO pacienteDTO) throws Exception {
         Optional<Paciente> pacienteBuscado = pacienteRepository.findById(pacienteDTO.codigo());
         if (pacienteBuscado.isEmpty()){
             throw new Exception("No existe un paciente con el codigo " + pacienteDTO.codigo());
@@ -187,18 +187,18 @@ public class PacienteServicioImpl implements PacienteServicio {
     @Override
     public int agendarCita(AgendarCitaDTO agendarCitaDTO) throws Exception {
 
-        Cita citaRepetida = citaRepository.obtenerCitaPorFechaYMedico(agendarCitaDTO.horario(), agendarCitaDTO.medicoId());
+        Cita citaRepetida = citaRepository.obtenerCitaPorFechaYMedico(agendarCitaDTO.horario(), agendarCitaDTO.codigoMedico());
 
         // no puede tener más de 3 citas
         int maxCitasPermitidas = 3;
         LocalDateTime fechaActual = LocalDateTime.now();
-        int cantidadCitasPaciente = citaRepository.obtenerCitasPaciente(agendarCitaDTO.pacienteId(), fechaActual).size();
+        int cantidadCitasPaciente = citaRepository.obtenerCitasPaciente(agendarCitaDTO.codigoPaciente(), fechaActual).size();
 
         if (cantidadCitasPaciente >= maxCitasPermitidas) {
             throw new Exception("El paciente ya tiene " + maxCitasPermitidas + " citas programadas.");
         }else{
 
-            if(medicoServicio.verificarDiaLibreMedico(agendarCitaDTO.medicoId(), agendarCitaDTO.horario())){
+            if(medicoServicio.verificarDiaLibreMedico(agendarCitaDTO.codigoMedico(), agendarCitaDTO.horario())){
                 throw new Exception("El médico está libre ese día");
             }else{
                 Cita cita = new Cita();
@@ -206,8 +206,8 @@ public class PacienteServicioImpl implements PacienteServicio {
                 cita.setFechaCita(agendarCitaDTO.horario());
                 cita.setEstadoCita(Estado_cita.ASIGNADA);
                 cita.setMotivo(agendarCitaDTO.motivo());
-                cita.setMedico(medicoRepository.findById(agendarCitaDTO.medicoId()).get());
-                cita.setPaciente(pacienteRepository.findById(agendarCitaDTO.pacienteId()).get());
+                cita.setMedico(medicoRepository.findById(agendarCitaDTO.codigoMedico()).get());
+                cita.setPaciente(pacienteRepository.findById(agendarCitaDTO.codigoPaciente()).get());
 
                 Cita citaCreada = citaRepository.save(cita);
 

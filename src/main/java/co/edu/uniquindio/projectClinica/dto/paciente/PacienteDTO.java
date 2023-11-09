@@ -6,6 +6,7 @@ import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Tipo_sangre;
 import jakarta.validation.constraints.*;
 import org.hibernate.validator.constraints.Length;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public record PacienteDTO(
@@ -20,7 +21,7 @@ public record PacienteDTO(
         @Length(max = 10, message = "El telefono no puede tener mas de 10 caracteres")
         String telefono,
         @Past(message = "Seleccione una fecha de nacimiento correcta")
-        Date fechaNacimiento,
+        LocalDate fechaNacimiento,
         @NotBlank
         String password,
         @NotNull

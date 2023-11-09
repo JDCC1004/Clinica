@@ -6,13 +6,14 @@ import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Tipo_sangre;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDate;
 import java.util.Date;
 
 public record DetallePacienteDTO(
-        @NotNull @Length(max = 10)
+        @NotNull
         int codigo,
         @NotNull @Length(max = 10)
         String cedula,
@@ -24,8 +25,8 @@ public record DetallePacienteDTO(
         String urlFoto,
         @NotNull
         Ciudad ciudad,
-        @NotNull @Future(message = "Elija una fecha valida")
-        Date fechaNacimiento,
+        @NotNull @Past(message = "Elija una fecha valida")
+        LocalDate fechaNacimiento,
         String alergias,
         @NotNull
         EPS eps,

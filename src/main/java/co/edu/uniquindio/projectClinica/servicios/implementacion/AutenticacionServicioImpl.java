@@ -46,10 +46,10 @@ public class AutenticacionServicioImpl implements AutenticacionServicio {
         String nombre;
 
         if ( cuenta instanceof Paciente ){
-            rol = "Paciente";
+            rol = "paciente";
             nombre = ((Paciente) cuenta).getNombre();
         } else if ( cuenta instanceof Medico ) {
-            rol = "Medico";
+            rol = "medico";
             nombre = ((Medico) cuenta).getNombre();
         } else {
             rol = "admin";
@@ -57,8 +57,8 @@ public class AutenticacionServicioImpl implements AutenticacionServicio {
         }
 
         Map<String, Object> map = new HashMap<>();
-        map.put("Rol", rol);
-        map.put("Nombre", nombre);
+        map.put("rol", rol);
+        map.put("nombre", nombre);
         map.put("id", cuenta.getCodigo());
 
         return jwtUtils.generarToken(cuenta.getCorreo(), map);
