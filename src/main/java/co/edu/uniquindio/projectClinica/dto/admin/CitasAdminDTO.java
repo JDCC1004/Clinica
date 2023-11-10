@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.Length;
 import java.time.LocalDateTime;
 
 public record CitasAdminDTO(
-        @NotNull @Length(max = 100)
+        @NotNull
         int codigoCita,
         @NotBlank
         Estado_cita estadoCita,
@@ -19,10 +19,10 @@ public record CitasAdminDTO(
         LocalDateTime fechaCita,
         @NotNull @Length(max = 200)
         String nombrePaciente,
-        @NotNull @Length(max = 200)
-        String nombreMedico,
         @NotNull @Length(max = 10)
         String cedulaPaciente,
+        @NotNull @Length(max = 200)
+        String nombreMedico,
         @NotBlank
         Especialidad especialidad
 ) {

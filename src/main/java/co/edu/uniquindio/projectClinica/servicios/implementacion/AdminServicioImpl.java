@@ -1,5 +1,6 @@
 package co.edu.uniquindio.projectClinica.servicios.implementacion;
 
+import co.edu.uniquindio.projectClinica.dto.medico.ItemMedicoDTO;
 import co.edu.uniquindio.projectClinica.modelo.entidades.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_PQRS;
 import co.edu.uniquindio.projectClinica.repositorios.*;
@@ -133,6 +134,18 @@ public class  AdminServicioImpl implements AdministradorServicio {
     }
 
     @Override
+    public List<ItemMedicoDTO> listarTodos() {
+        List<Medico> medicos = medicoRepository.findAll();
+        List<ItemMedicoDTO> respuesta = new ArrayList<>();
+
+        for (Medico medico : medicos){
+            respuesta.add(new ItemMedicoDTO(medico.getCodigo(), medico.getCedula(), medico.getNombre(), medico.getCiudad()));
+        }
+
+        return respuesta;
+    }
+
+    @Override
     public DetalleMedicoDTO obtenerMedico(int codigo) throws Exception {
         Optional<Medico> opcional = medicoRepository.findById(codigo);
 
@@ -235,8 +248,8 @@ public class  AdminServicioImpl implements AdministradorServicio {
                         c.getEstadoCita(),
                         c.getFechaCreacion(),
                         c.getFechaCita(),
-                        c.getPaciente().getCedula(),
                         c.getPaciente().getNombre(),
+                        c.getPaciente().getCedula(),
                         c.getMedico().getNombre(),
                         c.getMedico().getEspecialidad()
 

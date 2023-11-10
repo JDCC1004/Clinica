@@ -32,7 +32,7 @@ public interface MedicoServicio {
     DetalleMedicoDTO obtenerMedico(int codigo) throws Exception;
 
     //Metodo test
-    void eliminarCuenta(int i) throws Exception ;
+    //void eliminarCuenta(int i) throws Exception ;
 
     //Metodo test
 

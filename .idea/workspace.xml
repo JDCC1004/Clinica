@@ -4,11 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4548272-f6bd-4bf6-9846-fb88680826dc" name="Changes" comment="Paciente y Administrador Controller">
+    <list default="true" id="b4548272-f6bd-4bf6-9846-fb88680826dc" name="Changes" comment="Creación de Medicos">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/controladores/AdministradorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/controladores/AdministradorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/RegistroMedicoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/RegistroMedicoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/controladores/PacienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/controladores/PacienteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/CitasAdminDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/CitasAdminDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/DetalleMedicoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/DetalleMedicoDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/AdminServicioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/AdminServicioImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/MedicoServicioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/MedicoServicioImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/interfaces/AdministradorServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/interfaces/AdministradorServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/interfaces/MedicoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/interfaces/MedicoServicio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -257,7 +262,12 @@
       <workItem from="1699498766531" duration="1163000" />
       <workItem from="1699500819360" duration="32000" />
       <workItem from="1699538894802" duration="5720000" />
-      <workItem from="1699548139506" duration="1208000" />
+      <workItem from="1699548139506" duration="1585000" />
+      <workItem from="1699567124433" duration="174000" />
+      <workItem from="1699587267208" duration="1800000" />
+      <workItem from="1699628621254" duration="204000" />
+      <workItem from="1699628927323" duration="4147000" />
+      <workItem from="1699647507896" duration="636000" />
     </task>
     <task id="LOCAL-00001" summary="Corrección">
       <option name="closed" value="true" />
@@ -323,7 +333,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699545765699</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Creación de Medicos">
+      <option name="closed" value="true" />
+      <created>1699549680760</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1699549680760</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -346,7 +364,8 @@
     <MESSAGE value="API REST Y CONTROLLER" />
     <MESSAGE value="Cambios FiltroToken y JWT" />
     <MESSAGE value="Paciente y Administrador Controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="Paciente y Administrador Controller" />
+    <MESSAGE value="Creación de Medicos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creación de Medicos" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/projectClinica$projectApplication.ic" NAME="projectApplication Coverage Results" MODIFIED="1695046702166" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

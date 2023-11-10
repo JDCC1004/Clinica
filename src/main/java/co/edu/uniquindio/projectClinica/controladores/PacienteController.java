@@ -4,6 +4,8 @@ import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.MensajeDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.AgendarCitaDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.DetallePacienteDTO;
+import co.edu.uniquindio.projectClinica.dto.paciente.NuevaPasswordDTO;
+import co.edu.uniquindio.projectClinica.dto.paciente.NuevaPasswordOlvidadaDTO;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.PacienteServicio;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -45,5 +47,17 @@ public class PacienteController {
     public ResponseEntity<MensajeDTO<String>> agendarCita(@Valid @RequestBody AgendarCitaDTO pacienteDTO) throws Exception{
         pacienteServicio.agendarCita(pacienteDTO);
         return ResponseEntity.ok().body( new MensajeDTO<>(false, "Cita agendada correctamente"));
+    }
+
+    @PostMapping("/cambiarPasswordOlvidada")
+    public ResponseEntity<MensajeDTO<String>> cambiarPassword(@Valid @RequestBody NuevaPasswordOlvidadaDTO nuevaPasswordOlvidadaDTO) throws Exception{
+        pacienteServicio.cambiarPasswordOlvidada(nuevaPasswordOlvidadaDTO);
+        return ResponseEntity.ok().body( new MensajeDTO<>(false, "Contraseña cambiada correctamente"));
+    }
+
+    @PostMapping("/cambiarPassword")
+    public ResponseEntity<MensajeDTO<String>> cambiarPassword(@Valid @RequestBody NuevaPasswordDTO nuevaPasswordDTO) throws Exception{
+        pacienteServicio.cambiarPassword(nuevaPasswordDTO);
+        return ResponseEntity.ok().body( new MensajeDTO<>(false, "Contraseña cambiada correctamente"));
     }
 }

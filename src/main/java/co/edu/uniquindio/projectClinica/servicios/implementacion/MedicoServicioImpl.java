@@ -203,19 +203,19 @@ public class MedicoServicioImpl implements MedicoServicio {
     }
 
 
-    @Override
-    public void eliminarCuenta(int i) throws Exception {
-        Optional<Cuenta> eliminar = cuentaRepository.findById(i);
-
-        if (eliminar.isEmpty()) {
-            throw new Exception("No existe el medico con el código: " + i);
-        }
-
-        Cuenta buscado = eliminar.get();
-        buscado.setCodigo(EstadoUsuario.INABILITADO.ordinal());
-        cuentaRepository.save(buscado);
-
-    }
+//    @Override
+//    public void eliminarCuenta(int i) throws Exception {
+//        Optional<Cuenta> eliminar = cuentaRepository.findById(i);
+//
+//        if (eliminar.isEmpty()) {
+//            throw new Exception("No existe el medico con el código: " + i);
+//        }
+//
+//        Cuenta buscado = eliminar.get();
+//        buscado.setCodigo(EstadoUsuario.INABILITADO.ordinal());
+//        cuentaRepository.save(buscado);
+//
+//    }
 
 
     @Override
