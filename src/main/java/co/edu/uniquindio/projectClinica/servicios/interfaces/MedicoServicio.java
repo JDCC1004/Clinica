@@ -1,7 +1,7 @@
 package co.edu.uniquindio.projectClinica.servicios.interfaces;
 
 import co.edu.uniquindio.projectClinica.dto.ItemCitaDTO;
-import co.edu.uniquindio.projectClinica.dto.admin.DetalleMedicoDTO;
+import co.edu.uniquindio.projectClinica.dto.DetalleMedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.*;
 
 import java.time.LocalDateTime;

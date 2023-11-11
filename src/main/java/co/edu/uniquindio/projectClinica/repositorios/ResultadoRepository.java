@@ -10,6 +10,10 @@ import java.util.List;
 
 @Repository
 public interface ResultadoRepository extends JpaRepository<ResultadoExamenes, Integer> {
+    static List<ResultadoExamenes> obtenerExamenes(String examenes) {
+        return null;
+    }
+
     @Query("select r from ResultadoExamenes r where r.atencionMedica.codigo_cita.paciente.codigo = :codigoPaciente")
     List<ResultadoExamenes> listarResultadosExamenes(int codigoPaciente);
 }

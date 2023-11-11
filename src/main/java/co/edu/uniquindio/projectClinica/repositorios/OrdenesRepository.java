@@ -9,6 +9,10 @@ import java.util.List;
 @Repository
 public interface OrdenesRepository extends JpaRepository<OrdenesMedicamentos, Integer> {
 
+    static List<OrdenesMedicamentos> obtenerMedicamentos(String medicamentos) {
+        return null;
+    }
+
     @Query ("select o from OrdenesMedicamentos o where o.atencionMedica.codigo_cita.paciente.codigo = :codigoPaciente")
     List<OrdenesMedicamentos> listarOrdenesMedicamentos(int codigoPaciente);
 }

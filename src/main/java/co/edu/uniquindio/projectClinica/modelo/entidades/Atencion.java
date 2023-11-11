@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -20,6 +21,8 @@ public class Atencion implements Serializable {
     private int Codigo;
     @Column(nullable = false, length = 200)
     private String diagnostico;
+    @Column(nullable = false)
+    private LocalDate fechaCreacion;
     @Lob
     @Column(nullable = false)
     private String tratamiento;
@@ -31,8 +34,9 @@ public class Atencion implements Serializable {
     private Cita codigo_cita;
 
     @OneToMany(mappedBy = "atencionMedica")
-    private List<ResultadoExamenes> resultado;
+    private List<ResultadoExamenes> examenes;
 
     @OneToMany(mappedBy = "atencionMedica")
     private List<OrdenesMedicamentos> medicamento;
+
 }

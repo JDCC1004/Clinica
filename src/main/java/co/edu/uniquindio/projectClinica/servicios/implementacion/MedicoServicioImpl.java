@@ -2,7 +2,7 @@
 package co.edu.uniquindio.projectClinica.servicios.implementacion;
 
 import co.edu.uniquindio.projectClinica.dto.ItemCitaDTO;
-import co.edu.uniquindio.projectClinica.dto.admin.DetalleMedicoDTO;
+import co.edu.uniquindio.projectClinica.dto.DetalleMedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.*;
 import co.edu.uniquindio.projectClinica.repositorios.*;
@@ -22,7 +22,7 @@ import java.util.Optional;
 public class MedicoServicioImpl implements MedicoServicio {
 
     private final CitaRepository citaRepository;
-    private final CuentaRepository cuentaRepository;
+    private final AtencionRepository atencionRepository;
     private final MedicoRepository medicoRepository;
     private final DiaLibreRepository DiaLibreRepository;
 
@@ -55,11 +55,20 @@ public class MedicoServicioImpl implements MedicoServicio {
         if (optionalCita.isEmpty()) {
             throw new Exception("No hay citas ");
 
+        }else {
+            Atencion atencion = new Atencion();
+            atencion.getCodigo_cita();
+            atencion.setDiagnostico(registroAtencionDTO.diagnostico());
+            atencion.setTratamiento(registroAtencionDTO.tratamiento());
+            atencion.setMedicamento(OrdenesRepository.obtenerMedicamentos(registroAtencionDTO.medicamentos()));
+            atencion.setExamenes(ResultadoRepository.obtenerExamenes(registroAtencionDTO.examenes()));
+            atencion.setNotas_medicas(registroAtencionDTO.notasMedicas());
+            atencion.setFechaCreacion(LocalDate.now());
+
+            Atencion atencionCreada = atencionRepository.save(atencion);
+
+            return atencionCreada.getCodigo();
         }
-
-        Cita atender = optionalCita.get();
-
-        return atender.getCodigoCita();
 
     }
 
@@ -129,16 +138,14 @@ public class MedicoServicioImpl implements MedicoServicio {
     @Override
     public List<ItemCitaDTO> listarHistorialAtencionPaciente(int codigoPaciente) throws Exception {
         List<Cita> historial = citaRepository.obtenerHistorialAtencionPaciente(codigoPaciente);
-
+        List<ItemCitaDTO> respuesta = new ArrayList<>();
         if (historial.isEmpty()) {
             throw new Exception("No hay historial de atencion al paciente");
-        }
-
-        List<ItemCitaDTO> respuesta = new ArrayList<>();
-
-        for (Cita i : historial) {
-            respuesta.add(new ItemCitaDTO(
-            ));
+        }else {
+            for (Cita i : historial) {
+                respuesta.add(new ItemCitaDTO(
+                ));
+            }
         }
 
         return respuesta;

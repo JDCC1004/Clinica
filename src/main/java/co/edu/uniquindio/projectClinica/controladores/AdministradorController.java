@@ -1,11 +1,8 @@
 package co.edu.uniquindio.projectClinica.controladores;
 
-import co.edu.uniquindio.projectClinica.dto.ItemCitaDTO;
-import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.MensajeDTO;
 import co.edu.uniquindio.projectClinica.dto.admin.CitasAdminDTO;
-import co.edu.uniquindio.projectClinica.dto.admin.DetalleMedicoDTO;
-import co.edu.uniquindio.projectClinica.dto.admin.MedicoDTO;
+import co.edu.uniquindio.projectClinica.dto.DetalleMedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.admin.RegistroMedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.ItemMedicoDTO;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.AdministradorServicio;

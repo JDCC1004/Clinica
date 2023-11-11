@@ -1,5 +1,6 @@
 package co.edu.uniquindio.projectClinica.servicios.implementacion;
 
+import co.edu.uniquindio.projectClinica.dto.DetalleMedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.ItemMedicoDTO;
 import co.edu.uniquindio.projectClinica.modelo.entidades.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_PQRS;

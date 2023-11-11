@@ -1,5 +1,6 @@
 package co.edu.uniquindio.projectClinica;
 
+import co.edu.uniquindio.projectClinica.dto.DetalleMedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.admin.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Ciudad;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Especialidad;

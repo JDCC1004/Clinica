@@ -1,4 +1,4 @@
-package co.edu.uniquindio.projectClinica.dto.admin;
+package co.edu.uniquindio.projectClinica.dto;
 
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Ciudad;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Especialidad;

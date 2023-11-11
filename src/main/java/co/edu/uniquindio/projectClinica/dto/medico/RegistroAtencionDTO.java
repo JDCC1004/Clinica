@@ -12,14 +12,14 @@ public record RegistroAtencionDTO(
         String diagnostico,
         @NotNull @Length(max = 200)
         String tratamiento,
-        @NotNull @Length(max = 200)
-        String observaciones,
+        //@NotNull @Length(max = 200)
+        //String observaciones,
         @Length(max = 200)
         String medicamentos,
         @Length(max = 200)
         String examenes,
         @Length(max = 200)
-        String recomendaciones,
+        String notasMedicas,
         @NotNull
         LocalDate fechaAtencion
 ) {
