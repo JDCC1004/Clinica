@@ -2,7 +2,7 @@ package co.edu.uniquindio.projectClinica.controladores;
 
 import co.edu.uniquindio.projectClinica.dto.ItemCitaDTO;
 import co.edu.uniquindio.projectClinica.dto.MensajeDTO;
-import co.edu.uniquindio.projectClinica.dto.DetalleMedicoDTO;
+//import co.edu.uniquindio.projectClinica.dto.admin.DetalleMedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.CitaMedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.DiaLibreDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.RegistroAtencionDTO;
@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -23,21 +24,19 @@ public class MedicoController {
 
     private final MedicoServicio medicoServicio;
 
-    @GetMapping("/citas-pendientes/{codigoMedico}")
-    public ResponseEntity<MensajeDTO<List<CitaMedicoDTO>>> listarCitasPendientes(@PathVariable int codigoMedico) {
+    @GetMapping("/citasPendientes/{codigoMedico}")
+    public ResponseEntity<MensajeDTO<List<CitaMedicoDTO>>> listarCitasPendientes(@PathVariable int codigoMedico) throws Exception {
 
 
-        try {
             return ResponseEntity.ok().body(new MensajeDTO<>(false, medicoServicio.listarCitasPendiente(codigoMedico)));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+
     }
 
     @PostMapping("/atenderCita")
     public ResponseEntity<MensajeDTO<String>> atenderCita(@RequestBody RegistroAtencionDTO registroAtencionDTO) throws Exception {
+
         medicoServicio.atenderCita(registroAtencionDTO);
-        return ResponseEntity.ok().body(new MensajeDTO<>(false, "Atención registrada correctamente"));
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, "Cita atendida correctamente"));
 
     }
 
@@ -45,10 +44,11 @@ public class MedicoController {
     public ResponseEntity<MensajeDTO<String>> agendarDiaLibre(@Valid @RequestBody DiaLibreDTO diaLibreDTO) throws Exception {
 
         medicoServicio.agendarDiaLibre(diaLibreDTO);
-        return ResponseEntity.ok().body(new MensajeDTO<>(false, "Día libre agregado correctamente"));
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, "Día libre agendado correctamente"));
 
     }
-    @GetMapping("/diasLibresActivos/{codigoMedico}")
+
+    @GetMapping("/dias-libres-activos/{codigoMedico}")
     public ResponseEntity<MensajeDTO<Integer>> obtenerDiasLibresActivos(@PathVariable int codigoMedico) {
         medicoServicio.obtenerDiasLibresActivos(codigoMedico);
         return ResponseEntity.ok().body(new MensajeDTO<>(false, codigoMedico));
@@ -73,8 +73,8 @@ public class MedicoController {
 
     @GetMapping("/historial-atencion/{codigoPaciente}")
     public ResponseEntity<MensajeDTO<List<ItemCitaDTO>>> listarHistorialAtencionPaciente(@PathVariable int codigoPaciente) throws Exception {
-        //List<ItemCitaDTO> historialAtencion = medicoServicio.listarHistorialAtencionPaciente(codigoPaciente);
-        return ResponseEntity.ok().body(new MensajeDTO<>(false, medicoServicio.listarHistorialAtencionPaciente(codigoPaciente)));
+        List<ItemCitaDTO> historialAtencion = medicoServicio.listarHistorialAtencionPaciente(codigoPaciente);
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, historialAtencion));
 
     }
 
@@ -90,7 +90,7 @@ public class MedicoController {
         return ResponseEntity.ok().body(new MensajeDTO<>(false, medicoServicio.listarTodos()));
     }
 
-    @GetMapping("/detalle/{codigoMedico}")
+  /*  @GetMapping("/detalle/{codigoMedico}")
     public ResponseEntity<MensajeDTO<DetalleMedicoDTO>> obtenerMedico(@PathVariable int codigoMedico, DetalleMedicoDTO DetalleMedicoDTO) throws Exception {
         medicoServicio.obtenerMedico(codigoMedico);
         return ResponseEntity.ok().body(new MensajeDTO<>(false, DetalleMedicoDTO));
@@ -104,7 +104,7 @@ public class MedicoController {
         return ResponseEntity.ok().body(new MensajeDTO<>(false, "Información del médico editada correctamente"));
 
     }
-
+ */
 }
 
 
