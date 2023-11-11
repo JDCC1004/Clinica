@@ -4,9 +4,7 @@ import co.edu.uniquindio.projectClinica.dto.ItemCitaDTO;
 import co.edu.uniquindio.projectClinica.dto.admin.DetalleMedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 public interface MedicoServicio {
@@ -39,4 +37,6 @@ public interface MedicoServicio {
     int editarInformacion(DetalleMedicoDTO medicoDTO) throws Exception;
 
     boolean verificarDiaLibreMedico(int i, LocalDateTime horario);
+
+    int obtenerDiasLibresActivos(int codigoMedico);
 }

@@ -23,15 +23,6 @@ public class MedicoTest {
     @Autowired
     private MedicoServicio medicoServicio;
 
-    @Test
-    @Sql("classpath:dataset.sql")
-    public void eliminarTest() throws Exception {
-//Se borra por ejemplo el paciente con el código 1
-        medicoServicio.eliminarCuenta(5);
-//Si intentamos buscar un paciente con el código del paciente borrado debemos obtener unaexcepción indicando que ya no existe
-        Assertions.assertThrows(Exception.class, () ->
-                medicoServicio.obtenerMedico(1));
-    }
 
     @Test
     @Sql("classpath:dataset.sql")

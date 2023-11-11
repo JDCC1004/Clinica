@@ -4,17 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4548272-f6bd-4bf6-9846-fb88680826dc" name="Changes" comment="Creación de Medicos">
+    <list default="true" id="f68ac8ae-f7d2-4c5c-bad1-cb15a5aec190" name="Changes" comment="Actualizacion 13/10">
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/controladores/MedicoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/medico/DetalleMedicoDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/BCryptPasswordE.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/controladores/AdministradorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/controladores/AdministradorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/controladores/PacienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/controladores/PacienteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/CitasAdminDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/CitasAdminDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/DetalleMedicoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/dto/admin/DetalleMedicoDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/AdminServicioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/AdminServicioImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/MedicoServicioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/implementacion/MedicoServicioImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/interfaces/AdministradorServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/interfaces/AdministradorServicio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/interfaces/MedicoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/projectClinica/servicios/interfaces/MedicoServicio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/projectClinica/EmailTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/projectClinica/EmailTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/projectClinica/MedicoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/co/edu/uniquindio/projectClinica/MedicoTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,8 +43,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
+        <option value="HTML File" />
+        <option value="Enum" />
         <option value="Record" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -57,13 +58,10 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
-  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
-  <component name="ProjectId" id="2WwiYh8xI8kGSHuxd39tHyKg9vS" />
+  <component name="ProjectId" id="2WeC4XLrKGAs6BY7HzPd9xYLydd" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -81,19 +79,43 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;Daniela&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Samuel/Downloads/Definite Integral Solver&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/danie/IdeaProjects/Clinicaproyecto&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.new.ui&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;880ee35579a90843593311bdf23e83ea&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;ChangesTree.GroupingKeys&quot;: [
+      &quot;directory&quot;,
+      &quot;module&quot;
+    ],
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ],
+    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/&quot;: [
+      &quot;MySQL&quot;
+    ]
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="co.edu.uniquindio.projectClinica.modelo.entidades" />
+      <recent name="co.edu.uniquindio.projectClinica.dto" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/test/resources" />
+    </key>
+  </component>
   <component name="RunManager" selected="Spring Boot.projectApplication">
-    <configuration name="EmailTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="AdministradorTest.eliminarTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -106,7 +128,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;co.edu.uniquindio.projectClinica.EmailTest&quot;" />
+            <option value="&quot;co.edu.uniquindio.projectClinica.AdministradorTest.eliminarTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -117,7 +139,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="MedicoTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="AdministradorTest.responderPQRS" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -130,7 +152,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;co.edu.uniquindio.projectClinica.MedicoTest&quot;" />
+            <option value="&quot;co.edu.uniquindio.projectClinica.AdministradorTest.responderPQRS&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -141,7 +163,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="OrdenesTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="AutenticacionTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -154,7 +176,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;co.edu.uniquindio.projectClinica.OrdenesTest&quot;" />
+            <option value="&quot;co.edu.uniquindio.projectClinica.AutenticacionTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -165,7 +187,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="PacienteTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="AutenticacionTest.loginTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -178,7 +200,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;co.edu.uniquindio.projectClinica.PacienteTest&quot;" />
+            <option value="&quot;co.edu.uniquindio.projectClinica.AutenticacionTest.loginTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -189,7 +211,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="ResultadosTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="EmailTest.enviarEmailTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -202,7 +224,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;co.edu.uniquindio.projectClinica.ResultadosTest&quot;" />
+            <option value="&quot;co.edu.uniquindio.projectClinica.EmailTest.enviarEmailTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -222,126 +244,141 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.EmailTest" />
-        <item itemvalue="Gradle.ResultadosTest" />
-        <item itemvalue="Gradle.PacienteTest" />
-        <item itemvalue="Gradle.OrdenesTest" />
-        <item itemvalue="Gradle.MedicoTest" />
+        <item itemvalue="Gradle.EmailTest.enviarEmailTest" />
+        <item itemvalue="Gradle.AdministradorTest.eliminarTest" />
+        <item itemvalue="Gradle.AdministradorTest.responderPQRS" />
+        <item itemvalue="Gradle.AutenticacionTest.loginTest" />
+        <item itemvalue="Gradle.AutenticacionTest" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b4548272-f6bd-4bf6-9846-fb88680826dc" name="Changes" comment="" />
-      <created>1697650092258</created>
+      <changelist id="f68ac8ae-f7d2-4c5c-bad1-cb15a5aec190" name="Changes" comment="Actualizacion 13/10" />
+      <created>1697083468530</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1697650092258</updated>
-      <workItem from="1697650096393" duration="8682000" />
-      <workItem from="1697663788099" duration="672000" />
-      <workItem from="1697673903187" duration="4651000" />
-      <workItem from="1697680467739" duration="6113000" />
-      <workItem from="1697686623948" duration="102000" />
-      <workItem from="1697686754177" duration="3113000" />
-      <workItem from="1697944860465" duration="6139000" />
-      <workItem from="1697995223853" duration="2924000" />
-      <workItem from="1697998170325" duration="2450000" />
-      <workItem from="1698075825619" duration="3517000" />
-      <workItem from="1698282827827" duration="627000" />
-      <workItem from="1698283545040" duration="65000" />
-      <workItem from="1698329700527" duration="2471000" />
-      <workItem from="1698459002622" duration="279000" />
-      <workItem from="1698677886160" duration="1225000" />
-      <workItem from="1698934589984" duration="91000" />
-      <workItem from="1699201149042" duration="134000" />
-      <workItem from="1699201313685" duration="1454000" />
-      <workItem from="1699238787035" duration="434000" />
-      <workItem from="1699419766871" duration="6761000" />
-      <workItem from="1699478794520" duration="3486000" />
-      <workItem from="1699498766531" duration="1163000" />
-      <workItem from="1699500819360" duration="32000" />
-      <workItem from="1699538894802" duration="5720000" />
-      <workItem from="1699548139506" duration="1585000" />
-      <workItem from="1699567124433" duration="174000" />
-      <workItem from="1699587267208" duration="1800000" />
-      <workItem from="1699628621254" duration="204000" />
-      <workItem from="1699628927323" duration="4147000" />
-      <workItem from="1699647507896" duration="636000" />
+      <updated>1695003748677</updated>
+      <workItem from="1695003749989" duration="13542000" />
+      <workItem from="1695046675383" duration="5445000" />
+      <workItem from="1695088718809" duration="718000" />
+      <workItem from="1695091256964" duration="1079000" />
+      <workItem from="1695262905080" duration="4092000" />
+      <workItem from="1695651174920" duration="4570000" />
+      <workItem from="1695659592434" duration="162000" />
+      <workItem from="1695659796663" duration="483000" />
+      <workItem from="1695854298261" duration="255000" />
+      <workItem from="1695910318121" duration="6013000" />
+      <workItem from="1696041791472" duration="988000" />
+      <workItem from="1696042800929" duration="269000" />
+      <workItem from="1696112538435" duration="113000" />
+      <workItem from="1696120015727" duration="13201000" />
+      <workItem from="1696208577276" duration="88000" />
+      <workItem from="1696256079325" duration="7254000" />
+      <workItem from="1696714236147" duration="14686000" />
+      <workItem from="1696860797920" duration="3712000" />
+      <workItem from="1696866568959" duration="901000" />
+      <workItem from="1696884879268" duration="8079000" />
+      <workItem from="1696907523384" duration="6388000" />
+      <workItem from="1696944502659" duration="4742000" />
+      <workItem from="1696964967915" duration="558000" />
+      <workItem from="1696972139489" duration="491000" />
+      <workItem from="1696972746237" duration="14197000" />
+      <workItem from="1697041657889" duration="3879000" />
+      <workItem from="1697066612539" duration="20055000" />
+      <workItem from="1697154263806" duration="7542000" />
+      <workItem from="1697267757166" duration="47000" />
+      <workItem from="1697267819612" duration="29000" />
+      <workItem from="1697267865450" duration="69000" />
+      <workItem from="1697267949440" duration="2280000" />
+      <workItem from="1697311288139" duration="958000" />
+      <workItem from="1697473919476" duration="1949000" />
+      <workItem from="1697476518058" duration="5537000" />
+      <workItem from="1697575397610" duration="2541000" />
+      <workItem from="1699668834197" duration="4898000" />
     </task>
-    <task id="LOCAL-00001" summary="Corrección">
+    <task id="LOCAL-00001" summary="Actualizacion 25/09">
       <option name="closed" value="true" />
-      <created>1697677156260</created>
+      <created>1695659950568</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1697677156260</updated>
+      <updated>1695659950568</updated>
     </task>
-    <task id="LOCAL-00002" summary="Actualización">
+    <task id="LOCAL-00002" summary="Actualizacion 25/09">
       <option name="closed" value="true" />
-      <created>1697689385093</created>
+      <created>1696885090790</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1697689385093</updated>
+      <updated>1696885090790</updated>
     </task>
-    <task id="LOCAL-00003" summary="Actualización">
+    <task id="LOCAL-00003" summary="Actualizacion 25/09">
       <option name="closed" value="true" />
-      <created>1697772403605</created>
+      <created>1696892760964</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1697772403605</updated>
+      <updated>1696892760964</updated>
     </task>
-    <task id="LOCAL-00004" summary="Actualización">
+    <task id="LOCAL-00004" summary="Actualizacion 25/09">
       <option name="closed" value="true" />
-      <created>1697772613818</created>
+      <created>1696907827724</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1697772613818</updated>
+      <updated>1696907827724</updated>
     </task>
-    <task id="LOCAL-00005" summary="API REST Y CONTROLLER">
+    <task id="LOCAL-00005" summary="Actualizacion 25/09">
       <option name="closed" value="true" />
-      <created>1698459185250</created>
+      <created>1696907946189</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1698459185250</updated>
+      <updated>1696907946189</updated>
     </task>
-    <task id="LOCAL-00006" summary="API REST Y CONTROLLER">
+    <task id="LOCAL-00006" summary="Actualizacion 25/09">
       <option name="closed" value="true" />
-      <created>1699202739063</created>
+      <created>1696908062902</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1699202739063</updated>
+      <updated>1696908062902</updated>
     </task>
-    <task id="LOCAL-00007" summary="Cambios FiltroToken y JWT">
+    <task id="LOCAL-00007" summary="Actualizacion 11/10">
       <option name="closed" value="true" />
-      <created>1699482221443</created>
+      <created>1697071482968</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1699482221443</updated>
+      <updated>1697071482968</updated>
     </task>
-    <task id="LOCAL-00008" summary="Paciente y Administrador Controller">
+    <task id="LOCAL-00008" summary="Actualizacion 11/10">
       <option name="closed" value="true" />
-      <created>1699545765698</created>
+      <created>1697073179299</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1699545765699</updated>
+      <updated>1697073179299</updated>
     </task>
-    <task id="LOCAL-00009" summary="Creación de Medicos">
+    <task id="LOCAL-00009" summary="Actualizacion 11/10">
       <option name="closed" value="true" />
-      <created>1699549680760</created>
+      <created>1697077436232</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1699549680760</updated>
+      <updated>1697077436232</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Actualizacion 13/10">
+      <option name="closed" value="true" />
+      <created>1697254783018</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1697254783018</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -359,13 +396,11 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Corrección" />
-    <MESSAGE value="Actualización" />
-    <MESSAGE value="API REST Y CONTROLLER" />
-    <MESSAGE value="Cambios FiltroToken y JWT" />
-    <MESSAGE value="Paciente y Administrador Controller" />
-    <MESSAGE value="Creación de Medicos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creación de Medicos" />
+    <MESSAGE value="Actualizacion 25/09" />
+    <MESSAGE value="Actualizacion 11/10" />
+    <MESSAGE value="Actualizacion 13/10" />
+    <MESSAGE value="ClinicaApplication" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/projectClinica$projectApplication.ic" NAME="projectApplication Coverage Results" MODIFIED="1695046702166" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

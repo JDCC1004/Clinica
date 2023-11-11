@@ -1,21 +1,19 @@
+
 package co.edu.uniquindio.projectClinica.servicios.implementacion;
 
 import co.edu.uniquindio.projectClinica.dto.ItemCitaDTO;
 import co.edu.uniquindio.projectClinica.dto.admin.DetalleMedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.*;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.EstadoUsuario;
 import co.edu.uniquindio.projectClinica.repositorios.*;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.MedicoServicio;
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -127,6 +125,7 @@ public class MedicoServicioImpl implements MedicoServicio {
     }
 
 
+
     @Override
     public List<ItemCitaDTO> listarHistorialAtencionPaciente(int codigoPaciente) throws Exception {
         List<Cita> historial = citaRepository.obtenerHistorialAtencionPaciente(codigoPaciente);
@@ -202,20 +201,6 @@ public class MedicoServicioImpl implements MedicoServicio {
         );
     }
 
-
-//    @Override
-//    public void eliminarCuenta(int i) throws Exception {
-//        Optional<Cuenta> eliminar = cuentaRepository.findById(i);
-//
-//        if (eliminar.isEmpty()) {
-//            throw new Exception("No existe el medico con el código: " + i);
-//        }
-//
-//        Cuenta buscado = eliminar.get();
-//        buscado.setCodigo(EstadoUsuario.INABILITADO.ordinal());
-//        cuentaRepository.save(buscado);
-//
-//    }
 
 
     @Override
