@@ -40,7 +40,6 @@ public interface CitaRepository extends JpaRepository<Cita, Integer> {
     @Query("select c from Cita c where c.medico.codigo = :codigoMedico and c.estadoCita = :estadoCita")
     List<Cita> obtenerCitasRealizadas(int codigoMedico, Estado_cita estadoCita);
 
-    @Query("select c from Cita c where c.paciente.codigo = :codigoPaciente")
-    List<Cita> obtenerCitasPaciente(int codigoPaciente);
-
+    @Query("select c from Cita c where c.paciente.codigo = :codigoPaciente and c.codigoCita = :codigoCita")
+    List<Cita> obtenerCitasPaciente(int codigoPaciente, int codigoCita);
 }

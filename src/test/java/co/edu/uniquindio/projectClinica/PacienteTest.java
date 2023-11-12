@@ -180,7 +180,7 @@ public class PacienteTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void listarTodosTest() throws Exception {
-        List<DetalleCitaDTO> lista = pacienteServicio.listarCitasPaciente(6);
+        List<DetalleCitaDTO> lista = pacienteServicio.listarCitasPaciente(6, 1);
         lista.forEach(System.out::println);
 
         assertEquals(5, lista.size());

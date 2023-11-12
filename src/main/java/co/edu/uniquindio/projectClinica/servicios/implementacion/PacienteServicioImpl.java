@@ -247,6 +247,7 @@ public class PacienteServicioImpl implements PacienteServicio {
 
                 pqrs.setCodigo(crearPQRSPDTO.codigo());
                 pqrs.setMotivo(crearPQRSPDTO.asunto());
+                pqrs.setTipo(crearPQRSPDTO.tipo());
                 pqrs.setFechaCreacion(LocalDateTime.now());
                 pqrs.setEstadoPQRS(Estado_PQRS.ACTIVO);
 
@@ -284,10 +285,11 @@ public class PacienteServicioImpl implements PacienteServicio {
 
         for (PQRS pqrs : listaPqrs) {
             respuesta.add(new PQRSPacienteDTO(
-                    pqrs.getCodigo(),
+                    pqrs.getCita().getCodigoCita(),
                     pqrs.getCita().getPaciente().getCodigo(),
                     pqrs.getCita().getCodigoCita(),
                     pqrs.getMotivo(),
+                    pqrs.getTipo(),
                     pqrs.getFechaCreacion(),
                     pqrs.getEstadoPQRS()
             ));
@@ -388,7 +390,6 @@ public class PacienteServicioImpl implements PacienteServicio {
         }
     }
 
-
     @Override
     public List<DetalleCitaDTO> listarDetalleConsultasPorPaciente(int codigoPaciente) throws Exception {
         List<Cita> listaDetalles = citaRepository.obtenerCitasPaciente(codigoPaciente, LocalDateTime.now());
@@ -410,10 +411,10 @@ public class PacienteServicioImpl implements PacienteServicio {
 
 
     @Override
-    public List<DetalleCitaDTO> listarCitasPaciente(int codigoPaciente) throws Exception{
-        List<Cita> citas = citaRepository.obtenerCitasPaciente(codigoPaciente);
+    public List<DetalleCitaDTO> listarCitasPaciente(int codigoPaciente, int codigoCita) throws Exception{
+        List<Cita> citas = citaRepository.obtenerCitasPaciente(codigoPaciente, codigoCita);
         if (citas.isEmpty()) {
-            throw new IllegalArgumentException("No hay citas para ese paciente");
+            throw new Exception("No hay citas disponibles");
         }
         List<DetalleCitaDTO> respuesta = new ArrayList<>();
 
