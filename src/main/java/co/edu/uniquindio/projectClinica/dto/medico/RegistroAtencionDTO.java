@@ -1,5 +1,6 @@
 package co.edu.uniquindio.projectClinica.dto.medico;
 
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_cita;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
@@ -21,7 +22,9 @@ public record RegistroAtencionDTO(
         @Length(max = 200)
         String notasMedicas,
         @NotNull
-        LocalDate fechaAtencion
+        LocalDate fechaAtencion,
+        @NotNull
+        Estado_cita estadoCita
 ) {
 
 }

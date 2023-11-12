@@ -1,5 +1,6 @@
 package co.edu.uniquindio.projectClinica.modelo.entidades;
 
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_cita;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,6 +30,7 @@ public class Atencion implements Serializable {
     @Lob
     @Column(nullable = false,length = 50)
     private String notas_medicas;
+    private Estado_cita estado_cita;
 
     @OneToOne
     private Cita codigo_cita;

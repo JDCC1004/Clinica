@@ -38,5 +38,7 @@ public interface MedicoServicio {
 
     boolean verificarDiaLibreMedico(int i, LocalDateTime horario);
 
+    List<DiaLibreDTO> obtenerDiasLibresMedico(int codigoMedico) throws Exception;
+
     int obtenerDiasLibresActivos(int codigoMedico);
 }

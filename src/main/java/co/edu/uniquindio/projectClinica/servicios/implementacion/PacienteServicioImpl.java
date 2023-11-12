@@ -410,13 +410,22 @@ public class PacienteServicioImpl implements PacienteServicio {
 
 
     @Override
-    public List<ItemPacienteDTO> listarTodos() {
-        List<Paciente> pacientes = pacienteRepository.findAll();
-        List<ItemPacienteDTO> respuesta = new ArrayList<>();
+    public List<DetalleCitaDTO> listarCitasPaciente(int codigoPaciente) throws Exception{
+        List<Cita> citas = citaRepository.obtenerCitasPaciente(codigoPaciente);
+        if (citas.isEmpty()) {
+            throw new IllegalArgumentException("No hay citas para ese paciente");
+        }
+        List<DetalleCitaDTO> respuesta = new ArrayList<>();
 
-        for (Paciente paciente : pacientes) {
-            respuesta.add(new ItemPacienteDTO(paciente.getCodigo(), paciente.getCedula(),
-            paciente.getNombre(), paciente.getCiudad()));
+        for (Cita cita : citas) {
+            respuesta.add(new DetalleCitaDTO(
+                    cita.getCodigoCita(),
+                    cita.getEstadoCita(),
+                    cita.getFechaCita(),
+                    cita.getMotivo(),
+                    cita.getMedico().getEspecialidad(),
+                    cita.getMedico().getNombre()
+            ));
         }
         return respuesta;
     }

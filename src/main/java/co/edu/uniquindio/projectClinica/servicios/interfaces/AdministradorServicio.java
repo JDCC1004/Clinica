@@ -1,6 +1,7 @@
 package co.edu.uniquindio.projectClinica.servicios.interfaces;
 
 import co.edu.uniquindio.projectClinica.dto.DetalleMedicoDTO;
+import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.admin.*;
 import co.edu.uniquindio.projectClinica.dto.medico.ItemMedicoDTO;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_PQRS;
@@ -15,9 +16,9 @@ public interface AdministradorServicio {
 
     void eliminarMedico(int codigo) throws Exception;
 
-    List<infoMedicoAdminDTO>listarMedico(String number) throws Exception;
+    List<infoMedicoAdminDTO>listarMedico() throws Exception;
 
-    List<ItemMedicoDTO> listarTodos();
+    List<ItemPacienteDTO> listarPacientes() throws Exception;
 
     DetalleMedicoDTO obtenerMedico(int codigo) throws Exception;
 

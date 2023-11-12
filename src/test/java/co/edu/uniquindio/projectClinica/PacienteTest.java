@@ -179,8 +179,8 @@ public class PacienteTest {
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void listarTodosTest(){
-        List<ItemPacienteDTO> lista = pacienteServicio.listarTodos();
+    public void listarTodosTest() throws Exception {
+        List<DetalleCitaDTO> lista = pacienteServicio.listarCitasPaciente(6);
         lista.forEach(System.out::println);
 
         assertEquals(5, lista.size());

@@ -1,6 +1,7 @@
 package co.edu.uniquindio.projectClinica.servicios.implementacion;
 
 import co.edu.uniquindio.projectClinica.dto.DetalleMedicoDTO;
+import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.ItemMedicoDTO;
 import co.edu.uniquindio.projectClinica.modelo.entidades.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_PQRS;
@@ -21,6 +22,7 @@ import java.util.Optional;
 public class  AdminServicioImpl implements AdministradorServicio {
 
     private final MedicoRepository medicoRepository;
+    private final PacienteRepository pacienteRepository;
     private final PqrsRepository pqrsRepository;
     private final CuentaRepository cuentaRepository;
     private final MensajeRepository mensajeRepository;
@@ -112,7 +114,7 @@ public class  AdminServicioImpl implements AdministradorServicio {
     }
 
     @Override
-    public List<infoMedicoAdminDTO> listarMedico(String number) throws Exception{
+    public List<infoMedicoAdminDTO> listarMedico() throws Exception{
         List<Medico> medicos = medicoRepository.findAll();
 
         if (medicos.isEmpty()){
@@ -135,12 +137,21 @@ public class  AdminServicioImpl implements AdministradorServicio {
     }
 
     @Override
-    public List<ItemMedicoDTO> listarTodos() {
-        List<Medico> medicos = medicoRepository.findAll();
-        List<ItemMedicoDTO> respuesta = new ArrayList<>();
+    public List<ItemPacienteDTO> listarPacientes() throws Exception{
+        List<Paciente> pacientes = pacienteRepository.findAll();
 
-        for (Medico medico : medicos){
-            respuesta.add(new ItemMedicoDTO(medico.getCodigo(), medico.getCedula(), medico.getNombre(), medico.getCiudad()));
+        if (pacientes.isEmpty()){
+            throw new Exception("No hay pacientes registrados");
+        }
+        List<ItemPacienteDTO> respuesta = new ArrayList<>();
+
+        for (Paciente paciente : pacientes){
+            respuesta.add(new ItemPacienteDTO(
+                    paciente.getCodigo(),
+                    paciente.getCedula(),
+                    paciente.getNombre(),
+                    paciente.getCiudad()
+            ));
         }
 
         return respuesta;

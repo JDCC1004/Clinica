@@ -1,6 +1,7 @@
 package co.edu.uniquindio.projectClinica.repositorios;
 
 import co.edu.uniquindio.projectClinica.modelo.entidades.Cita;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_cita;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Medico;
 import co.edu.uniquindio.projectClinica.modelo.entidades.PQRS;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Paciente;
@@ -18,6 +19,9 @@ public interface CitaRepository extends JpaRepository<Cita, Integer> {
     List<Cita> findByMedico(Medico medico);
     List<Cita> findByFechaCita(LocalDateTime fecha);
 
+    @Query("select c from Cita c where c.codigoCita = :codigoCita")
+    Cita obtenerCodigoCita(int codigoCita);
+
     @Query("select c from Cita c where c.fechaCita = :horario and c.medico.codigo = :medicoID")
     Cita obtenerCitasMedico(int medicoID, LocalDateTime horario );
 
@@ -27,13 +31,16 @@ public interface CitaRepository extends JpaRepository<Cita, Integer> {
     @Query("select c from Cita c where c.paciente.codigo = :codigoPaciente and c.fechaCita >= :fechaActual")
     List<Cita> obtenerCitasPaciente(int codigoPaciente, LocalDateTime fechaActual);
 
-    @Query("select c from Cita c where c.medico.codigo = :codigoMedico and c.fechaCita >= :fechaActual")
-    List<Cita> obtenerCitasPendientesMedico(int codigoMedico, LocalDateTime fechaActual);
+    @Query("select c from Cita c where c.medico.codigo = :codigoMedico and c.estadoCita = :estadoCita")
+    List<Cita> obtenerCitasPendientesMedico(int codigoMedico, Estado_cita estadoCita);
 
     @Query("select c from Cita c where c.paciente.codigo = :codigoPaciente ")
     List<Cita> obtenerHistorialAtencionPaciente(int codigoPaciente);
 
-    @Query("select c from Cita c where c.medico.codigo = :codigoMedico and c.fechaCita <= :fechaActual")
-    List<Cita> obtenerCitasRealizadas(int codigoMedico, LocalDateTime fechaActual);
+    @Query("select c from Cita c where c.medico.codigo = :codigoMedico and c.estadoCita = :estadoCita")
+    List<Cita> obtenerCitasRealizadas(int codigoMedico, Estado_cita estadoCita);
+
+    @Query("select c from Cita c where c.paciente.codigo = :codigoPaciente")
+    List<Cita> obtenerCitasPaciente(int codigoPaciente);
 
 }

@@ -5,6 +5,7 @@ import co.edu.uniquindio.projectClinica.dto.ItemCitaDTO;
 import co.edu.uniquindio.projectClinica.dto.DetalleMedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.*;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_cita;
 import co.edu.uniquindio.projectClinica.repositorios.*;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.MedicoServicio;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +30,7 @@ public class MedicoServicioImpl implements MedicoServicio {
 
     @Override
     public List<CitaMedicoDTO> listarCitasPendiente(int codigoMedico) throws Exception {
-        List<Cita> citas = citaRepository.obtenerCitasPendientesMedico(codigoMedico, LocalDateTime.now());
+        List<Cita> citas = citaRepository.obtenerCitasPendientesMedico(codigoMedico, Estado_cita.ASIGNADA);
 
         if (citas.isEmpty()) {
             throw new Exception("No hay citas registradas");
@@ -49,6 +50,24 @@ public class MedicoServicioImpl implements MedicoServicio {
     }
 
     @Override
+    public List<DiaLibreDTO> obtenerDiasLibresMedico(int codigoMedico) throws Exception {
+        List<Dia_libre> diasLibres = DiaLibreRepository.obtenerDiasLibresPendientes(codigoMedico, LocalDate.now());
+
+        if (diasLibres.isEmpty()) {
+            throw new Exception("No hay dias libres registrados");
+        }
+
+        List<DiaLibreDTO> respuesta = new ArrayList<>();
+        for (Dia_libre diaLibre : diasLibres) {
+            respuesta.add(new DiaLibreDTO(
+                    diaLibre.getCodigo(),
+                    diaLibre.getDia()
+            ));
+        }
+        return respuesta;
+    }
+
+    @Override
     public int atenderCita(RegistroAtencionDTO registroAtencionDTO) throws Exception {
         Optional<Cita> optionalCita = citaRepository.findById(registroAtencionDTO.codigoCita());
 
@@ -57,13 +76,14 @@ public class MedicoServicioImpl implements MedicoServicio {
 
         }else {
             Atencion atencion = new Atencion();
-            atencion.getCodigo_cita();
+            //atencion.getCodigo_cita();
             atencion.setDiagnostico(registroAtencionDTO.diagnostico());
             atencion.setTratamiento(registroAtencionDTO.tratamiento());
             atencion.setMedicamento(OrdenesRepository.obtenerMedicamentos(registroAtencionDTO.medicamentos()));
             atencion.setExamenes(ResultadoRepository.obtenerExamenes(registroAtencionDTO.examenes()));
             atencion.setNotas_medicas(registroAtencionDTO.notasMedicas());
             atencion.setFechaCreacion(LocalDate.now());
+            atencion.setEstado_cita(Estado_cita.ARCHIVADA);
 
             Atencion atencionCreada = atencionRepository.save(atencion);
 
@@ -99,10 +119,6 @@ public class MedicoServicioImpl implements MedicoServicio {
         }
     }
 
-    public int obtenerDiasLibresActivos(int codigoMedico) {
-        return DiaLibreRepository.obtenerDiasLibresPendientes(codigoMedico, LocalDate.now());
-    }
-
     public boolean verificarCitaDiaMedico(LocalDate dia, int codigoMedico) {
         boolean verificar = false;
 
@@ -133,6 +149,10 @@ public class MedicoServicioImpl implements MedicoServicio {
         return verificar;
     }
 
+    @Override
+    public int obtenerDiasLibresActivos(int codigoMedico) {
+        return 0;
+    }
 
 
     @Override
@@ -144,6 +164,10 @@ public class MedicoServicioImpl implements MedicoServicio {
         }else {
             for (Cita i : historial) {
                 respuesta.add(new ItemCitaDTO(
+                        i.getCodigoCita(),
+                        i.getPaciente().getCodigo(),
+                        i.getPaciente().getNombre(),
+                        i.getFechaCreacion()
                 ));
             }
         }
@@ -155,7 +179,7 @@ public class MedicoServicioImpl implements MedicoServicio {
     @Override
     public List<ItemCitaDTO> listarCitasRealizadasMedico(int codigoMedico) throws Exception {
 
-        List<Cita> atencion = citaRepository.obtenerCitasRealizadas(codigoMedico, LocalDateTime.now());
+        List<Cita> atencion = citaRepository.obtenerCitasRealizadas(codigoMedico, Estado_cita.ARCHIVADA);
 
 
         if (atencion.isEmpty()) {
@@ -166,6 +190,10 @@ public class MedicoServicioImpl implements MedicoServicio {
 
         for (Cita o : atencion) {
             respuesta.add(new ItemCitaDTO(
+                    o.getCodigoCita(),
+                    o.getPaciente().getCodigo(),
+                    o.getPaciente().getNombre(),
+                    o.getFechaCreacion()
             ));
         }
         return respuesta;
@@ -178,6 +206,10 @@ public class MedicoServicioImpl implements MedicoServicio {
 
         for (Medico medico : medicos) {
             respuesta.add(new ItemCitaDTO(
+                    medico.getCodigo(),
+                    medico.getCodigo(),
+                    medico.getNombre(),
+                    medico.getFechaCreacion()
             ));
         }
         return respuesta;

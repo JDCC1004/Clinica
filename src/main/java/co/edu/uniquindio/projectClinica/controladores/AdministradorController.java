@@ -1,9 +1,11 @@
 package co.edu.uniquindio.projectClinica.controladores;
 
+import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.MensajeDTO;
 import co.edu.uniquindio.projectClinica.dto.admin.CitasAdminDTO;
 import co.edu.uniquindio.projectClinica.dto.DetalleMedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.admin.RegistroMedicoDTO;
+import co.edu.uniquindio.projectClinica.dto.admin.infoMedicoAdminDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.ItemMedicoDTO;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.AdministradorServicio;
 import jakarta.validation.Valid;
@@ -39,8 +41,8 @@ public class AdministradorController {
     }
 
     @GetMapping("listarMedicos")
-    public ResponseEntity<MensajeDTO<List<ItemMedicoDTO>>> listarTodos(){
-        return ResponseEntity.ok().body(new MensajeDTO<>(false, administradorServicio.listarTodos()));
+    public ResponseEntity<MensajeDTO<List<infoMedicoAdminDTO>>> listarMedicos() throws Exception {
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, administradorServicio.listarMedico()));
     }
 
     @GetMapping("listarCitas")
@@ -48,8 +50,8 @@ public class AdministradorController {
         return ResponseEntity.ok().body(new MensajeDTO<>(false, administradorServicio.listarCitas()));
     }
 
-    @GetMapping("/listar")
-    public ResponseEntity<MensajeDTO<List<ItemMedicoDTO>>> listarTodos1() {
-        return ResponseEntity.ok().body(new MensajeDTO<>(false, administradorServicio.listarTodos()));
+    @GetMapping("/listarPacientes")
+    public ResponseEntity<MensajeDTO<List<ItemPacienteDTO>>> listarPacientes() throws Exception {
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, administradorServicio.listarPacientes()));
     }
 }

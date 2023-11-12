@@ -100,7 +100,7 @@ public class AdministradorTest {
     @Sql("classpath:dataset.sql")
     public void  listarMedicosTest() throws Exception {
 
-        List<infoMedicoAdminDTO> medicos = administradorServicio.listarMedico("16");
+        List<infoMedicoAdminDTO> medicos = administradorServicio.listarMedico();
         medicos.forEach(System.out::println);
         Assertions.assertEquals(5, medicos.size());
     }

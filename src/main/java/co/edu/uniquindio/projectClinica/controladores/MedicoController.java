@@ -1,5 +1,6 @@
 package co.edu.uniquindio.projectClinica.controladores;
 
+import co.edu.uniquindio.projectClinica.dto.DetalleMedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.ItemCitaDTO;
 import co.edu.uniquindio.projectClinica.dto.MensajeDTO;
 //import co.edu.uniquindio.projectClinica.dto.admin.DetalleMedicoDTO;
@@ -14,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -26,10 +26,17 @@ public class MedicoController {
 
     @GetMapping("/citasPendientes/{codigoMedico}")
     public ResponseEntity<MensajeDTO<List<CitaMedicoDTO>>> listarCitasPendientes(@PathVariable int codigoMedico) throws Exception {
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, medicoServicio.listarCitasPendiente(codigoMedico)));
+    }
 
+    @GetMapping("/citas-realizadas/{codigoMedico}")
+    public ResponseEntity<MensajeDTO<List<ItemCitaDTO>>> listarCitasRealizadasMedico(@PathVariable int codigoMedico) throws Exception {
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, medicoServicio.listarCitasRealizadasMedico(codigoMedico)));
+    }
 
-            return ResponseEntity.ok().body(new MensajeDTO<>(false, medicoServicio.listarCitasPendiente(codigoMedico)));
-
+    @GetMapping("/diasLibresActivos/{codigoMedico}")
+    public ResponseEntity<MensajeDTO<List<DiaLibreDTO>>> obtenerDiasLibresActivos(@PathVariable int codigoMedico) throws Exception {
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, medicoServicio.obtenerDiasLibresMedico(codigoMedico)));
     }
 
     @PostMapping("/atenderCita")
@@ -48,14 +55,7 @@ public class MedicoController {
 
     }
 
-    @GetMapping("/dias-libres-activos/{codigoMedico}")
-    public ResponseEntity<MensajeDTO<Integer>> obtenerDiasLibresActivos(@PathVariable int codigoMedico) {
-        medicoServicio.obtenerDiasLibresActivos(codigoMedico);
-        return ResponseEntity.ok().body(new MensajeDTO<>(false, codigoMedico));
-
-    }
-
-    @GetMapping("/verificar-cita/{codigoMedico}")
+    @GetMapping("/verificarCita/{codigoMedico}")
     public ResponseEntity<MensajeDTO<Integer>> verificarCitaDiaMedico(@RequestParam("dia") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dia,
                                                                       @PathVariable int codigoMedico) {
       //  medicoServicio.verificarDiaLibreMedico(codigoMedico, );
@@ -64,11 +64,9 @@ public class MedicoController {
     }
 
     @PostMapping("/verificar-dia-libre/{medicoId}")
-    public ResponseEntity<MensajeDTO<Integer>> verificarDiaLibreMedico(@PathVariable int medicoId,
-                                                                       @RequestParam("fechaCita") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDate dia) {
+    public ResponseEntity<MensajeDTO<Integer>> verificarDiaLibreMedico(@PathVariable int medicoId, @RequestParam("fechaCita") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDate dia) {
       //  medicoServicio.verificarDiaLibreMedico(medicoId, 2023, 10, 11, 12, 9);
         return ResponseEntity.ok().body(new MensajeDTO<>(false, medicoId));
-
     }
 
     @GetMapping("/historial-atencion/{codigoPaciente}")
@@ -78,45 +76,19 @@ public class MedicoController {
 
     }
 
-    @GetMapping("/citas-realizadas/{codigoMedico}")
-    public ResponseEntity<MensajeDTO<Integer>> listarCitasRealizadasMedico(@PathVariable int codigoMedico) throws Exception {
-        medicoServicio.listarCitasRealizadasMedico(codigoMedico);
-        return ResponseEntity.ok().body(new MensajeDTO<>(false, codigoMedico));
-    }
-
     @GetMapping("/listar")
     public ResponseEntity<MensajeDTO<List<ItemCitaDTO>>> listarTodos() {
-
         return ResponseEntity.ok().body(new MensajeDTO<>(false, medicoServicio.listarTodos()));
     }
 
-  /*  @GetMapping("/detalle/{codigoMedico}")
-    public ResponseEntity<MensajeDTO<DetalleMedicoDTO>> obtenerMedico(@PathVariable int codigoMedico, DetalleMedicoDTO DetalleMedicoDTO) throws Exception {
-        medicoServicio.obtenerMedico(codigoMedico);
-        return ResponseEntity.ok().body(new MensajeDTO<>(false, DetalleMedicoDTO));
-
+   @GetMapping("/detalle/{codigoMedico}")
+    public ResponseEntity<MensajeDTO<DetalleMedicoDTO>> verDetalle(@PathVariable int codigoMedico) throws Exception {
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, medicoServicio.obtenerMedico(codigoMedico)));
     }
 
-    @PutMapping("/editar-informacion")
+    @PutMapping("/editarInformacion")
     public ResponseEntity<MensajeDTO<String>> editarInformacion(@RequestBody DetalleMedicoDTO medicoDTO) throws Exception {
-
         medicoServicio.editarInformacion(medicoDTO);
-        return ResponseEntity.ok().body(new MensajeDTO<>(false, "Información del médico editada correctamente"));
-
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, "Cuenta editada correctamente"));
     }
- */
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
