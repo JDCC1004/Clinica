@@ -49,7 +49,7 @@ public interface PacienteServicio {
 
     List<DetalleCitaDTO> listarDetalleConsultasPorPaciente(int pacienteId) throws Exception;
 
-    List<DetalleCitaDTO> listarCitasPaciente(int codigoPaciente, int codigoCita) throws Exception;
+    List<DetalleCitaDTO> listarCitasPaciente(int codigoPaciente) throws Exception;
 
 }
 

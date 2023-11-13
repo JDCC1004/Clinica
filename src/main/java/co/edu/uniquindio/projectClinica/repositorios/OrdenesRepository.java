@@ -13,6 +13,6 @@ public interface OrdenesRepository extends JpaRepository<OrdenesMedicamentos, In
         return null;
     }
 
-    @Query ("select o from OrdenesMedicamentos o where o.atencionMedica.codigo_cita.paciente.codigo = :codigoPaciente")
+    @Query ("select o from OrdenesMedicamentos o where o.atencionMedica.codigoCita.paciente.codigo = :codigoPaciente")
     List<OrdenesMedicamentos> listarOrdenesMedicamentos(int codigoPaciente);
 }

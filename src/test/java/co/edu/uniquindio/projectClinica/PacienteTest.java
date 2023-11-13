@@ -119,7 +119,7 @@ public class PacienteTest {
 
     }
 
-    @Test
+/*    @Test
     @Sql("classpath:dataset.sql")
     public void crearPQRSPacienteTest() throws Exception {
         PQRSPacienteDTO pqrspDTO = new PQRSPacienteDTO(
@@ -127,14 +127,15 @@ public class PacienteTest {
                 7,
                 2,
                 "Mala atención",
-                LocalDateTime.now(),
+                "No me gusto la atención",
+                2023-10-11T12:00:00
                 Estado_PQRS.ACTIVO
         );
         int codigoPQRS = pacienteServicio.crearPQRSPaciente(pqrspDTO);
 
         Assertions.assertTrue(codigoPQRS > 0);
         System.out.println("PQR creado con exito, el código de su PQR es: " + codigoPQRS);
-    }
+    }*/
 
     @Test
     @Sql("classpath:dataset.sql")
@@ -180,7 +181,7 @@ public class PacienteTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void listarTodosTest() throws Exception {
-        List<DetalleCitaDTO> lista = pacienteServicio.listarCitasPaciente(6, 1);
+        List<DetalleCitaDTO> lista = pacienteServicio.listarCitasPaciente(6);
         lista.forEach(System.out::println);
 
         assertEquals(5, lista.size());

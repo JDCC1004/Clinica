@@ -1,5 +1,6 @@
 package co.edu.uniquindio.projectClinica.dto.medico;
 
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_cita;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
@@ -21,6 +22,7 @@ public record CitaMedicoDTO(
         @Length(max = 200, message = "El motivo de la cita no puede superar los 200 caracteres")
         String motivo,
         @NotNull
-        LocalDateTime fechaCita
+        LocalDateTime fechaCita,
+        Estado_cita estadoCita
 ) {
 }

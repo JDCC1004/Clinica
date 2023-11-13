@@ -33,7 +33,7 @@ public class Cita implements Serializable {
     @Column(nullable = false)
     private Estado_cita estadoCita;
 
-    @OneToOne(mappedBy = "codigo_cita")
+    @OneToOne(mappedBy = "codigoCita")
     private Atencion atencion;
 
     @ManyToOne

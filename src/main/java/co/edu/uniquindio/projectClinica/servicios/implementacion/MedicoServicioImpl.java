@@ -167,7 +167,8 @@ public class MedicoServicioImpl implements MedicoServicio {
                         i.getCodigoCita(),
                         i.getPaciente().getCodigo(),
                         i.getPaciente().getNombre(),
-                        i.getFechaCreacion()
+                        i.getFechaCreacion(),
+                        i.getEstadoCita()
                 ));
             }
         }
@@ -193,27 +194,29 @@ public class MedicoServicioImpl implements MedicoServicio {
                     o.getCodigoCita(),
                     o.getPaciente().getCodigo(),
                     o.getPaciente().getNombre(),
-                    o.getFechaCreacion()
+                    o.getFechaCreacion(),
+                    o.getEstadoCita()
             ));
         }
         return respuesta;
     }
 
-    @Override
-    public List<ItemCitaDTO> listarTodos() {
-        List<Medico> medicos = medicoRepository.findAll();
-        List<ItemCitaDTO> respuesta = new ArrayList<>();
-
-        for (Medico medico : medicos) {
-            respuesta.add(new ItemCitaDTO(
-                    medico.getCodigo(),
-                    medico.getCodigo(),
-                    medico.getNombre(),
-                    medico.getFechaCreacion()
-            ));
-        }
-        return respuesta;
-    }
+//    @Override
+//    public List<ItemCitaDTO> listarTodos() {
+//        List<Medico> medicos = medicoRepository.findAll();
+//        List<ItemCitaDTO> respuesta = new ArrayList<>();
+//
+//        for (Medico medico : medicos) {
+//            respuesta.add(new ItemCitaDTO(
+//                    medico.getCodigo(),
+//                    medico.getCodigo(),
+//                    medico.getNombre(),
+//                    medico.getFechaCreacion()
+//
+//            ));
+//        }
+//        return respuesta;
+//    }
 
     @Override
     public DetalleMedicoDTO obtenerMedico(int codigo) throws Exception {

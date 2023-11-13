@@ -24,7 +24,7 @@ public class MedicoTest {
     private MedicoServicio medicoServicio;
 
 
-    @Test
+/*    @Test
     @Sql("classpath:dataset.sql")
     public void listarTest() {
 //Obtenemos la lista de todos los pacientes
@@ -32,7 +32,7 @@ public class MedicoTest {
         lista.forEach(System.out::println);
 //Si en el dataset creamos 2 pacientes, entonces el tamaño de la lista debe ser 2
         Assertions.assertEquals(5, lista.size());
-    }
+    }*/
 
     @Test
     @Sql("classpath:dataset.sql")

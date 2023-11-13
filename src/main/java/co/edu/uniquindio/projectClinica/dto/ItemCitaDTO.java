@@ -6,6 +6,7 @@ public record ItemCitaDTO(
         int codigo,
         int codigoPaciente,
         String nombrePaciente,
-        LocalDateTime fecha
+        LocalDateTime fecha,
+        Estado_cita estadoCita
 ) {
 }

@@ -242,7 +242,8 @@ public class PacienteServicioImpl implements PacienteServicio {
 
             if(!verificarExisteCita(crearPQRSPDTO.codigoCita())){
                 throw new Exception("No existe una cita con el código " + crearPQRSPDTO.codigoCita());
-            }else{
+            }else {
+
                 PQRS pqrs = new PQRS();
 
                 pqrs.setCodigo(crearPQRSPDTO.codigo());
@@ -411,8 +412,8 @@ public class PacienteServicioImpl implements PacienteServicio {
 
 
     @Override
-    public List<DetalleCitaDTO> listarCitasPaciente(int codigoPaciente, int codigoCita) throws Exception{
-        List<Cita> citas = citaRepository.obtenerCitasPaciente(codigoPaciente, codigoCita);
+    public List<DetalleCitaDTO> listarCitasPaciente(int codigoPaciente) throws Exception{
+        List<Cita> citas = citaRepository.obtenerCitasPaciente(codigoPaciente);
         if (citas.isEmpty()) {
             throw new Exception("No hay citas disponibles");
         }
