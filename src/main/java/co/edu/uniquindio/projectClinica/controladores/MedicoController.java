@@ -91,4 +91,5 @@ public class MedicoController {
         medicoServicio.editarInformacion(medicoDTO);
         return ResponseEntity.ok().body(new MensajeDTO<>(false, "Cuenta editada correctamente"));
     }
+
 }

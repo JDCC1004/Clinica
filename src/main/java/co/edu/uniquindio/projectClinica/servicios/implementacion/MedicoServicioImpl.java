@@ -43,7 +43,8 @@ public class MedicoServicioImpl implements MedicoServicio {
                     c.getCodigoCita(),
                     c.getPaciente().getNombre(),
                     c.getMotivo(),
-                    c.getFechaCita()
+                    c.getFechaCita(),
+                    c.getEstadoCita()
             ));
         }
         return respuesta;
@@ -69,12 +70,17 @@ public class MedicoServicioImpl implements MedicoServicio {
 
     @Override
     public int atenderCita(RegistroAtencionDTO registroAtencionDTO) throws Exception {
-        Optional<Cita> optionalCita = citaRepository.findById(registroAtencionDTO.codigoCita());
 
-        if (optionalCita.isEmpty()) {
+        if (!verificarExisteCita(registroAtencionDTO.codigoCita())) {
             throw new Exception("No hay citas ");
 
         }else {
+            Cita cita = citaRepository.obtenerCodigoCita(registroAtencionDTO.codigoCita());
+
+
+            if (cita.getEstadoCita() == Estado_cita.PENDIENTE) {
+                throw new Exception("La cita no está en estado pendiente para ser atendida.");
+            }
             Atencion atencion = new Atencion();
             //atencion.getCodigo_cita();
             atencion.setDiagnostico(registroAtencionDTO.diagnostico());
@@ -85,11 +91,22 @@ public class MedicoServicioImpl implements MedicoServicio {
             atencion.setFechaCreacion(LocalDate.now());
             atencion.setEstado_cita(Estado_cita.ARCHIVADA);
 
+            cita.setEstadoCita(Estado_cita.ARCHIVADA);
+            citaRepository.save(cita);
+
+            atencion.setCodigoCita(cita);
+
             Atencion atencionCreada = atencionRepository.save(atencion);
 
-            return atencionCreada.getCodigo();
+
+
+            return  atencionCreada.getCodigo();
         }
 
+    }
+
+    public boolean verificarExisteCita(int codigo){
+        return citaRepository.existsById(codigo);
     }
 
     @Override

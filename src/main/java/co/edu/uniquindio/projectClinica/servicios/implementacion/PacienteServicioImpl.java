@@ -40,14 +40,14 @@ public class PacienteServicioImpl implements PacienteServicio {
     @Override
     public int registrarse(PacienteDTO pacienteDTO) throws Exception {
 
-        if(estaRepetidaCedula(pacienteDTO.cedula())){
+        if (estaRepetidaCedula(pacienteDTO.cedula())) {
             throw new Exception("Ya existe un paciente con la cedula " + pacienteDTO.cedula());
-        }else{
+        } else {
             Paciente paciente = new Paciente();
 
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
             String passwordEncriptada = passwordEncoder.encode(pacienteDTO.password());
-            paciente.setPassword( passwordEncriptada );
+            paciente.setPassword(passwordEncriptada);
 
             paciente.setCorreo(pacienteDTO.correo());
 
@@ -69,18 +69,18 @@ public class PacienteServicioImpl implements PacienteServicio {
 
     }
 
-    private boolean estaRepetidaCedula(String cedula){
+    private boolean estaRepetidaCedula(String cedula) {
         return pacienteRepository.findByCedula(cedula) != null;
     }
 
-    private boolean estaRepetidoCorreo(String correo){
+    private boolean estaRepetidoCorreo(String correo) {
         return pacienteRepository.findByCorreo(correo) != null;
     }
 
     @Override
     public int editarPerfil(DetallePacienteDTO pacienteDTO) throws Exception {
         Optional<Paciente> pacienteBuscado = pacienteRepository.findById(pacienteDTO.codigo());
-        if (pacienteBuscado.isEmpty()){
+        if (pacienteBuscado.isEmpty()) {
             throw new Exception("No existe un paciente con el codigo " + pacienteDTO.codigo());
         }
 
@@ -107,7 +107,7 @@ public class PacienteServicioImpl implements PacienteServicio {
     public void eliminarCuenta(int codigo) throws Exception {
         Optional<Paciente> pacienteBuscado = pacienteRepository.findById(codigo);
 
-        if (pacienteBuscado.isEmpty()){
+        if (pacienteBuscado.isEmpty()) {
             throw new Exception("No existe un paciente con el codigo " + codigo);
         }
 
@@ -118,7 +118,7 @@ public class PacienteServicioImpl implements PacienteServicio {
     public DetallePacienteDTO verDetallePaciente(int codigo) throws Exception {
         Optional<Paciente> pacienteBuscado = pacienteRepository.findById(codigo);
 
-        if (pacienteBuscado.isEmpty()){
+        if (pacienteBuscado.isEmpty()) {
             throw new Exception("No existe un paciente con el codigo " + codigo);
         }
 
@@ -138,13 +138,12 @@ public class PacienteServicioImpl implements PacienteServicio {
                 paciente.getCorreo());
     }
 
-    public List<Medico> obtenerMedicosPorEspecialidad(Especialidad especialidad){
+    public List<Medico> obtenerMedicosPorEspecialidad(Especialidad especialidad) {
 
         List<Medico> medicos = medicoRepository.findByEspecialidad(especialidad);
 
         return null;
     }
-
 
 
     @Override
@@ -153,20 +152,21 @@ public class PacienteServicioImpl implements PacienteServicio {
         Optional<Cuenta> cuentaBuscada = cuentaRepository.findByCorreo(nuevaPasswordDTO.correo());
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-        if(cuentaBuscada.isEmpty()){
+        if (cuentaBuscada.isEmpty()) {
             throw new Exception("No existe una cuenta con el correo " + nuevaPasswordDTO.correo());
-        }else{
+        } else {
             Cuenta cuenta = cuentaBuscada.get();
 
-            if( passwordEncoder.matches(nuevaPasswordDTO.passwordAntigua(), cuenta.getPassword()) ){
-                cuenta.setPassword( passwordEncoder.encode( nuevaPasswordDTO.passwordNueva())) ;
+            if (passwordEncoder.matches(nuevaPasswordDTO.passwordAntigua(), cuenta.getPassword())) {
+                cuenta.setPassword(passwordEncoder.encode(nuevaPasswordDTO.passwordNueva()));
                 cuentaRepository.save(cuenta);
                 return "Contraseña actualizada correctamente";
-            }else{
+            } else {
                 throw new Exception("La contraseña actual no coincide con la contraseña ingresada");
             }
         }
     }
+
     @Override
     public String cambiarPasswordOlvidada(NuevaPasswordOlvidadaDTO nuevaPasswordOlvidadaDTO) throws Exception {
         Optional<Cuenta> cuentaBuscada = cuentaRepository.findByCorreo(nuevaPasswordOlvidadaDTO.correo());
@@ -179,7 +179,7 @@ public class PacienteServicioImpl implements PacienteServicio {
             cuenta.setPassword(passwordEncoder.encode(nuevaPasswordOlvidadaDTO.passwordNueva()));
             cuentaRepository.save(cuenta);
 
-            return "Contraseña actualizada correctamente" ;
+            return "Contraseña actualizada correctamente";
         }
     }
 
@@ -195,11 +195,11 @@ public class PacienteServicioImpl implements PacienteServicio {
 
         if (cantidadCitasPaciente >= maxCitasPermitidas) {
             throw new Exception("El paciente ya tiene " + maxCitasPermitidas + " citas programadas.");
-        }else{
+        } else {
 
-            if(medicoServicio.verificarDiaLibreMedico(agendarCitaDTO.codigoMedico(), agendarCitaDTO.horario())){
+            if (medicoServicio.verificarDiaLibreMedico(agendarCitaDTO.codigoMedico(), agendarCitaDTO.horario())) {
                 throw new Exception("El médico está libre ese día");
-            }else{
+            } else {
                 Cita cita = new Cita();
                 cita.setFechaCreacion(LocalDateTime.now());
                 cita.setFechaCita(agendarCitaDTO.horario());
@@ -232,13 +232,13 @@ public class PacienteServicioImpl implements PacienteServicio {
     @Override
     public int crearPQRSPaciente(PQRSPacienteDTO crearPQRSPDTO) throws Exception {
 
-        if(obtenerCantidadPqrsActivas(crearPQRSPDTO.codigoPaciente()) >= 3){
+        if (obtenerCantidadPqrsActivas(crearPQRSPDTO.codigoPaciente()) >= 3) {
             throw new Exception("El paciente ya tiene 3 PQRS activas");
-        }else{
+        } else {
 
-            if(!verificarExisteCita(crearPQRSPDTO.codigoCita())){
+            if (!verificarExisteCita(crearPQRSPDTO.codigoCita())) {
                 throw new Exception("No existe una cita con el código " + crearPQRSPDTO.codigoCita());
-            }else {
+            } else {
 
                 PQRS pqrs = new PQRS();
 
@@ -247,6 +247,10 @@ public class PacienteServicioImpl implements PacienteServicio {
                 pqrs.setTipo(crearPQRSPDTO.tipo());
                 pqrs.setFechaCreacion(LocalDateTime.now());
                 pqrs.setEstadoPQRS(Estado_PQRS.ACTIVO);
+
+                Cita cita = citaRepository.obtenerCodigoCita(crearPQRSPDTO.codigoCita());
+
+                pqrs.setCita(cita);
 
                 PQRS pqrsCreado = pqrsRepository.save(pqrs);
 
@@ -259,7 +263,7 @@ public class PacienteServicioImpl implements PacienteServicio {
         }
     }
 
-    public boolean verificarExisteCita(int codigo){
+    public boolean verificarExisteCita(int codigo) {
         return citaRepository.existsById(codigo);
     }
 
@@ -304,10 +308,12 @@ public class PacienteServicioImpl implements PacienteServicio {
             throw new Exception("No existe un PQRS con el código: " + respuestaPQRSPDTO.codigoPQRS());
         }
 
+        PQRS pqrs = opcionalPQRS.get();
+
         Optional<Cuenta> optionalCuenta = cuentaRepository.findById(respuestaPQRSPDTO.codigoAdmin());
 
         if (optionalCuenta.isEmpty()) {
-            throw new Exception("No existe le cuenta con el código: " + respuestaPQRSPDTO.codigoPQRS());
+            throw new Exception("No existe la cuenta con el código: " + respuestaPQRSPDTO.codigoPQRS());
         }
 
         Mensaje mensajeNuevo = new Mensaje();
@@ -345,6 +351,7 @@ public class PacienteServicioImpl implements PacienteServicio {
         }
         return respuesta;
     }
+
     @Override
      public List<ItemCitaDTO> filtrarCitasPacientePorMedico(int codigoMedico, int codigoPaciente) throws Exception {
         List<Cita> citasMedico = citaRepository.findAllByMedico_CodigoAndPaciente_Codigo(codigoMedico, codigoPaciente);
@@ -387,14 +394,16 @@ public class PacienteServicioImpl implements PacienteServicio {
     }
 
     @Override
-    public List<Cita> filtrarCitasPorFecha(LocalDateTime fecha) throws Exception {
-        List<Cita> respuesta = citaRepository.findByFechaCita(fecha);
+    public List<Cita> filtrarCitasPorFecha(LocalDateTime fecha, int codigoPaciente) throws Exception {
         if (fecha == null) {
             throw new IllegalArgumentException("La fecha no puede ser nula.");
-        }else {
+        } else {
+            List<Cita> respuesta = citaRepository.obtenerCitasPaciente(codigoPaciente, fecha);
+
             if (respuesta.isEmpty()) {
-                throw new Exception("no hay citas para esa fecha");
+                throw new Exception("No hay citas para esa fecha y paciente.");
             }
+
             return respuesta;
         }
     }
@@ -404,9 +413,9 @@ public class PacienteServicioImpl implements PacienteServicio {
 
         Cita citaObtenida = citaRepository.findById(codigoCita).orElse(null);
 
-        if(citaObtenida == null){
+        if (citaObtenida == null) {
             throw new Exception("No existe una cita con el codigo " + codigoCita);
-        }else{
+        } else {
             return new DetalleCitaDTO(
                     citaObtenida.getCodigoCita(),
                     citaObtenida.getEstadoCita(),
@@ -439,7 +448,7 @@ public class PacienteServicioImpl implements PacienteServicio {
 
 
     @Override
-    public List<DetalleCitaDTO> listarCitasPaciente(int codigoPaciente) throws Exception{
+    public List<DetalleCitaDTO> listarCitasPaciente(int codigoPaciente) throws Exception {
         List<Cita> citas = citaRepository.obtenerCitasPaciente(codigoPaciente);
         if (citas.isEmpty()) {
             throw new Exception("No hay citas disponibles");

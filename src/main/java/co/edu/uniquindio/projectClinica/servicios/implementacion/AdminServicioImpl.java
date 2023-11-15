@@ -9,12 +9,14 @@ import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_PQRS;
 import co.edu.uniquindio.projectClinica.repositorios.*;
 import co.edu.uniquindio.projectClinica.dto.admin.*;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.AdministradorServicio;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -161,6 +163,34 @@ public class  AdminServicioImpl implements AdministradorServicio {
     }
 
     @Override
+    public List<ConsultaDTO> listarConsultas(int codigoMedico) throws Exception {
+        Optional<Medico> medicoOptional = medicoRepository.findById(codigoMedico);
+
+        if (medicoOptional.isEmpty()) {
+            throw new Exception("No existe un médico con el código: " + codigoMedico);
+        }
+
+        Medico medico = medicoOptional.get();
+        List<Cita> citasMedico = citaRepository.findByMedico(medico);
+
+        if (citasMedico.isEmpty()) {
+            throw new Exception("El médico con el código " + codigoMedico + " no tiene consultas registradas");
+        }
+
+        List<ConsultaDTO> consultas = new ArrayList<>();
+
+        for (Cita cita : citasMedico) {
+            consultas.add(new ConsultaDTO(
+                    medico.getNombre(),
+                    cita.getFechaCita(),
+                    cita.getPaciente().getNombre()
+            ));
+        }
+
+        return consultas;
+    }
+
+    @Override
     public DetalleMedicoDTO obtenerMedico(int codigo) throws Exception {
         Optional<Medico> opcional = medicoRepository.findById(codigo);
 
@@ -287,6 +317,7 @@ public class  AdminServicioImpl implements AdministradorServicio {
         }
 
         PQRS pqrs = opcional.get();
+
         pqrs.setEstadoPQRS(estadoPqrs);
 
         pqrsRepository.save(pqrs);

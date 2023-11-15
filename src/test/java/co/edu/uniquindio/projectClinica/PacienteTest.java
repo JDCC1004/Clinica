@@ -2,6 +2,7 @@ package co.edu.uniquindio.projectClinica;
 
 import co.edu.uniquindio.projectClinica.dto.CitaPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.DetalleCitaDTO;
+import co.edu.uniquindio.projectClinica.dto.ItemCitaDTO;
 import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.DetallePacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.*;
@@ -114,7 +115,7 @@ public class PacienteTest {
         LocalDateTime fecha = LocalDateTime.of(2023,9,15,15,0,0);
         int codigoPaciente = 6;
 
-        List<Cita> citas = pacienteServicio.filtrarCitasPorFecha(fecha);
+        List<Cita> citas = pacienteServicio.filtrarCitasPorFecha(fecha, codigoPaciente);
 
         assertEquals(2, citas.size());
 

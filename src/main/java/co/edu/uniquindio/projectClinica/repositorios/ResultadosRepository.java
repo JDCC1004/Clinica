@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface ResultadosRepository extends JpaRepository<ResultadoExamenes, Integer> {
-    @Query("select r from ResultadoExamenes r where r.atencionMedica.codigo_cita.paciente.codigo = :codigoPaciente")
+    @Query("select r from ResultadoExamenes r where r.atencionMedica.codigoCita.paciente.codigo = :codigoPaciente")
     List<ResultadoExamenes> listarResultadosExamenes(int codigoPaciente);
 }
 

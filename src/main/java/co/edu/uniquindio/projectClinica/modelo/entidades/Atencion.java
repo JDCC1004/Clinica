@@ -33,7 +33,7 @@ public class Atencion implements Serializable {
     private Estado_cita estado_cita;
 
     @OneToOne
-    private Cita codigo_cita;
+    private Cita codigoCita;
 
     @OneToMany(mappedBy = "atencionMedica")
     private List<ResultadoExamenes> examenes;

@@ -1,6 +1,7 @@
 package co.edu.uniquindio.projectClinica.servicios.interfaces;
 
 import co.edu.uniquindio.projectClinica.dto.*;
+import co.edu.uniquindio.projectClinica.dto.admin.DetallePQRSDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.DetallePacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Cita;
@@ -53,6 +54,10 @@ public interface PacienteServicio {
     List<DetalleCitaDTO> listarDetalleConsultasPorPaciente(int pacienteId) throws Exception;
 
     List<DetalleCitaDTO> listarCitasPaciente(int codigoPaciente) throws Exception;
+
+    DetallePQRSDTO verDetallesPQRS(int codigo) throws Exception;
+
+
 
 }
 
