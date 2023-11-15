@@ -1,6 +1,7 @@
 package co.edu.uniquindio.projectClinica.controladores;
 
 import co.edu.uniquindio.projectClinica.dto.DetalleCitaDTO;
+import co.edu.uniquindio.projectClinica.dto.ItemCitaDTO;
 import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.MensajeDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.*;

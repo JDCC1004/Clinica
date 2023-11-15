@@ -101,7 +101,8 @@ public class PacienteTest {
     @Sql("classpath:dataset.sql")
     public void filtrarCitasPorMedicoTest() throws Exception {
         int codigoMedico = 11;
-        List<Cita> citasMedico = pacienteServicio.filtrarCitasPorMedico(codigoMedico);
+        int codigoPaciente = 15;
+        List<ItemCitaDTO> citasMedico = pacienteServicio.filtrarCitasPacientePorMedico(codigoMedico, codigoPaciente);
         Assertions.assertNotNull(citasMedico);
         Assertions.assertTrue(citasMedico.size() > 0);
     }
@@ -111,6 +112,7 @@ public class PacienteTest {
     public void filtrarCitasPorFecha() throws Exception {
 
         LocalDateTime fecha = LocalDateTime.of(2023,9,15,15,0,0);
+        int codigoPaciente = 6;
 
         List<Cita> citas = pacienteServicio.filtrarCitasPorFecha(fecha);
 

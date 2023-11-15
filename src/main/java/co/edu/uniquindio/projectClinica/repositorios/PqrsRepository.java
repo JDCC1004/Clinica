@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface PqrsRepository extends JpaRepository<PQRS, Integer> {
     List<PQRS> findAll();
-    Optional<PQRS> findById(int codigo);
+    //Optional<PQRS> findById(int codigo);
 
 
     @Query("select count(m) from PQRS m where m.cita.paciente.codigo = :codigoPaciente")

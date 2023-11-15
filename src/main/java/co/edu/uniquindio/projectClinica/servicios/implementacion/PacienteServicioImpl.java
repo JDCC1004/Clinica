@@ -1,9 +1,8 @@
 package co.edu.uniquindio.projectClinica.servicios.implementacion;
 
-import co.edu.uniquindio.projectClinica.dto.CitaPacienteDTO;
-import co.edu.uniquindio.projectClinica.dto.DetalleCitaDTO;
-import co.edu.uniquindio.projectClinica.dto.EmailDTO;
-import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
+import co.edu.uniquindio.projectClinica.dto.*;
+import co.edu.uniquindio.projectClinica.dto.admin.DetallePQRSDTO;
+import co.edu.uniquindio.projectClinica.dto.admin.MedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.DetallePacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.*;
@@ -230,9 +229,6 @@ public class PacienteServicioImpl implements PacienteServicio {
         }
     }
 
-
-
-
     @Override
     public int crearPQRSPaciente(PQRSPacienteDTO crearPQRSPDTO) throws Exception {
 
@@ -254,7 +250,9 @@ public class PacienteServicioImpl implements PacienteServicio {
 
                 PQRS pqrsCreado = pqrsRepository.save(pqrs);
 
-                enviarCorreoAdministradores();
+                /**EmailDTO emailAdmin = new EmailDTO("PQRS", "Ha recibido un mensaje ", pqrsCreado.getCita().getPaciente().getCorreo());
+
+                emailServicio.enviarEmail(emailAdmin);*/
 
                 return pqrsCreado.getCodigo();
             }
@@ -306,7 +304,7 @@ public class PacienteServicioImpl implements PacienteServicio {
             throw new Exception("No existe un PQRS con el código: " + respuestaPQRSPDTO.codigoPQRS());
         }
 
-        Optional<Cuenta> optionalCuenta = cuentaRepository.findById(respuestaPQRSPDTO.codigoPQRS());
+        Optional<Cuenta> optionalCuenta = cuentaRepository.findById(respuestaPQRSPDTO.codigoAdmin());
 
         if (optionalCuenta.isEmpty()) {
             throw new Exception("No existe le cuenta con el código: " + respuestaPQRSPDTO.codigoPQRS());
@@ -319,6 +317,10 @@ public class PacienteServicioImpl implements PacienteServicio {
         mensajeNuevo.setMensaje(respuestaPQRSPDTO.mensaje());
 
         Mensaje respuesta = mensajeRepository.save(mensajeNuevo);
+
+        EmailDTO emailAdmin = new EmailDTO("PQRS", "Ha recibido un mensaje ", respuesta.getCuenta().getCorreo());
+
+        emailServicio.enviarEmail(emailAdmin);
 
         return respuesta.getCodigo();
     }
@@ -344,17 +346,44 @@ public class PacienteServicioImpl implements PacienteServicio {
         return respuesta;
     }
     @Override
-    public List<Cita> filtrarCitasPorMedico(int codigoMedico) throws Exception {
-        Optional<Medico> medicoBuscado = medicoRepository.findById(codigoMedico);
-        List<Cita> respuesta;
+     public List<ItemCitaDTO> filtrarCitasPacientePorMedico(int codigoMedico, int codigoPaciente) throws Exception {
+        List<Cita> citasMedico = citaRepository.findAllByMedico_CodigoAndPaciente_Codigo(codigoMedico, codigoPaciente);
 
-        if (medicoBuscado.isEmpty()) {
-            throw new Exception("No se encontró un médico con el código " + codigoMedico);
-        } else {
-            Medico medico = medicoBuscado.get();
-            respuesta = citaRepository.findByMedico(medico);
+        if(citasMedico.isEmpty()){
+            throw new Exception("No hay citas por el codigoMedico introducido");
         }
-        return respuesta;
+
+        List<ItemCitaDTO> citas = new ArrayList<>();
+
+        for(Cita c : citasMedico){
+            citas.add(new ItemCitaDTO(
+                    c.getCodigoCita(),
+                    c.getPaciente().getCodigo(),
+                    c.getPaciente().getNombre(),
+                    c.getFechaCita(),
+                    c.getEstadoCita()
+            ));
+        }
+
+        return citas;
+    }
+
+    @Override
+    public List<MedicoPDTO> filtrarMedicoPorEspecialidad(Especialidad especialidad) {
+        List<Medico> medicosPorEspecialidad = medicoRepository.findByEspecialidad(especialidad);
+
+        List<MedicoPDTO> medicosDTO = new ArrayList<>();
+
+        for (Medico medico : medicosPorEspecialidad) {
+            medicosDTO.add(new MedicoPDTO(
+                    medico.getCodigo(),
+                    medico.getNombre(),
+                    medico.getEspecialidad()
+
+            ));
+        }
+
+        return medicosDTO;
     }
 
     @Override
@@ -369,8 +398,6 @@ public class PacienteServicioImpl implements PacienteServicio {
             return respuesta;
         }
     }
-
-
 
     @Override
     public DetalleCitaDTO verDetalleCita(int codigoCita) throws Exception {
@@ -430,5 +457,40 @@ public class PacienteServicioImpl implements PacienteServicio {
             ));
         }
         return respuesta;
+    }
+
+    @Override
+    public DetallePQRSDTO verDetallesPQRS(int codigo) throws Exception {
+
+        Optional<PQRS> opcional = pqrsRepository.findById(codigo);
+
+        if (opcional.isEmpty()) {
+            throw new Exception("No existe un PQRS con el código " + codigo);
+        }
+
+        PQRS buscado = opcional.get();
+        List<Mensaje> mensaje = mensajeRepository.findAllByCodigo(codigo);
+
+        return new DetallePQRSDTO(
+                buscado.getCodigo(),
+                buscado.getEstadoPQRS(),
+                buscado.getFechaCreacion(),
+                buscado.getMotivo(),
+                buscado.getCita().getPaciente().getNombre(),
+                buscado.getCita().getMedico().getNombre(),
+                buscado.getCita().getMedico().getEspecialidad(),
+                convertirRespuestasDTO(mensaje)
+
+
+        );
+    }
+
+    private List<RespuestaDTO> convertirRespuestasDTO(List<Mensaje> mensajes) {
+        return mensajes.stream().map(m -> new RespuestaDTO(
+                m.getCodigo(),
+                m.getMensaje(),
+                m.getCuenta().getCorreo(),
+                m.getFecha_creacion()
+        )).toList();
     }
 }

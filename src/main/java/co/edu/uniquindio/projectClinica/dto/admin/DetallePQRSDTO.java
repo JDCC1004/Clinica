@@ -1,7 +1,9 @@
 package co.edu.uniquindio.projectClinica.dto.admin;
 
+import co.edu.uniquindio.projectClinica.dto.RespuestaDTO;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Especialidad;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_PQRS;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
@@ -23,7 +25,8 @@ public record  DetallePQRSDTO(
         String nombreMedico,
         @NotNull @Length(max = 200)
         Especialidad especialidad,
-        List<RespuestaPQRSDTO> mensaje
+        @NotEmpty
+        List<RespuestaDTO> mensaje
 
 ) {
 }

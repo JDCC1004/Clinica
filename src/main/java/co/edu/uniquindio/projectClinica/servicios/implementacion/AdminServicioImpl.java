@@ -1,6 +1,7 @@
 package co.edu.uniquindio.projectClinica.servicios.implementacion;
 
 import co.edu.uniquindio.projectClinica.dto.DetalleMedicoDTO;
+import co.edu.uniquindio.projectClinica.dto.EmailDTO;
 import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.ItemMedicoDTO;
 import co.edu.uniquindio.projectClinica.modelo.entidades.*;
@@ -27,6 +28,8 @@ public class  AdminServicioImpl implements AdministradorServicio {
     private final CuentaRepository cuentaRepository;
     private final MensajeRepository mensajeRepository;
     private final CitaRepository citaRepository;
+    private final EmailServicioImpl emailServicio;
+    private final AtencionRepository atencionRepository;
 
     @Override
     public int crearMedico(RegistroMedicoDTO medicoDTO) throws Exception {
@@ -220,6 +223,10 @@ public class  AdminServicioImpl implements AdministradorServicio {
         mensajeNuevo.setMensaje(respuestaPQRSDTO.mensaje());
 
         Mensaje respuesta = mensajeRepository.save(mensajeNuevo);
+
+        EmailDTO emailPaciente = new EmailDTO("PQRS", "Ha recibido un mensaje ", respuesta.getCuenta().getCorreo());
+
+        emailServicio.enviarEmail(emailPaciente);
 
         return respuesta.getCodigo();
     }

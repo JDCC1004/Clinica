@@ -7,7 +7,7 @@ public record RespuestaPQRSDTO(
 
         @NotNull
         int codigoPQRS,
-        @NotNull @Length(max = 10)
+        @NotNull
         int codigoCuenta,
         @NotNull @Length(max = 500)
         String mensaje

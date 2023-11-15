@@ -30,5 +30,7 @@ public interface AdministradorServicio {
     void cambiarEstadoPQRS(int codigoPQRS, Estado_PQRS estadoPqrs) throws Exception;
 
     List<CitasAdminDTO> listarCitas() throws Exception;
+
+    List<ConsultaDTO> listarConsultas(int codigoMedico) throws Exception;
     }
 

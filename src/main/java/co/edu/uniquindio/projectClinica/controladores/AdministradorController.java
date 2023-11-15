@@ -4,8 +4,6 @@ import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.MensajeDTO;
 import co.edu.uniquindio.projectClinica.dto.admin.CitasAdminDTO;
 import co.edu.uniquindio.projectClinica.dto.DetalleMedicoDTO;
-import co.edu.uniquindio.projectClinica.dto.admin.RegistroMedicoDTO;
-import co.edu.uniquindio.projectClinica.dto.admin.infoMedicoAdminDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.ItemMedicoDTO;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.AdministradorServicio;
 import jakarta.validation.Valid;
@@ -40,12 +38,12 @@ public class AdministradorController {
         return ResponseEntity.ok().body(new MensajeDTO<>(false, "Medico editado correctamente"));
     }
 
-    @GetMapping("listarMedicos")
+    @GetMapping("/listarMedicos")
     public ResponseEntity<MensajeDTO<List<infoMedicoAdminDTO>>> listarMedicos() throws Exception {
         return ResponseEntity.ok().body(new MensajeDTO<>(false, administradorServicio.listarMedico()));
     }
 
-    @GetMapping("listarCitas")
+    @GetMapping("/listarCitas")
     public ResponseEntity<MensajeDTO<List<CitasAdminDTO>>> listarCitas() throws Exception {
         return ResponseEntity.ok().body(new MensajeDTO<>(false, administradorServicio.listarCitas()));
     }
