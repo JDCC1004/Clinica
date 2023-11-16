@@ -15,11 +15,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrdenesServicioImpl implements OrdenesServicio {
 
-    private final OrdenesRepository ordenesRepositoy;
+    private final OrdenesRepository ordenesRepository;
     @Override
     public List<OrdenMedicamentosDTO> listarOrdenesMedicamentos(int codigoPaciente) throws Exception {
 
-        List<OrdenesMedicamentos> ordenesMedicamentos = ordenesRepositoy.listarOrdenesMedicamentos(codigoPaciente);
+        List<OrdenesMedicamentos> ordenesMedicamentos = ordenesRepository.listarOrdenesMedicamentos(codigoPaciente);
         List<OrdenMedicamentosDTO> respuesta = new ArrayList<>();
 
         for (OrdenesMedicamentos o: ordenesMedicamentos){

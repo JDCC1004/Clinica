@@ -4,6 +4,7 @@ import co.edu.uniquindio.projectClinica.dto.DetalleMedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.ItemCitaDTO;
 import co.edu.uniquindio.projectClinica.dto.MensajeDTO;
 //import co.edu.uniquindio.projectClinica.dto.admin.DetalleMedicoDTO;
+import co.edu.uniquindio.projectClinica.dto.OrdenMedicamentosDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.CitaMedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.DiaLibreDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.ExamenesDTO;
@@ -97,6 +98,12 @@ public class MedicoController {
     public ResponseEntity<MensajeDTO<String>> crearExamenes(@RequestBody ExamenesDTO examenesDTO) throws Exception {
         medicoServicio.crearExamenes(examenesDTO);
         return ResponseEntity.ok().body(new MensajeDTO<>(false, "Examen creado correctamente"));
+    }
+
+    @PostMapping("/crearOrden")
+    public ResponseEntity<MensajeDTO<String>> crearOrden(@RequestBody OrdenMedicamentosDTO ordenesDTO) throws Exception {
+        medicoServicio.crearOrden(ordenesDTO);
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, "Orden creada correctamente"));
     }
 
 }

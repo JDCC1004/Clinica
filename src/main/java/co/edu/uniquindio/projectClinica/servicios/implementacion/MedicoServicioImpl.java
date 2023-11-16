@@ -3,6 +3,7 @@ package co.edu.uniquindio.projectClinica.servicios.implementacion;
 
 import co.edu.uniquindio.projectClinica.dto.ItemCitaDTO;
 import co.edu.uniquindio.projectClinica.dto.DetalleMedicoDTO;
+import co.edu.uniquindio.projectClinica.dto.OrdenMedicamentosDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_cita;
@@ -27,6 +28,7 @@ public class MedicoServicioImpl implements MedicoServicio {
     private final MedicoRepository medicoRepository;
     private final DiaLibreRepository DiaLibreRepository;
     private final ExamenesRepository examenesRepository;
+    private final OrdenesRepository ordenesRepository;
 
     @Override
     public List<CitaMedicoDTO> listarCitasPendiente(int codigoMedico) throws Exception {
@@ -303,6 +305,20 @@ public class MedicoServicioImpl implements MedicoServicio {
 
         Examenes examen = examenesRepository.save(examenes);
         return  examen.getCodigo();
+    }
+
+    @Override
+    public int crearOrden(OrdenMedicamentosDTO ordenesDTO) throws Exception {
+        OrdenesMedicamentos ordenesMedicamentos = new OrdenesMedicamentos();
+
+        ordenesMedicamentos.setCodigoOrdenes(ordenesDTO.codigoOrdenes());
+        ordenesMedicamentos.setFechaAtencion(ordenesDTO.fechaCreacion());
+        ordenesMedicamentos.setMedicamentos(ordenesDTO.medicamentos());
+        ordenesMedicamentos.setAtencionMedica(ordenesDTO.atencionMedica());
+        ordenesMedicamentos.setDosis(ordenesDTO.dosis());
+
+        OrdenesMedicamentos orden = ordenesRepository.save(ordenesMedicamentos);
+        return  orden.getCodigoOrdenes();
     }
 
 

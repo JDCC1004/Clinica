@@ -25,7 +25,7 @@ public class ResultadosServicioImpl implements ResultadosServicio {
             respuesta.add(new ResultadosExamenesDTO(
                     r.getCodigoResultado(),
                     r.getFechaAtencion(),
-                    r.getResultado(),
+                    r.getResultadoExamenes(),
                     r.getAtencionMedica().getCodigo())
             );
         }
