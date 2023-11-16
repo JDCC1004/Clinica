@@ -1,4 +1,4 @@
-package co.edu.uniquindio.projectClinica.dto.paciente;
+package co.edu.uniquindio.projectClinica.dto;
 
 import co.edu.uniquindio.projectClinica.modelo.entidades.Atencion;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Medicamentos;
@@ -11,12 +11,12 @@ public record OrdenMedicamentosDTO(
         @NotNull @Length(max = 10)
         int codigoOrdenes,
         @NotNull
-        LocalDate fechaAtencion,
+        LocalDate fechaCreacion,
         @NotNull
         String medicamentos,
-        @NotNull @Length(max = 10)
-        int atencionMedica,
-        @NotNull @Length(max = 10)
+        @NotNull
+        Atencion atencionMedica,
+        @NotNull
         int dosis
 ) {
 }

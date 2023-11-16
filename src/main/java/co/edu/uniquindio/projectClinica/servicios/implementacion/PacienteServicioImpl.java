@@ -3,6 +3,7 @@ package co.edu.uniquindio.projectClinica.servicios.implementacion;
 import co.edu.uniquindio.projectClinica.dto.*;
 import co.edu.uniquindio.projectClinica.dto.admin.DetallePQRSDTO;
 import co.edu.uniquindio.projectClinica.dto.admin.MedicoDTO;
+import co.edu.uniquindio.projectClinica.dto.medico.ExamenesDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.DetallePacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.*;
@@ -36,7 +37,7 @@ public class PacienteServicioImpl implements PacienteServicio {
     private final MedicoServicio medicoServicio;
     private final EmailServicio emailServicio;
     private final AdministradorRepository administradorRepository;
-
+    private final ExamenesRepository examenRepository;
     @Override
     public int registrarse(PacienteDTO pacienteDTO) throws Exception {
 
@@ -469,29 +470,61 @@ public class PacienteServicioImpl implements PacienteServicio {
     }
 
     @Override
-    public DetallePQRSDTO verDetallesPQRS(int codigo) throws Exception {
-
-        Optional<PQRS> opcional = pqrsRepository.findById(codigo);
-
-        if (opcional.isEmpty()) {
-            throw new Exception("No existe un PQRS con el código " + codigo);
+    public List<ExamenesDTO> listarExamenes(int codigoPaciente)throws Exception{
+        List<Examenes> examenes = examenRepository.obtenerExamenesPaciente(codigoPaciente);
+        if (examenes.isEmpty()) {
+            throw new Exception("No hay examenes disponibles");
         }
 
-        PQRS buscado = opcional.get();
-        List<Mensaje> mensaje = mensajeRepository.findAllByCodigo(codigo);
+        List<ExamenesDTO> respuesta = new ArrayList<>();
 
-        return new DetallePQRSDTO(
-                buscado.getCodigo(),
-                buscado.getEstadoPQRS(),
-                buscado.getFechaCreacion(),
-                buscado.getMotivo(),
-                buscado.getCita().getPaciente().getNombre(),
-                buscado.getCita().getMedico().getNombre(),
-                buscado.getCita().getMedico().getEspecialidad(),
-                convertirRespuestasDTO(mensaje)
+        for (Examenes examen : examenes) {
+            respuesta.add(new ExamenesDTO(
+                    examen.getCodigo(),
+                    examen.getExamenes(),
+                    examen.getNombrePaciente(),
+                    examen.getCedula(),
+                    examen.getCodigoPaciente(),
+                    examen.getEps(),
+                    examen.getAlergias(),
+                    examen.getTipoSangre()
 
+            ));
+        }
+        return respuesta;
+    }
 
-        );
+    @Override
+    public DetallePQRSDTO verDetallesPQRS(int codigo) throws Exception {
+        try {
+            Optional<PQRS> opcional = pqrsRepository.findById(codigo);
+
+            if (opcional.isEmpty()) {
+                throw new Exception("No existe findAllByPqrs_Codigoun PQRS con el código " + codigo);
+            }
+
+            PQRS buscado = opcional.get();
+            List<Mensaje> mensaje = mensajeRepository.findAllByPqrs_Codigo(codigo);
+
+            if (mensaje.isEmpty()) {
+                throw new Exception("No hay mensajes asociados al PQRS con el código " + codigo);
+            }
+
+            return new DetallePQRSDTO(
+                    buscado.getCodigo(),
+                    buscado.getEstadoPQRS(),
+                    buscado.getFechaCreacion(),
+                    buscado.getMotivo(),
+                    buscado.getCita().getPaciente().getNombre(),
+                    buscado.getCita().getMedico().getNombre(),
+                    buscado.getCita().getMedico().getEspecialidad(),
+                    convertirRespuestasDTO(mensaje)
+            );
+        } catch (Exception e) {
+            // Agregar manejo de excepciones aquí, como imprimir el stack trace
+            e.printStackTrace();
+            throw new Exception("Error al obtener detalles del PQRS: " + e.getMessage());
+        }
     }
 
     private List<RespuestaDTO> convertirRespuestasDTO(List<Mensaje> mensajes) {

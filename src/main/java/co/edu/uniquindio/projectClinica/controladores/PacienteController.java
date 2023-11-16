@@ -5,6 +5,7 @@ import co.edu.uniquindio.projectClinica.dto.ItemCitaDTO;
 import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.MensajeDTO;
 import co.edu.uniquindio.projectClinica.dto.admin.DetallePQRSDTO;
+import co.edu.uniquindio.projectClinica.dto.medico.ExamenesDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Cita;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Especialidad;
@@ -112,4 +113,9 @@ import java.util.List;
             return ResponseEntity.ok().body(new MensajeDTO<>(false, pacienteServicio.filtrarMedicoPorEspecialidad(especialidad)));
         }
         //listarporfecha
+
+    @GetMapping("/listarExamenes/{codigoPaciente}")
+    public ResponseEntity<MensajeDTO<List<ExamenesDTO>>> listarExamenes(@PathVariable int codigoPaciente) throws Exception{
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, pacienteServicio.listarExamenes(codigoPaciente)));
+    }
     }

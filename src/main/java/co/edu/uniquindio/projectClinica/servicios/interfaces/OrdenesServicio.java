@@ -1,6 +1,6 @@
 package co.edu.uniquindio.projectClinica.servicios.interfaces;
 
-import co.edu.uniquindio.projectClinica.dto.paciente.OrdenMedicamentosDTO;
+import co.edu.uniquindio.projectClinica.dto.OrdenMedicamentosDTO;
 
 import java.util.List;
 

@@ -6,6 +6,7 @@ import co.edu.uniquindio.projectClinica.dto.MensajeDTO;
 //import co.edu.uniquindio.projectClinica.dto.admin.DetalleMedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.CitaMedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.DiaLibreDTO;
+import co.edu.uniquindio.projectClinica.dto.medico.ExamenesDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.RegistroAtencionDTO;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.MedicoServicio;
 import jakarta.validation.Valid;
@@ -90,6 +91,12 @@ public class MedicoController {
     public ResponseEntity<MensajeDTO<String>> editarInformacion(@RequestBody DetalleMedicoDTO medicoDTO) throws Exception {
         medicoServicio.editarInformacion(medicoDTO);
         return ResponseEntity.ok().body(new MensajeDTO<>(false, "Cuenta editada correctamente"));
+    }
+
+    @PostMapping("/crearExamen")
+    public ResponseEntity<MensajeDTO<String>> crearExamenes(@RequestBody ExamenesDTO examenesDTO) throws Exception {
+        medicoServicio.crearExamenes(examenesDTO);
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, "Examen creado correctamente"));
     }
 
 }

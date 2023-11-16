@@ -26,7 +26,7 @@ public class MedicoServicioImpl implements MedicoServicio {
     private final AtencionRepository atencionRepository;
     private final MedicoRepository medicoRepository;
     private final DiaLibreRepository DiaLibreRepository;
-
+    private final ExamenesRepository examenesRepository;
 
     @Override
     public List<CitaMedicoDTO> listarCitasPendiente(int codigoMedico) throws Exception {
@@ -286,6 +286,23 @@ public class MedicoServicioImpl implements MedicoServicio {
 
         medicoRepository.save(medico);
         return medico.getCodigo();
+    }
+
+    @Override
+    public int crearExamenes(ExamenesDTO examenesDTO) throws Exception {
+        Examenes examenes = new Examenes();
+
+        examenes.setCodigo(examenesDTO.codigo());
+        examenes.setExamenes(examenesDTO.examenes());
+        examenes.setNombrePaciente(examenesDTO.nombrePaciente());
+        examenes.setCedula(examenesDTO.cedula());
+        examenes.setCodigoPaciente(examenesDTO.codigoPaciente());
+        examenes.setEps(examenesDTO.eps());
+        examenes.setAlergias(examenesDTO.alergias());
+        examenes.setTipoSangre(examenesDTO.tipoSangre());
+
+        Examenes examen = examenesRepository.save(examenes);
+        return  examen.getCodigo();
     }
 
 

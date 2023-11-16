@@ -1,12 +1,8 @@
 package co.edu.uniquindio.projectClinica.servicios.implementacion;
 
-import co.edu.uniquindio.projectClinica.dto.paciente.OrdenMedicamentosDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.ResultadosExamenesDTO;
-import co.edu.uniquindio.projectClinica.modelo.entidades.OrdenesMedicamentos;
 import co.edu.uniquindio.projectClinica.modelo.entidades.ResultadoExamenes;
-import co.edu.uniquindio.projectClinica.repositorios.OrdenesRepository;
 import co.edu.uniquindio.projectClinica.repositorios.ResultadoRepository;
-import co.edu.uniquindio.projectClinica.repositorios.ResultadosRepository;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.ResultadosServicio;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

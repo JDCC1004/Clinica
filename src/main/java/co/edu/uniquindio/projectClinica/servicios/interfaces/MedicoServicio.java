@@ -41,4 +41,7 @@ public interface MedicoServicio {
     List<DiaLibreDTO> obtenerDiasLibresMedico(int codigoMedico) throws Exception;
 
     int obtenerDiasLibresActivos(int codigoMedico);
+
+    int crearExamenes(ExamenesDTO examenesDTO) throws Exception;
+
 }

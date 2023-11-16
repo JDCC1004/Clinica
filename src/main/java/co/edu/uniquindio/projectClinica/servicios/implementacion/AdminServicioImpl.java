@@ -3,6 +3,7 @@ package co.edu.uniquindio.projectClinica.servicios.implementacion;
 import co.edu.uniquindio.projectClinica.dto.DetalleMedicoDTO;
 import co.edu.uniquindio.projectClinica.dto.EmailDTO;
 import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
+import co.edu.uniquindio.projectClinica.dto.RespuestaDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.ItemMedicoDTO;
 import co.edu.uniquindio.projectClinica.modelo.entidades.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_PQRS;
@@ -270,6 +271,8 @@ public class  AdminServicioImpl implements AdministradorServicio {
         }
 
         PQRS buscado = opcional.get();
+        List<Mensaje> mensaje = mensajeRepository.findAllByPqrs_Codigo(codigo);
+
 
         return new DetallePQRSDTO(
                 buscado.getCodigo(),
@@ -279,9 +282,20 @@ public class  AdminServicioImpl implements AdministradorServicio {
                 buscado.getCita().getPaciente().getNombre(),
                 buscado.getCita().getMedico().getNombre(),
                 buscado.getCita().getMedico().getEspecialidad(),
+                convertirRespuestasDTO(mensaje)
 
-                new ArrayList<>()
+
         );
+    }
+
+
+    private List<RespuestaDTO> convertirRespuestasDTO(List<Mensaje> mensajes) {
+        return mensajes.stream().map(m -> new RespuestaDTO(
+                m.getCodigo(),
+                m.getMensaje(),
+                m.getCuenta().getCorreo(),
+                m.getFecha_creacion()
+        )).toList();
     }
 
     @Override

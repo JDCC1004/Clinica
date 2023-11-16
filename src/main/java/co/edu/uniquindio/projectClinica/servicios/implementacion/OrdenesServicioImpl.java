@@ -1,6 +1,6 @@
 package co.edu.uniquindio.projectClinica.servicios.implementacion;
 
-import co.edu.uniquindio.projectClinica.dto.paciente.OrdenMedicamentosDTO;
+import co.edu.uniquindio.projectClinica.dto.OrdenMedicamentosDTO;
 import co.edu.uniquindio.projectClinica.modelo.entidades.OrdenesMedicamentos;
 import co.edu.uniquindio.projectClinica.repositorios.OrdenesRepository;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.OrdenesServicio;
@@ -27,7 +27,7 @@ public class OrdenesServicioImpl implements OrdenesServicio {
                     o.getCodigoOrdenes(),
                     o.getFechaAtencion(),
                     o.getMedicamentos(),
-                    o.getAtencionMedica().getCodigo(),
+                    o.getAtencionMedica(),
                     o.getMedicamento().getDosis())
             );
         }

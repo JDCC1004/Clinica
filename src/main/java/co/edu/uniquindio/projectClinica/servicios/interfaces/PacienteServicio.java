@@ -2,6 +2,7 @@ package co.edu.uniquindio.projectClinica.servicios.interfaces;
 
 import co.edu.uniquindio.projectClinica.dto.*;
 import co.edu.uniquindio.projectClinica.dto.admin.DetallePQRSDTO;
+import co.edu.uniquindio.projectClinica.dto.medico.ExamenesDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.DetallePacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.*;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Cita;
@@ -23,6 +24,8 @@ public interface PacienteServicio {
      * PREGUNTAR
      */
     String cambiarPassword(NuevaPasswordDTO nuevaPasswordDTO) throws Exception;
+
+
 
     String cambiarPasswordOlvidada(NuevaPasswordOlvidadaDTO nuevaPasswordOlvidadaDTO) throws Exception;
 
@@ -55,6 +58,7 @@ public interface PacienteServicio {
 
     List<DetalleCitaDTO> listarCitasPaciente(int codigoPaciente) throws Exception;
 
+    List<ExamenesDTO> listarExamenes(int codigoPaciente) throws Exception;
     DetallePQRSDTO verDetallesPQRS(int codigo) throws Exception;
 
 

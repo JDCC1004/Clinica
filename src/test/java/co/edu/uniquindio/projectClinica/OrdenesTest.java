@@ -1,6 +1,6 @@
 package co.edu.uniquindio.projectClinica;
 
-import co.edu.uniquindio.projectClinica.dto.paciente.OrdenMedicamentosDTO;
+import co.edu.uniquindio.projectClinica.dto.OrdenMedicamentosDTO;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.OrdenesServicio;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;

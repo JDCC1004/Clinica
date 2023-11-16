@@ -23,7 +23,7 @@ public class ResultadoExamenes implements Serializable {
     private LocalDate fechaAtencion;
     @Lob
     @Column(nullable = false)
-    private String resultado;
+    private String resultadoExamenes;
 
     @ManyToOne
     private Atencion atencionMedica;
