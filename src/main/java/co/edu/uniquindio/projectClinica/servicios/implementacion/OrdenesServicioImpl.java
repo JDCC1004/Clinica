@@ -24,10 +24,9 @@ public class OrdenesServicioImpl implements OrdenesServicio {
 
         for (OrdenesMedicamentos o: ordenesMedicamentos){
             respuesta.add(new OrdenMedicamentosDTO(
-                    o.getCodigoOrdenes(),
                     o.getFechaAtencion(),
-                    o.getMedicamentos(),
-                    o.getAtencionMedica(),
+                    o.getMedicamento().getCodigoMedicamento(),
+                    o.getAtencionMedica().getCodigo(),
                     o.getMedicamento().getDosis())
             );
         }

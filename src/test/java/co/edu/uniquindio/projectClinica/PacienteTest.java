@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -112,10 +113,10 @@ public class PacienteTest {
     @Sql("classpath:dataset.sql")
     public void filtrarCitasPorFecha() throws Exception {
 
-        LocalDateTime fecha = LocalDateTime.of(2023,9,15,15,0,0);
+        LocalDate fecha = LocalDate.of(2023,9,15);
         int codigoPaciente = 6;
 
-        List<Cita> citas = pacienteServicio.filtrarCitasPorFecha(fecha, codigoPaciente);
+        List<CitaPacienteDTO> citas = pacienteServicio.filtrarCitasPorFecha(fecha, codigoPaciente);
 
         assertEquals(2, citas.size());
 

@@ -23,6 +23,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MedicoServicioImpl implements MedicoServicio {
 
+    private final MedicamentoRepository medicamentoRepository;
     private final CitaRepository citaRepository;
     private final AtencionRepository atencionRepository;
     private final MedicoRepository medicoRepository;
@@ -311,11 +312,25 @@ public class MedicoServicioImpl implements MedicoServicio {
     public int crearOrden(OrdenMedicamentosDTO ordenesDTO) throws Exception {
         OrdenesMedicamentos ordenesMedicamentos = new OrdenesMedicamentos();
 
-        ordenesMedicamentos.setCodigoOrdenes(ordenesDTO.codigoOrdenes());
+        Optional<Atencion> atencionOptional = atencionRepository.findById(ordenesDTO.codigoAtencion());
+
+        if(atencionOptional.isEmpty()){
+            throw new Exception("Error");
+        }
+
+        Optional<Medicamentos> medicamentosOptional = medicamentoRepository.findById(ordenesDTO.codigoMedicamento());
+
+        if(medicamentosOptional.isEmpty()){
+            throw new Exception("Error");
+        }
+
+        Atencion atencion = atencionOptional.get();
+        Medicamentos medicamentos = medicamentosOptional.get();
+
         ordenesMedicamentos.setFechaAtencion(ordenesDTO.fechaCreacion());
-        ordenesMedicamentos.setMedicamentos(ordenesDTO.medicamentos());
-        ordenesMedicamentos.setAtencionMedica(ordenesDTO.atencionMedica());
+        ordenesMedicamentos.setAtencionMedica(atencion);
         ordenesMedicamentos.setDosis(ordenesDTO.dosis());
+        ordenesMedicamentos.setMedicamento(medicamentos);
 
         OrdenesMedicamentos orden = ordenesRepository.save(ordenesMedicamentos);
         return  orden.getCodigoOrdenes();

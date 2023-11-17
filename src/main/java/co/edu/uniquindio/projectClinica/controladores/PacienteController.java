@@ -1,9 +1,6 @@
 package co.edu.uniquindio.projectClinica.controladores;
 
-import co.edu.uniquindio.projectClinica.dto.DetalleCitaDTO;
-import co.edu.uniquindio.projectClinica.dto.ItemCitaDTO;
-import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
-import co.edu.uniquindio.projectClinica.dto.MensajeDTO;
+import co.edu.uniquindio.projectClinica.dto.*;
 import co.edu.uniquindio.projectClinica.dto.admin.DetallePQRSDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.ExamenesDTO;
 import co.edu.uniquindio.projectClinica.dto.paciente.*;
@@ -15,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -58,6 +56,11 @@ import java.util.List;
             return ResponseEntity.ok().body(new MensajeDTO<>(false, pacienteServicio.listarCitasPaciente(codigoPaciente)));
         }
 
+        @GetMapping("listarCitasEspecialidad/{codigoPaciente}/{especialidad}")
+        public ResponseEntity<MensajeDTO<List<DetalleCitaDTO>>> listarCitasEspecialidad(@PathVariable int codigoPaciente, Especialidad especialidad) throws Exception{
+            return ResponseEntity.ok().body(new MensajeDTO<>(false, pacienteServicio.obtenerCitasPacienteEspecialidad(codigoPaciente, especialidad)));
+        }
+
         @GetMapping("/listarDetalleConsulta/{codigoPaciente}")
         public ResponseEntity<MensajeDTO<List<DetalleCitaDTO>>> listarDetalleConsultasPorPaciente(@PathVariable int codigoPaciente) throws Exception{
             return ResponseEntity.ok().body(new MensajeDTO<>(false, pacienteServicio.listarDetalleConsultasPorPaciente(codigoPaciente)));
@@ -99,7 +102,7 @@ import java.util.List;
         }
 
         @GetMapping("/listarCitaFecha/{codigoPaciente}/{fecha}")
-        public ResponseEntity<MensajeDTO<List<Cita>>> filtrarCitasPorFecha(@PathVariable LocalDateTime fecha, @PathVariable int codigoPaciente) throws Exception{
+        public ResponseEntity<MensajeDTO<List<CitaPacienteDTO>>> filtrarCitasPorFecha(@PathVariable LocalDate fecha, @PathVariable int codigoPaciente) throws Exception{
             return ResponseEntity.ok().body(new MensajeDTO<>(false, pacienteServicio.filtrarCitasPorFecha(fecha,codigoPaciente)));
         }
 

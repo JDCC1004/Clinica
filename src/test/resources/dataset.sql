@@ -54,11 +54,11 @@ insert into cita values ( 3, 2, '2023-10-20 09:00:00', '2023-10-10 10:00:00', 'D
 insert into cita values ( 4, 0, '2023-10-25 10:00:00', '2023-10-10 09:00:00', 'Consulta general', 11, 7 );
 insert into cita values ( 5, 1, '2023-10-30 11:00:00', '2023-10-10 11:00:00', 'Dolor lumbar',  12, 7 );
 
-insert into atencion values ( 1010, 'Fiebre', 'Calor en el cuerpo y malestar general', 'Tomar ibuprofeno',1);
-insert into atencion values ( 1011, 'Vomito', 'Vomito a varias horas del dia', 'Suero intravenoso', 2);
-insert into atencion values ( 1012, 'Desmayos', 'Desmayos al transcurrir el dia', 'Tratamiento intensivo', 3);
-insert into atencion values ( 1013, 'Ninguno', '------------------', 'Control preventivo', 4);
-insert into atencion values ( 1014, 'Ceguera', 'Ve borroso de lejos', 'Remite al oftamologo', 5);
+insert into atencion values ( 1010, 'Fiebre', 1, '2023-10-30 11:00:00', 'Calor en el cuerpo y malestar general', 'Tomar ibuprofeno',1);
+insert into atencion values ( 1011, 'Vomito', 1, '2023-10-30 11:00:00' 'Vomito a varias horas del dia', 'Suero intravenoso', 2);
+insert into atencion values ( 1012, 'Desmayos', 1, '2023-10-30 11:00:00', 'Desmayos al transcurrir el dia', 'Tratamiento intensivo', 3);
+insert into atencion values ( 1013, 'Ninguno', 1, '2023-10-30 11:00:00', '------------------', 'Control preventivo', 4);
+insert into atencion values ( 1014, 'Ceguera', 1, '2023-10-30 11:00:00', 'Ve borroso de lejos', 'Remite al oftamologo', 5);
 
 insert into dia_libre values ( 11124, '2023-10-12', 11);
 insert into dia_libre values ( 11125, '2023-10-12', 12);
@@ -73,11 +73,11 @@ insert into medicamentos values (163, 1, 'pfizer', 'acetaminophen');
 insert into medicamentos values (183, 2, 'mk', 'ketotifeno');
 insert into medicamentos values (193, 4, 'santa fe', 'lozartan');
 
-insert into ordenes_medicamentos values (123, '2023-11-23', 'acetaminophen', 1010,163);
-insert into ordenes_medicamentos values (143, '2023-11-24', 'acetaminophen', 1011,163);
-insert into ordenes_medicamentos values (153, '2023-11-25', 'acetaminophen', 1012,163);
-insert into ordenes_medicamentos values (163, '2023-09-23', 'acetaminophen', 1013,163);
-insert into ordenes_medicamentos values (173, '2023-11-22', 'acetaminophen', 1014,163);
+insert into ordenes_medicamentos values (123, 10, '2023-11-23', 1010,163);
+insert into ordenes_medicamentos values (143, 1, '2023-11-24', 1011,163);
+insert into ordenes_medicamentos values (153, 2, '2023-11-25', 1012,163);
+insert into ordenes_medicamentos values (163, 2, '2023-09-23', 1013,163);
+insert into ordenes_medicamentos values (173, 1, '2023-11-22', 1014,163);
 
 insert into pqrs values (1, 0, '2023-12-04', 'Cita medica de urgencia', 'tipo', 1);
 insert into pqrs values (2, 0, '2023-11-04', 'Cita medica de urgencia', 'tipo', 2);

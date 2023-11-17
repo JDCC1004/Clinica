@@ -19,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -192,7 +193,7 @@ public class PacienteServicioImpl implements PacienteServicio {
         // no puede tener más de 3 citas
         int maxCitasPermitidas = 3;
         LocalDateTime fechaActual = LocalDateTime.now();
-        int cantidadCitasPaciente = citaRepository.obtenerCitasPaciente(agendarCitaDTO.codigoPaciente(), fechaActual).size();
+        int cantidadCitasPaciente = citaRepository.obtenerCitasPaciente(agendarCitaDTO.codigoPaciente(), LocalDate.from(fechaActual)).size();
 
         if (cantidadCitasPaciente >= maxCitasPermitidas) {
             throw new Exception("El paciente ya tiene " + maxCitasPermitidas + " citas programadas.");
@@ -255,24 +256,23 @@ public class PacienteServicioImpl implements PacienteServicio {
 
                 PQRS pqrsCreado = pqrsRepository.save(pqrs);
 
-                /**EmailDTO emailAdmin = new EmailDTO("PQRS", "Ha recibido un mensaje ", pqrsCreado.getCita().getPaciente().getCorreo());
-
-                emailServicio.enviarEmail(emailAdmin);*/
+                enviarCorreoAdministradores("El paciente "+cita.getPaciente().getNombre()+ "ha creado un pqrs con el siguiente mensaje: "+crearPQRSPDTO.asunto());
 
                 return pqrsCreado.getCodigo();
             }
         }
     }
 
+
     public boolean verificarExisteCita(int codigo) {
         return citaRepository.existsById(codigo);
     }
 
-    public void enviarCorreoAdministradores() throws Exception {
+    public void enviarCorreoAdministradores(String mensaje) throws Exception {
         List<Administrador> administradores = administradorRepository.findAll();
 
         for (Administrador administrador : administradores) {
-            EmailDTO email = new EmailDTO("Nueva PQRS", "Se ha creado una nueva PQRS", administrador.getCorreo());
+            EmailDTO email = new EmailDTO("Nueva PQRS", "Se ha creado una nueva PQRS: "+mensaje, administrador.getCorreo());
             emailServicio.enviarEmail(email);
         }
     }
@@ -335,7 +335,7 @@ public class PacienteServicioImpl implements PacienteServicio {
     @Override
     public List<CitaPacienteDTO> listarCitasPendientes(int codigoPaciente) throws Exception {
 
-        List<Cita> citas = citaRepository.obtenerCitasPaciente(codigoPaciente, LocalDateTime.now());
+        List<Cita> citas = citaRepository.obtenerCitasPaciente(codigoPaciente, LocalDate.now());
 
         if (citas.isEmpty()) {
             throw new Exception("No hay citas registradas");
@@ -395,17 +395,27 @@ public class PacienteServicioImpl implements PacienteServicio {
     }
 
     @Override
-    public List<Cita> filtrarCitasPorFecha(LocalDateTime fecha, int codigoPaciente) throws Exception {
+    public List<CitaPacienteDTO> filtrarCitasPorFecha(LocalDate fecha, int codigoPaciente) throws Exception {
         if (fecha == null) {
             throw new IllegalArgumentException("La fecha no puede ser nula.");
         } else {
             List<Cita> respuesta = citaRepository.obtenerCitasPaciente(codigoPaciente, fecha);
+            List<CitaPacienteDTO> sol = new ArrayList<>();
 
             if (respuesta.isEmpty()) {
                 throw new Exception("No hay citas para esa fecha y paciente.");
             }
 
-            return respuesta;
+            for( Cita c : respuesta ){
+                sol.add( new CitaPacienteDTO(
+                    c.getCodigoCita(),
+                    c.getMedico().getNombre(),
+                    c.getMotivo(),
+                    c.getFechaCita()
+                ) );
+            }
+
+            return sol;
         }
     }
 
@@ -430,7 +440,7 @@ public class PacienteServicioImpl implements PacienteServicio {
 
     @Override
     public List<DetalleCitaDTO> listarDetalleConsultasPorPaciente(int codigoPaciente) throws Exception {
-        List<Cita> listaDetalles = citaRepository.obtenerCitasPaciente(codigoPaciente, LocalDateTime.now());
+        List<Cita> listaDetalles = citaRepository.obtenerCitasPaciente(codigoPaciente, LocalDate.now());
 
         List<DetalleCitaDTO> respuesta = new ArrayList<>();
 
@@ -457,6 +467,27 @@ public class PacienteServicioImpl implements PacienteServicio {
         List<DetalleCitaDTO> respuesta = new ArrayList<>();
 
         for (Cita cita : citas) {
+            respuesta.add(new DetalleCitaDTO(
+                    cita.getCodigoCita(),
+                    cita.getEstadoCita(),
+                    cita.getFechaCita(),
+                    cita.getMotivo(),
+                    cita.getMedico().getEspecialidad(),
+                    cita.getMedico().getNombre()
+            ));
+        }
+        return respuesta;
+    }
+
+    @Override
+    public List<DetalleCitaDTO> obtenerCitasPacienteEspecialidad(int codigoPaciente, Especialidad especialidad) throws Exception{
+        List<Cita> citas = citaRepository.obtenerCitasPacienteEspecialidad(codigoPaciente, especialidad);
+        if (citas.isEmpty()){
+            throw new Exception("No hay citas disponibles para la especialidad dada");
+        }
+        List<DetalleCitaDTO> respuesta = new ArrayList<>();
+
+        for (Cita cita: citas){
             respuesta.add(new DetalleCitaDTO(
                     cita.getCodigoCita(),
                     cita.getEstadoCita(),

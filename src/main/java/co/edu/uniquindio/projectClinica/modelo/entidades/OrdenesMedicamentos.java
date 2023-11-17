@@ -25,10 +25,6 @@ public class OrdenesMedicamentos implements Serializable {
   private int dosis;
     @Column(nullable = false)
     private LocalDate fechaAtencion;
-    @Column(nullable = false, length = 30)
-    private String medicamentos;
-    @NotNull
-    private int codigoPaciente;
 
     @ManyToOne
     private Atencion atencionMedica;

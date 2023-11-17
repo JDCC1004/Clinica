@@ -13,7 +13,7 @@ public interface OrdenesRepository extends JpaRepository<OrdenesMedicamentos, In
     static List<OrdenesMedicamentos> obtenerMedicamentos(String medicamentos) {return null;
     }
 
-    @Query("SELECT e FROM OrdenesMedicamentos e WHERE e.codigoPaciente = :codigoPaciente")
+    @Query("SELECT e FROM OrdenesMedicamentos e WHERE e.codigoOrdenes = :codigoPaciente")
     List<Examenes> obtenerOrden(@Param("codigoPaciente") int codigoPaciente);
 
 

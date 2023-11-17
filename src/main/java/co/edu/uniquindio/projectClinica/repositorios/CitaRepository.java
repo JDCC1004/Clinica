@@ -1,6 +1,7 @@
 package co.edu.uniquindio.projectClinica.repositorios;
 
 import co.edu.uniquindio.projectClinica.modelo.entidades.Cita;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Especialidad;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_cita;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Medico;
 import co.edu.uniquindio.projectClinica.modelo.entidades.PQRS;
@@ -30,8 +31,8 @@ public interface CitaRepository extends JpaRepository<Cita, Integer> {
     @Query("select c from Cita c where c.fechaCita = :fecha and c.medico.codigo = :medicoID")
     Cita obtenerCitaPorFechaYMedico(LocalDateTime fecha, int medicoID);
 
-    @Query("select c from Cita c where c.paciente.codigo = :codigoPaciente and c.fechaCita >= :fechaActual")
-    List<Cita> obtenerCitasPaciente(int codigoPaciente, LocalDateTime fechaActual);
+    @Query("select c from Cita c where c.paciente.codigo = :codigoPaciente and date(c.fechaCita) >= :fechaActual")
+    List<Cita> obtenerCitasPaciente(int codigoPaciente, LocalDate fechaActual);
 
     @Query("select c from Cita c where c.medico.codigo = :codigoMedico and c.estadoCita = :estadoCita")
     List<Cita> obtenerCitasPendientesMedico(int codigoMedico, Estado_cita estadoCita);
@@ -44,4 +45,7 @@ public interface CitaRepository extends JpaRepository<Cita, Integer> {
 
     @Query("select c from Cita c where c.paciente.codigo = :codigoPaciente")
     List<Cita> obtenerCitasPaciente(int codigoPaciente);
+
+    @Query("select c from Cita c where c.paciente.codigo = :codigoPaciente and c.medico.especialidad = :especialidad")
+    List<Cita> obtenerCitasPacienteEspecialidad(int codigoPaciente, Especialidad especialidad);
 }

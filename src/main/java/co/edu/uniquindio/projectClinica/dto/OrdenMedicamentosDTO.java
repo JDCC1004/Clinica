@@ -8,14 +8,12 @@ import org.hibernate.validator.constraints.Length;
 import java.time.LocalDate;
 
 public record OrdenMedicamentosDTO(
-        @NotNull @Length(max = 10)
-        int codigoOrdenes,
         @NotNull
         LocalDate fechaCreacion,
         @NotNull
-        String medicamentos,
+        int codigoMedicamento,
         @NotNull
-        Atencion atencionMedica,
+        int codigoAtencion,
         @NotNull
         int dosis
 ) {
