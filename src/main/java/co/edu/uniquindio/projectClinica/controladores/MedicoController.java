@@ -78,10 +78,10 @@ public class MedicoController {
 
     }
 
-/**    @GetMapping("/listar")
+    @GetMapping("/listar")
     public ResponseEntity<MensajeDTO<List<ItemCitaDTO>>> listarTodos() {
         return ResponseEntity.ok().body(new MensajeDTO<>(false, medicoServicio.listarTodos()));
-    }*/
+    }
 
    @GetMapping("/detalle/{codigoMedico}")
     public ResponseEntity<MensajeDTO<DetalleMedicoDTO>> verDetalle(@PathVariable int codigoMedico) throws Exception {

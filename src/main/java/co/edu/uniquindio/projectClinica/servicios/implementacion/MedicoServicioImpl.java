@@ -221,22 +221,23 @@ public class MedicoServicioImpl implements MedicoServicio {
         return respuesta;
     }
 
-//    @Override
-//    public List<ItemCitaDTO> listarTodos() {
-//        List<Medico> medicos = medicoRepository.findAll();
-//        List<ItemCitaDTO> respuesta = new ArrayList<>();
-//
-//        for (Medico medico : medicos) {
-//            respuesta.add(new ItemCitaDTO(
-//                    medico.getCodigo(),
-//                    medico.getCodigo(),
-//                    medico.getNombre(),
-//                    medico.getFechaCreacion()
-//
-//            ));
-//        }
-//        return respuesta;
-//    }
+    @Override
+    public List<ItemCitaDTO> listarTodos() {
+        List<Cita> medicos = citaRepository.findAll();
+        List<ItemCitaDTO> respuesta = new ArrayList<>();
+
+        for (Cita medico : medicos) {
+            respuesta.add(new ItemCitaDTO(
+                    medico.getCodigoCita(),
+                    medico.getPaciente().getCodigo(),
+                    medico.getPaciente().getNombre(),
+                    medico.getFechaCreacion(),
+                    medico.getEstadoCita()
+
+            ));
+        }
+        return respuesta;
+    }
 
     @Override
     public DetalleMedicoDTO obtenerMedico(int codigo) throws Exception {

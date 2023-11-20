@@ -24,7 +24,7 @@ public interface MedicoServicio {
     List<ItemCitaDTO> listarCitasRealizadasMedico(int codigoMedico) throws Exception;
 
    //Metodo para el test
-    //List<ItemCitaDTO> listarTodos() ;
+    List<ItemCitaDTO> listarTodos() ;
 
     //Metodo para el test
 
