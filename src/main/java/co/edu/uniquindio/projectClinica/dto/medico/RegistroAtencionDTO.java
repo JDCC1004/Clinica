@@ -22,9 +22,8 @@ public record RegistroAtencionDTO(
         @Length(max = 200)
         String notasMedicas,
         @NotNull
-        LocalDate fechaAtencion,
-        @NotNull
-        Estado_cita estadoCita
+        LocalDate fechaAtencion
+
 ) {
 
 }

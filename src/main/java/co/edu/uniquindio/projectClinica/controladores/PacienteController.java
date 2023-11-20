@@ -40,14 +40,19 @@ import java.util.List;
             return ResponseEntity.ok().body(new MensajeDTO<>(false, pacienteServicio.verDetallePaciente(codigoPaciente)));
         }
 
+    @GetMapping("/detalleMedico/{codigoMedico}")
+    public ResponseEntity<MensajeDTO<MedicoPDTO>> verDetalleMedico(@PathVariable int codigoMedico) throws Exception{
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, pacienteServicio.verDetalleMedico(codigoMedico)));
+    }
+
         @GetMapping("/detalleCita/{codigoCita}")
         public ResponseEntity<MensajeDTO<DetalleCitaDTO>> verDetalleCita(@PathVariable int codigoCita) throws Exception{
             return ResponseEntity.ok().body(new MensajeDTO<>(false, pacienteServicio.verDetalleCita(codigoCita)));
         }
 
         @GetMapping("/listarPQRSPaciente/{codigoPaciente}")
-        public ResponseEntity<MensajeDTO<List<PQRSPacienteDTO>>> listarPQRSPaciente(@PathVariable int codigoPaciente) throws Exception{
-            List<PQRSPacienteDTO> pqrsPaciente = pacienteServicio.listarPQRSPaciente(codigoPaciente);
+        public ResponseEntity<MensajeDTO<List<DetallePQRSPacienteDTO>>> listarPQRSPaciente(@PathVariable int codigoPaciente) throws Exception{
+            List<DetallePQRSPacienteDTO> pqrsPaciente = pacienteServicio.listarPQRSPaciente(codigoPaciente);
             return ResponseEntity.ok().body(new MensajeDTO<>(false, pqrsPaciente));
         }
 

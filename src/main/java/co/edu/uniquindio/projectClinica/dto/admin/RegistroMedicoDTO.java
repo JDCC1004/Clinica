@@ -31,10 +31,8 @@ public record RegistroMedicoDTO(
         @NotNull
         String password,
         @NotNull
-        LocalTime horaInicio,
+        String horaInicio,
         @NotNull
-        LocalTime horaFin,
-        @NotNull EstadoUsuario estadoUsuario
-
+        String horaFin
 ) {
 }

@@ -6,6 +6,7 @@ import co.edu.uniquindio.projectClinica.dto.ItemPacienteDTO;
 import co.edu.uniquindio.projectClinica.dto.RespuestaDTO;
 import co.edu.uniquindio.projectClinica.dto.medico.ItemMedicoDTO;
 import co.edu.uniquindio.projectClinica.modelo.entidades.*;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.EstadoUsuario;
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_PQRS;
 import co.edu.uniquindio.projectClinica.repositorios.*;
 import co.edu.uniquindio.projectClinica.dto.admin.*;
@@ -37,9 +38,7 @@ public class  AdminServicioImpl implements AdministradorServicio {
     @Override
     public int crearMedico(RegistroMedicoDTO medicoDTO) throws Exception {
 
-        if (!medicoDTO.horaFin().isAfter(medicoDTO.horaInicio())) {
-            throw new Exception("La hora de inicio debe ser menor que la hora fin");
-        }
+
         if( estaRepetidaCedula(medicoDTO.cedula())){
             throw new Exception("La cédula " +medicoDTO.cedula()+ " ya está en uso");
         }
@@ -62,11 +61,11 @@ public class  AdminServicioImpl implements AdministradorServicio {
             medico.setTelefono(medicoDTO.telefono());
             medico.setCiudad(medicoDTO.ciudad());
             medico.setEspecialidad(medicoDTO.especialidad());
-            medico.setEstadoUsuario(medicoDTO.estadoUsuario());
             medico.setCorreo(medicoDTO.correo());
             medico.setUrl_foto(medicoDTO.urlFoto());
             medico.setHoraInicio(medicoDTO.horaInicio());
             medico.setHoraFin(medicoDTO.horaFin());
+            medico.setEstadoUsuario(EstadoUsuario.ACTIVO);
 
             medicoRepository.save(medico);
             return medico.getCodigo();

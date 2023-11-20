@@ -140,6 +140,22 @@ public class PacienteServicioImpl implements PacienteServicio {
                 paciente.getCorreo());
     }
 
+    @Override
+    public MedicoPDTO verDetalleMedico(int codigoMedico) throws Exception {
+        Optional<Medico> medicoOptional = medicoRepository.findById(codigoMedico);
+
+        if (medicoOptional.isEmpty()) {
+            throw new Exception("No existe un medico con el codigo " + codigoMedico);
+        }
+
+        Medico medico = medicoOptional.get();
+
+        return new MedicoPDTO(
+                medico.getCodigo(),
+                medico.getNombre(),
+                medico.getEspecialidad());
+    }
+
     public List<Medico> obtenerMedicosPorEspecialidad(Especialidad especialidad) {
 
         List<Medico> medicos = medicoRepository.findByEspecialidad(especialidad);
@@ -245,8 +261,8 @@ public class PacienteServicioImpl implements PacienteServicio {
                 PQRS pqrs = new PQRS();
 
                 pqrs.setCodigo(crearPQRSPDTO.codigo());
-                pqrs.setMotivo(crearPQRSPDTO.asunto());
                 pqrs.setTipo(crearPQRSPDTO.tipo());
+                pqrs.setMotivo(crearPQRSPDTO.motivo());
                 pqrs.setFechaCreacion(LocalDateTime.now());
                 pqrs.setEstadoPQRS(Estado_PQRS.ACTIVO);
 
@@ -256,7 +272,7 @@ public class PacienteServicioImpl implements PacienteServicio {
 
                 PQRS pqrsCreado = pqrsRepository.save(pqrs);
 
-                enviarCorreoAdministradores("El paciente "+cita.getPaciente().getNombre()+ "ha creado un pqrs con el siguiente mensaje: "+crearPQRSPDTO.asunto());
+                enviarCorreoAdministradores("El paciente "+cita.getPaciente().getNombre()+ "ha creado un pqrs con el siguiente mensaje: "+crearPQRSPDTO.motivo());
 
                 return pqrsCreado.getCodigo();
             }
@@ -282,18 +298,18 @@ public class PacienteServicioImpl implements PacienteServicio {
     }
 
     @Override
-    public List<PQRSPacienteDTO> listarPQRSPaciente(int codigoPaciente) throws Exception {
+    public List<DetallePQRSPacienteDTO> listarPQRSPaciente(int codigoPaciente) throws Exception {
         List<PQRS> listaPqrs = pqrsRepository.obtenerPqrsPorPaciente(codigoPaciente);
 
-        List<PQRSPacienteDTO> respuesta = new ArrayList<>();
+        List<DetallePQRSPacienteDTO> respuesta = new ArrayList<>();
 
         for (PQRS pqrs : listaPqrs) {
-            respuesta.add(new PQRSPacienteDTO(
+            respuesta.add(new DetallePQRSPacienteDTO(
                     pqrs.getCita().getCodigoCita(),
                     pqrs.getCita().getPaciente().getCodigo(),
                     pqrs.getCita().getCodigoCita(),
-                    pqrs.getMotivo(),
                     pqrs.getTipo(),
+                    pqrs.getMotivo(),
                     pqrs.getFechaCreacion(),
                     pqrs.getEstadoPQRS()
             ));

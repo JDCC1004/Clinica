@@ -21,9 +21,9 @@ import java.util.List;
 public class Medico extends Usuario implements Serializable {
 
     @Column(nullable = false)
-    private LocalTime horaInicio;
+    private String horaInicio;
     @Column(nullable = false)
-    private LocalTime horaFin;
+    private String horaFin;
     @Column(nullable = false)
     private Especialidad especialidad;
 

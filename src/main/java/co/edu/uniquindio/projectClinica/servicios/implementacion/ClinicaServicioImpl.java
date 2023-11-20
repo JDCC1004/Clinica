@@ -1,9 +1,6 @@
 package co.edu.uniquindio.projectClinica.servicios.implementacion;
 
-import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Ciudad;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.EPS;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Especialidad;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Tipo_sangre;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.*;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.ClinicaServicio;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -36,5 +33,11 @@ public class ClinicaServicioImpl implements ClinicaServicio {
     public List<EPS> listarEPS() throws Exception {
         List<EPS> eps = List.of(EPS.values());
         return eps;
+    }
+
+    @Override
+    public List<TipoPQRS> listarPqrsTipo() throws Exception {
+        List<TipoPQRS> tipoPQRS = List.of(TipoPQRS.values());
+        return tipoPQRS;
     }
 }

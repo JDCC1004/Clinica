@@ -30,8 +30,8 @@ public record DetalleMedicoDTO(
         @NotNull
         EstadoUsuario estadoUsuario,
         @NotNull
-        LocalTime horaInicio,
+        String horaInicio,
         @NotNull
-        LocalTime horaFin
+        String horaFin
 ) {
 }

@@ -1,6 +1,7 @@
 package co.edu.uniquindio.projectClinica.modelo.entidades;
 
 import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Estado_PQRS;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.TipoPQRS;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -28,7 +29,7 @@ public class PQRS implements Serializable {
     @Column(nullable = false)
     private String motivo;
     @Column(nullable = false)
-    private String tipo;
+    private TipoPQRS tipo;
     @Column(nullable = false)
     private Estado_PQRS estadoPQRS;
 

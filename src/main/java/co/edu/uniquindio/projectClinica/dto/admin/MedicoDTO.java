@@ -36,9 +36,9 @@ public record MedicoDTO (
         @NotNull
         String urlFoto,
         @NotNull
-        LocalTime horaInicio,
+        String horaInicio,
         @NotNull
-        LocalTime horaFin){
+        String horaFin){
 
 }
 

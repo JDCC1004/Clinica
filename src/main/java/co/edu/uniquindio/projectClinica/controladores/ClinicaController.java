@@ -1,10 +1,7 @@
 package co.edu.uniquindio.projectClinica.controladores;
 
 import co.edu.uniquindio.projectClinica.dto.MensajeDTO;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Ciudad;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.EPS;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Especialidad;
-import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.Tipo_sangre;
+import co.edu.uniquindio.projectClinica.modelo.entidades.Enum.*;
 import co.edu.uniquindio.projectClinica.servicios.interfaces.ClinicaServicio;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -39,5 +36,10 @@ public class ClinicaController {
     @GetMapping("/lista-eps")
     public ResponseEntity<MensajeDTO<List<EPS>>> listarEPS() throws Exception{
         return ResponseEntity.ok().body(new MensajeDTO<>(false, clinicaServicio.listarEPS()));
+    }
+
+    @GetMapping("/listaPqrsTipo")
+    public ResponseEntity<MensajeDTO<List<TipoPQRS>>> listarPqrsTipo() throws Exception{
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, clinicaServicio.listarPqrsTipo()));
     }
 }

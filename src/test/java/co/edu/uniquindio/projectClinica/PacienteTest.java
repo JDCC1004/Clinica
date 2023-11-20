@@ -144,14 +144,14 @@ public class PacienteTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void listarPQRSPacienteTest() throws Exception {
-        List<PQRSPacienteDTO> pqrspList = pacienteServicio.listarPQRSPaciente(6);
+        List<DetallePQRSPacienteDTO> pqrspList = pacienteServicio.listarPQRSPaciente(6);
         assertEquals(3, pqrspList.size());
     }
 
     @Test
     @Sql("classpath:dataset.sql")
     public void responderPQRSPTest() throws Exception {
-        List<PQRSPacienteDTO> pqrspList = pacienteServicio.listarPQRSPaciente(6);
+        List<DetallePQRSPacienteDTO> pqrspList = pacienteServicio.listarPQRSPaciente(6);
         RespuestaPQRSPDTO respuestaPQRSPDTO = new RespuestaPQRSPDTO(2,4,"Su solicitud esta activa");
         int respuestaCodigo = pacienteServicio.responderPQRSP(respuestaPQRSPDTO);
         Assertions.assertTrue(respuestaCodigo > 0);

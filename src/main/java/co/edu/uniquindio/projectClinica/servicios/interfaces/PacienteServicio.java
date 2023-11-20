@@ -37,7 +37,7 @@ public interface PacienteServicio {
      */
     int crearPQRSPaciente(PQRSPacienteDTO crearPQRSPDTO) throws Exception;
 
-    List<PQRSPacienteDTO> listarPQRSPaciente(int codigoPaciente) throws Exception;
+    List<DetallePQRSPacienteDTO> listarPQRSPaciente(int codigoPaciente) throws Exception;
 
     int responderPQRSP(RespuestaPQRSPDTO respuestaPQRSPDTO) throws Exception;
 
@@ -54,6 +54,8 @@ public interface PacienteServicio {
 
     //Metodo creado para test
     DetallePacienteDTO verDetallePaciente(int codigoPaciente) throws Exception;
+
+    MedicoPDTO verDetalleMedico(int codigoMedico) throws Exception;
 
     List<DetalleCitaDTO> listarDetalleConsultasPorPaciente(int pacienteId) throws Exception;
 
